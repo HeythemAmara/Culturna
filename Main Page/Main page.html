@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title> Culturna </title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    <header id="header">
+        <div class="header-back">
+            <a href="#" class="logo">Skapere</a>
+        </div>
+        <div class="header-back">
+            <ul>
+                <li><a href="#" class="active">Accueil</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Destination</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Connection</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <Section>
+        <h2 id="text"><span>Notre culture notre future</span><br>Culturna</h2>
+        <img src="src/Library.png" id="Library">
+
+        
+        <a href="#" id="btn">Explorez</a>
+        
+        
+        <img src="https://user-images.githubusercontent.com/65358991/170092616-5a70c4af-2eed-496f-bde9-b5fcc7142a31.png" id="water">
+        
+        
+    </Section>
+    
+    <div class="sec">
+        <h2>Information</h2>
+        <p>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>
+            HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>
+            HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>
+            HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>HI <br><br>
+        </p>
+        <img src="src/Football.png" id="football">
+        <img src="src/pinceaux.png" id="pinceaux">
+    </div>
+    
+    
+    
+    <script>
+        let text = document.getElementById('text');
+        let football = document.getElementById('football');
+        let pinceaux = document.getElementById('pinceaux');
+        let btn = document.getElementById('btn');
+        let Lib = document.getElementById('Library');
+        let water = document.getElementById('water');
+        let header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            let value = window.scrollY;
+            
+            text.style.top = 50+ value * -0.01 + '%';
+            pinceaux.style.top = value * -1.5 + 'px';
+            pinceaux.style.left = value * 2 + 'px';
+            football.style.top = value * -1.5 + 'px';
+            football.style.left = value * -5 + 'px';
+            btn.style.marginTop = value * 1.5 + 'px';
+            Lib.style.top = value * .25 + 'px';
+            header.style.top = value * .5 + 'px';
+        })
+    </script>
+    
+</body>
+  <script  src="./script.js"></script>
+
+</html>
