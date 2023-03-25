@@ -9,23 +9,31 @@ const closebtn_signin = document.querySelector('#closebtn-signin');
 const closebtn_signup = document.querySelector('#closebtn-signup');
 const headerr = document.querySelector('#header');
 const section = document.querySelector('Section');
+const container = document.querySelector('.container');
 
+window.onload = function () {  
+    LoginSEC.classList.toggle('slide-out-blurred-bottom');
+}
 
 toggleLogin.addEventListener('click', () => {
-    LoginSEC.classList.toggle('LoginSECbase');
+    container.classList.remove('LoginSECbase');
+    LoginSEC.classList.toggle('slide-in-blurred-top');
+    LoginSEC.classList.toggle('slide-out-blurred-bottom');
     toggleLogin.classList.toggle('active');
     headerr.classList.toggle('blur');
     section.classList.toggle('blur');
 });
 
 closebtn_signin.addEventListener('click', () => {
-    LoginSEC.classList.toggle('LoginSECbase');
+    LoginSEC.classList.toggle('slide-in-blurred-top');
+    LoginSEC.classList.toggle('slide-out-blurred-bottom');
     toggleLogin.classList.toggle('active');
     headerr.classList.toggle('blur');
     section.classList.toggle('blur');
 });
 closebtn_signup.addEventListener('click', () => {
-    LoginSEC.classList.toggle('LoginSECbase');
+    LoginSEC.classList.toggle('slide-in-blurred-top');
+    LoginSEC.classList.toggle('slide-out-blurred-bottom');
     toggleLogin.classList.toggle('active');
     headerr.classList.toggle('blur');
     section.classList.toggle('blur');
