@@ -147,11 +147,37 @@ class UtilisateurC
             $query->execute();
             $result = $query->fetchAll();
             return $result;
+            
         }
         catch (PDOException $e) 
         {
             echo "error add: " . $e->getMessage();
+            return 0;
         }
     }
-}
 
+
+    public function inscripUtilisateur($Utilisateur)
+    {
+        try {
+            $pdo = config::getConnexion();
+            $sql = "INSERT INTO `utilisateurs`(`IdU`, `Username`,`Email`, `Mdp`, `Dob`, `Perm`) 
+            VALUES (:idu, :Username, :email, :mdp, :dob, :perm)";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "idu" => $Utilisateur->getIdU(),
+                "Username" => $Utilisateur->getUsername(),
+                "email" => $Utilisateur->getEmail(),
+                "mdp" => $Utilisateur->getMdp(),
+                "dob" => $Utilisateur->getDob(),
+                "perm" => $Utilisateur->getPerm()
+            ]);
+            echo $Utilisateur->getIdU();
+            return $Utilisateur->getIdU();
+
+        } catch (PDOException $e) {
+            echo "Ajout Echouer: " . $e->getMessage();
+        }
+            
+    }
+}

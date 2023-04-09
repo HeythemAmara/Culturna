@@ -3,8 +3,15 @@ include "../Controller/ChauffeurC.php";
 
 //include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/ChauffeurC.php';
 
+include "../Controller/TransportC.php";
+
+//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/TransportC.php';
+
 $ChauffeurC = new ChauffeurC();
-$list = $ChauffeurC->listChauffeur();
+$listchauffeur = $ChauffeurC->listChauffeur();
+
+$TransportC = new TransportC();
+$listtransport = $TransportC->listTransport();
 ?>
 
 <!DOCTYPE html>
@@ -348,25 +355,24 @@ $list = $ChauffeurC->listChauffeur();
 				                	<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
-				                <?php
-                        foreach ($list as $Chauffeur) 
-                        {
-                        ?>
-				                	<tr>
-                                        <td class="styleth"><?= $Chauffeur['Id_Ch']; ?></td>
-                                        <td class="styleth"><?= $Chauffeur['Nom']; ?></td>
-                                        <td class="styleth"><?= $Chauffeur['Prenom']; ?></td>
-                                        <td class="styleth"><?= $Chauffeur['Tel']; ?></td>
-                                        <td class="styleth"><?= $Chauffeur['Email']; ?></td>
-                                        <td class="styleth"><?= $Chauffeur['Vehicule']; ?></td>
-				                		<td>
-				                			<a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-				                		</td>
-				                	</tr>
-                                    <?php
-                        }
-                        ?>	
-
+                        <?php
+                          foreach ($listchauffeur as $Chauffeur) 
+                          {
+                          ?>
+				                  	<tr>
+                                          <td class="styleth"><?= $Chauffeur['Id_Ch']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Nom']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Prenom']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Tel']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Email']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Vehicule']; ?></td>
+				                  		<td>
+				                  			<a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+				                  		</td>
+				                  	</tr>
+                                      <?php
+                          }
+                          ?>		
                           </table>  
 		                    </div>
           </div> 
@@ -388,7 +394,7 @@ $list = $ChauffeurC->listChauffeur();
 			  <form  class="form-group" method="POST" action="addChauffeur.php">
 				<ul>
 					<li>
-						<h3> Ajouter</h3>
+						<h3>Add Chauffeur</h3>
 					</li>
 					<li>
 						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma" autocomplete="off">
@@ -420,7 +426,7 @@ $list = $ChauffeurC->listChauffeur();
 			  <form  class="form-group" method="POST" action="updateChauffeur.php">
         <ul>
 					<li>
-						<h3>Modifier</h3>
+						<h3>Edit Chauffeur</h3>
 					</li>
 					<li>
 						<input type="number" name="Id_Chu" class="form-style" placeholder="Id du chauffeur a modifier" id="Id_Chu" autocomplete="off">
@@ -444,6 +450,166 @@ $list = $ChauffeurC->listChauffeur();
 					</li>
 					<li>
 						<input type="text" name="vehiculeu" class="form-style" placeholder="Vehicule" id="vehiculeu" autocomplete="off">
+						<i class="input-icon uil uil-user"></i>
+					</li>
+
+				</ul>
+				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
+			  </form>
+          </div>
+        </div>
+      </section>
+      <section class="row mb-4 sectionphp">
+        <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
+          <div class="card tablediv">
+            <div class="card-body px-0 pb-2 tableviewdiv">
+                                                                  <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
+				                <table class="tableview">
+				                  <tr class="TitleTab">
+				                  	<th class="styleth">Id Transport</th>
+				                  	<th class="styleth">Id Client</th>
+				                  	<th class="styleth">Id Chauffeur</th>
+				                  	<th class="styleth">type</th>
+				                  	<th class="styleth">Nombre des personnes</th>
+				                  	<th class="styleth">Date</th>
+				                  	<th class="styleth">Adresse</th>
+				                  	<th class="styleth">Nom</th>
+				                  	<th class="styleth">Tel des personnes</th>
+				                  	<th class="styleth">Message</th>
+				                  	<th><a class="toggle-edit2"><i class="edit-del-icon uil uil-edit"></i></a></th>
+				                  	<th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
+				                  </tr>
+                          <?php
+                            foreach ($listtransport as $Transport) 
+                            {
+                            ?>
+				                    	<tr>
+                                  <td class="styleth"><?= $Transport['Id_T']; ?></td>
+                                  <td class="styleth"><?= $Transport['IdClient']; ?></td>
+                                  <td class="styleth"><?= $Transport['Id_Ch']; ?></td>
+                                  <td class="styleth"><?= $Transport['Type']; ?></td>
+                                  <td class="styleth"><?= $Transport['Nbr_Pers']; ?></td>
+                                  <td class="styleth"><?= $Transport['Date']; ?></td>
+				                    		  <td class="styleth"><?= $Transport['Adresse']; ?></td>
+                                  <td class="styleth"><?= $Transport['Nom']; ?></td>
+                                  <td class="styleth"><?= $Transport['Tel']; ?></td>
+                                  <td class="styleth"><?= $Transport['Message']; ?></td>
+				                    		<td>
+				                    			<a href="deleteTransport.php?Id_T=<?php echo $Transport['Id_T']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+				                    		</td>
+				                    	</tr>
+                                        <?php
+                            }
+                            ?>
+                          </table>  
+		                    </div>
+          </div> 
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card inputdivadd InputlistAdd2 slide-in-right">
+
+
+
+
+
+
+          <!--! ====================================================== Input Ajout Modif       -->
+
+
+
+
+
+        <form  class="form-group" method="POST" action="addTransport.php">
+				<ul>
+					<li>
+						<h3> Add Transport</h3>
+					</li>
+					<li>
+						<input type="number" name="IdClientat" class="form-style" placeholder="IdClient" id="IdClientat" >
+						<i class="input-icon uil uil-box"></i>
+					</li>
+					<li>
+						<input type="number" name="Id_Chat" class="form-style" placeholder="IdChauffeur" id="Id_Chat" >
+						<i class="input-icon uil uil-usd-circle"></i>
+					</li>
+					<li>
+						<input type="text" name="Typeat" class="form-style" placeholder="Type" id="Typeat" >
+						<i class="input-icon uil uil-tag"></i>
+					</li>
+					<li>
+						<input type="number" name="Nbr_Persat" class="form-style" placeholder="NombrePersonne" id="Nbr_Persat" >
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="date" name="Dateat" class="form-style" placeholder="Date" id="Dateat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="adresseat" class="form-style" placeholder="Adresse" id="adresseat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="nameat" class="form-style" placeholder="Name" id="nameat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="numat" class="form-style" placeholder="Phone" id="numat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="Noteat" class="form-style" placeholder="Note for the driver" id="Noteat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+				</ul>
+				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+			  </form>
+          </div>
+        
+          <div class="card inputdivedit InputlistEdit2 slide-out-right">
+                                                                  <!--! ====================================================== Input Ajout Modif       -->
+			  <form  class="form-group" method="POST" action="updateTransport.php">
+        <ul>
+					<li>
+						<h3>Edit Transport</h3>
+					</li>
+					<li>
+						<input type="number" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
+						<i class="input-icon uil uil-parcel"></i>
+					</li>
+					<li>
+					<input type="number" name="IdClientut" class="form-style" placeholder="IdClient" id="IdClientut" >
+						<i class="input-icon uil uil-box"></i>
+					</li>
+					<li>
+						<input type="number" name="Id_Chut" class="form-style" placeholder="IdChauffeur" id="Id_Chut" >
+						<i class="input-icon uil uil-usd-circle"></i>
+					</li>
+					<li>
+						<input type="text" name="Typeut" class="form-style" placeholder="Type" id="Typeut" >
+						<i class="input-icon uil uil-tag"></i>
+					</li>
+					<li>
+						<input type="number" name="Nbr_Persut" class="form-style" placeholder="NombrePersonne" id="Nbr_Persut" >
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="date" name="Dateut" class="form-style" placeholder="Date" id="Dateut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="adresseut" class="form-style" placeholder="Adresse" id="adresseut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="nameut" class="form-style" placeholder="Name" id="nameut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="numut" class="form-style" placeholder="Phone" id="numut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="Noteut" class="form-style" placeholder="Note for the driver" id="Noteut" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 

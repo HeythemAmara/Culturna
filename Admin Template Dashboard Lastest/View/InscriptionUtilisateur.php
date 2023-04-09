@@ -24,19 +24,22 @@ if (
             "Client"
             );
         $UtilisateurC = new UtilisateurC();
-        $UtilisateurC->addUtilisateur($Utilisateur);
-        header('location:accueil.php');
+        $valeur_id=$UtilisateurC->inscripUtilisateur($Utilisateur);
+        echo $valeur_id;
+        //header('location:accueil.php?val_id=' . urlencode($valeur_id));
         echo"done";
         } 
     else 
         {
-        header('location:accueil.php');
+        $valeur_id=0;
+        //header('location:accueil.php?val_id=' . urlencode($valeur_id));
         echo"nope1";
         }
     }
 else 
     {
-        header('location:accueil.php');
+        $valeur_id=0;
+        //header('location:accueil.php?val_id=' . urlencode($valeur_id));
         echo"nope2";
     }
 ?>
