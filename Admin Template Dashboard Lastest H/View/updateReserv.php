@@ -35,15 +35,15 @@ if (
             );
         $ReservationC = new ReservationC();
         $ReservationC->updateReservation($Reservation, $_POST['idReservu']);
-        header('location:listEvent.php');
+        header('location:listReserv.php');
         } 
     else 
         {
-            header('location:listEvent.php');
+            header('location:listReserv.php');
         }
     }
 else 
     {
-        header('location:listEvent.php');
+        header('location:listReserv.php');
     }
 ?>

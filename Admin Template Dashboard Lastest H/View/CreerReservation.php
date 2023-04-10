@@ -2,24 +2,27 @@
 <?php
 //include 'D:/xampp/htdocs/Culturna/perso/DASHBORDEVENT/Controller/ReservationC.php';
 include '../Controller/ReservationC.php';
-
+//$_POST['prixeventa']
+$test=2;
+echo $_POST['dateeventa'];
 var_dump($_POST);
 if (
     isset($_POST['idEventa']) &&
     isset($_POST['namea']) &&
     isset($_POST['emaila']) &&
+    isset($_POST['idclienta']) &&
     isset($_POST['nbrPlacea']) &&
-    isset($_POST['numa']) &&
-    isset($_POST['idClienta'])
+    isset($_POST['numa']) 
+
    ) 
 {
     if (
         !empty($_POST['idEventa']) &&
         !empty($_POST['namea']) &&
         !empty($_POST['emaila']) &&
+        !empty($_POST['idclienta']) &&
         !empty($_POST['nbrPlacea']) &&
-        !empty($_POST['numa'])&&
-        !empty($_POST['idClienta'])
+        !empty($_POST['numa']) 
        ) 
         {
         $Reservation = new Reservation(
@@ -28,19 +31,23 @@ if (
             $_POST['emaila'],
             $_POST['nbrPlacea'],
             $_POST['numa'],
-            $_POST['idClienta']
+            $_POST['idclienta']
             );
         $ReservationC = new ReservationC();
         $ReservationC->addReservation($Reservation);
-        header('location:listEvent.php');
+        $test=1;
+        header('location:TransportEvent.php?val_id=' . $_POST['idclienta'].'&creationreserv='.$test .'&dateevent='.$_POST['dateeventa'] .'&nbrpersonne='.$_POST['nbrPlacea']);
+        echo "done";
         } 
     else 
         {
-        header('location:listEvent.php');
+        header('location:TransportEvent.php?val_id=' . $_POST['idclienta'].'&creationreserv='.$test .'&dateevent='.$_POST['dateeventa'] .'&nbrpersonne='.$_POST['nbrPlacea']);
+        echo "nope1";
         }
     }
 else 
     {
-        header('location:listEvent.php');
+        header('location:TransportEvent.php?val_id=' . $_POST['idclienta'].'&creationreserv='.$test .'&dateevent='.$_POST['dateeventa'] .'&nbrpersonne='.$_POST['nbrPlacea']);
+        echo "nope2";
     }
 ?>

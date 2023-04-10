@@ -32,15 +32,15 @@ if (
             );
         $ReservationC = new ReservationC();
         $ReservationC->addReservation($Reservation);
-        header('location:listEvent.php');
+        header('location:listReserv.php');
         } 
     else 
         {
-        header('location:listEvent.php');
+        header('location:listReserv.php');
         }
     }
 else 
     {
-        header('location:listEvent.php');
+        header('location:listReserv.php');
     }
 ?>

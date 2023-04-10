@@ -6,7 +6,7 @@ if (isset($_GET['idReserv']) && !empty($_GET['idReserv'])) {
 
     echo "id Reserv: " . $_GET['idReserv'];
     $reservationC->deleteReservation($_GET['idReserv']);
-    header('location:listEvent.php');
+    header('location:listReserv.php');
 } else {
     echo "id is not defined";
 }

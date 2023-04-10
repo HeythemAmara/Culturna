@@ -1,12 +1,17 @@
 <?php
-include "../Controller/EventC.php";
-include "../Controller/ReservationC.php";
+include "../Controller/ChauffeurC.php";
 
-$EventC = new EventC();
-$listEvent = $EventC->listEvent();
+//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/ChauffeurC.php';
 
-$ReservationC = new ReservationC();
-$listReservation = $ReservationC->listReservation();
+include "../Controller/TransportC.php";
+
+//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/TransportC.php';
+
+$ChauffeurC = new ChauffeurC();
+$listchauffeur = $ChauffeurC->listChauffeur();
+
+$TransportC = new TransportC();
+$listtransport = $TransportC->listTransport();
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +92,7 @@ $listReservation = $ReservationC->listReservation();
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10 uil uil-truck"></i>
             </div>
-            <span class="nav-link-text ms-1">Reservationations</span>
+            <span class="nav-link-text ms-1">Transportations</span>
           </a>
         </li>
       </ul>
@@ -338,35 +343,31 @@ $listReservation = $ReservationC->listReservation();
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-                        <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
+                                                                  <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
 				                <table class="tableview">
 				                <tr class="TitleTab">
-								<th class="styleth">Id Event</th>
-									<th class="styleth">Name</th>
-									<th class="styleth">Type</th>
-									<th class="styleth">Time</th>
-									<th class="styleth">Date</th>
-									<th class="styleth">Prix</th>
-									<th class="styleth">Image</th>
-									<th class="styleth">NbrPlaceMax</th>
+				                	<th class="styleth">Id Chauffeur</th>
+				                	<th class="styleth">Nom Chauffeur</th>
+				                	<th class="styleth">Prenom Chauffeur</th>
+				                	<th class="styleth">Tel Chauffeur</th>
+				                	<th class="styleth">Email Chauffeur</th>
+				                	<th class="styleth">Vehicule Chauffeur</th>
 				                	<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
                         <?php
-                          foreach ($listEvent as $Event) 
+                          foreach ($listchauffeur as $Chauffeur) 
                           {
                           ?>
 				                  	<tr>
-									  <td class="styleth"><?= $Event['idEvent']; ?></td>
-                        <td class="styleth"><?= $Event['name']; ?></td>
-                        <td class="styleth"><?= $Event['type']; ?></td>
-                        <td class="styleth"><?= $Event['time']; ?></td>
-                        <td class="styleth"><?= $Event['date']; ?></td>
-                        <td class="styleth"><?= $Event['prix']; ?></td>
-                        <td class="styleth"><?= $Event['image']; ?></td>
-						<td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Id_Ch']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Nom']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Prenom']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Tel']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Email']; ?></td>
+                                          <td class="styleth"><?= $Chauffeur['Vehicule']; ?></td>
 				                  		<td>
-										  <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+				                  			<a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
 				                  	</tr>
                                       <?php
@@ -390,37 +391,30 @@ $listReservation = $ReservationC->listReservation();
 
 
 
-			  <form  class="form-group" method="POST" action="addEvent.php">
+			  <form  class="form-group" method="POST" action="addChauffeur.php">
 				<ul>
 					<li>
-						<h3>Add Event</h3>
-					</li>
-					<input type="text" name="namea" class="form-style" placeholder="Nom" id="namea" autocomplete="off">
-						<i class="input-icon uil uil-clipboard"></i>
+						<h3>Add Chauffeur</h3>
 					</li>
 					<li>
-						<input type="text" name="typea" class="form-style" placeholder="Type" id="typea" autocomplete="off">
-						<i class="input-icon uil uil-file-landscape"></i>
+						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma" autocomplete="off">
+						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="time" name="timea" class="form-style" placeholder="Time" id="timea" autocomplete="off">
-						<i class="input-icon uil uil-clock"></i>
-					</li>
-					<li>
-						<input type="date" name="datea" class="form-style" placeholder="Date" id="datea" autocomplete="off">
-						<i class="input-icon uil uil-calendar-alt"></i>
-					</li>
-					<li>
-						<input type="number" name="prixa" class="form-style" placeholder="Prix" id="prixa" autocomplete="off">
+						<input type="text" name="prenoma" class="form-style" placeholder="Prenom" id="prenoma" autocomplete="off">
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
-						<input type="file" name="imagea" class="form-style" placeholder="Image" id="imagea" autocomplete="off">
-						<i class="input-icon uil uil-image"></i>
+						<input type="number" name="tela" class="form-style" placeholder="Tel" id="tela" autocomplete="off">
+						<i class="input-icon uil uil-tag"></i>
 					</li>
 					<li>
-						<input type="number" name="nbrPlaceMaxa" class="form-style" placeholder="PlaceMax" id="nbrPlaceMaxa" autocomplete="off">
-						<i class="input-icon uil uil-user-minus"></i>
+						<input type="email" name="emaila" class="form-style" placeholder="Email" id="emaila" autocomplete="off">
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="text" name="vehiculea" class="form-style" placeholder="Vehicule" id="vehiculea" autocomplete="off">
+						<i class="input-icon uil uil-user"></i>
 					</li>
 				</ul>
 				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
@@ -429,45 +423,38 @@ $listReservation = $ReservationC->listReservation();
         
           <div class="card inputdivedit InputlistEdit slide-out-right">
                                                                   <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateEvent.php">
+			  <form  class="form-group" method="POST" action="updateChauffeur.php">
         <ul>
 					<li>
-						<h3>Edit Event</h3>
+						<h3>Edit Chauffeur</h3>
 					</li>
 					<li>
-			<input type="number" name="idEvent" class="form-style" placeholder="id Event a Modifier" id="idEvent" autocomplete="off">
-			<i class="input-icon uil uil-dialpad-alt"></i>
-		</li>
-		<li>
-			<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu" autocomplete="off">
-			<i class="input-icon uil uil-clipboard"></i>
-		</li>
-		<li>
-			<input type="text" name="typeu" class="form-style" placeholder="Type" id="typeu" autocomplete="off">
-			<i class="input-icon uil uil-file-landscape"></i>
-		</li>
-		<li>
-			<input type="time" name="timeu" class="form-style" placeholder="Time" id="timeu" autocomplete="off">
-			<i class="input-icon uil uil-clock"></i>
-		</li>
-		<li>
-			<input type="date" name="dateu" class="form-style" placeholder="Date" id="dateu" autocomplete="off">
-			<i class="input-icon uil uil-calendar-alt"></i>
-		</li>
-		<li>
-			<input type="number" name="prixu" class="form-style" placeholder="Prix" id="prixu" autocomplete="off">
-			<i class="input-icon uil uil-usd-circle"></i>
-		</li>
-		<li>
-			<input type="file" name="imageu" class="form-style" placeholder="Image" id="imageu" autocomplete="off">
-			<i class="input-icon uil uil-image"></i>
-		</li>
-		<li>
-			<input type="number" name="nbrPlaceMaxu" class="form-style" placeholder="PlaceMax" id="nbrPlaceMaxu" autocomplete="off">
-			<i class="input-icon uil uil-user-minus"></i>
-		</li>
-	</ul>
-	<input type="submit" name="Update" value="Submit" class="btninput mt-4">
+						<input type="number" name="Id_Chu" class="form-style" placeholder="Id du chauffeur a modifier" id="Id_Chu" autocomplete="off">
+						<i class="input-icon uil uil-parcel"></i>
+					</li>
+					<li>
+						<input type="text" name="nomu" class="form-style" placeholder="Nom" id="nomu" autocomplete="off">
+						<i class="input-icon uil uil-box"></i>
+					</li>
+					<li>
+						<input type="text" name="prenomu" class="form-style" placeholder="Prenom" id="prenomu" autocomplete="off">
+						<i class="input-icon uil uil-usd-circle"></i>
+					</li>
+					<li>
+						<input type="number" name="telu" class="form-style" placeholder="Tel" id="telu" autocomplete="off">
+						<i class="input-icon uil uil-tag"></i>
+					</li>
+					<li>
+						<input type="email" name="emailu" class="form-style" placeholder="Email" id="emailu" autocomplete="off">
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="text" name="vehiculeu" class="form-style" placeholder="Vehicule" id="vehiculeu" autocomplete="off">
+						<i class="input-icon uil uil-user"></i>
+					</li>
+
+				</ul>
+				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
 			  </form>
           </div>
         </div>
@@ -479,31 +466,37 @@ $listReservation = $ReservationC->listReservation();
                                                                   <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
 				                <table class="tableview">
 				                  <tr class="TitleTab">
-								  <th class="styleth">Id Reservation</th>
-							<th class="styleth">Id Event</th>
-							<th class="styleth">Name</th>
-							<th class="styleth">Email</th>
-							<th class="styleth">nbrPlaces</th>
-							<th class="styleth">Num</th>
-							<th class="styleth">Id Client</th>
+				                  	<th class="styleth">Id Transport</th>
+				                  	<th class="styleth">Id Client</th>
+				                  	<th class="styleth">Id Chauffeur</th>
+				                  	<th class="styleth">type</th>
+				                  	<th class="styleth">Nombre des personnes</th>
+				                  	<th class="styleth">Date</th>
+				                  	<th class="styleth">Adresse</th>
+				                  	<th class="styleth">Nom</th>
+				                  	<th class="styleth">Tel des personnes</th>
+				                  	<th class="styleth">Message</th>
 				                  	<th><a class="toggle-edit2"><i class="edit-del-icon uil uil-edit"></i></a></th>
 				                  	<th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                  </tr>
                           <?php
-                            foreach ($listReservation as $Reservation) 
+                            foreach ($listtransport as $Transport) 
                             {
                             ?>
 				                    	<tr>
-						<td class="styleth"><?= $Reservation['idReserv']; ?></td>
-                        <td class="styleth"><?= $Reservation['idEvent']; ?></td>
-                        <td class="styleth"><?= $Reservation['name']; ?></td>
-                        <td class="styleth"><?= $Reservation['email']; ?></td>
-                        <td class="styleth"><?= $Reservation['nbrPlace']; ?></td>
-                        <td class="styleth"><?= $Reservation['num']; ?></td>
-						<td class="styleth"><?= $Reservation['idClient']; ?></td>
-				        <td>
-						<a href="deleteReserv.php?idReserv=<?php echo $Reservation['idReserv']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-				        </td>
+                                  <td class="styleth"><?= $Transport['Id_T']; ?></td>
+                                  <td class="styleth"><?= $Transport['IdClient']; ?></td>
+                                  <td class="styleth"><?= $Transport['Id_Ch']; ?></td>
+                                  <td class="styleth"><?= $Transport['Type']; ?></td>
+                                  <td class="styleth"><?= $Transport['Nbr_Pers']; ?></td>
+                                  <td class="styleth"><?= $Transport['Date']; ?></td>
+				                    		  <td class="styleth"><?= $Transport['Adresse']; ?></td>
+                                  <td class="styleth"><?= $Transport['Nom']; ?></td>
+                                  <td class="styleth"><?= $Transport['Tel']; ?></td>
+                                  <td class="styleth"><?= $Transport['Message']; ?></td>
+				                    		<td>
+				                    			<a href="deleteTransport.php?Id_T=<?php echo $Transport['Id_T']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+				                    		</td>
 				                    	</tr>
                                         <?php
                             }
@@ -526,36 +519,47 @@ $listReservation = $ReservationC->listReservation();
 
 
 
-        <form  class="form-group" method="POST" action="addReserv.php">
+        <form  class="form-group" method="POST" action="addTransport.php">
 				<ul>
 					<li>
-						<h3> Add Reservation</h3>
+						<h3> Add Transport</h3>
 					</li>
 					<li>
-						<input type="text" name="idEventa" class="form-style" placeholder="IdEvent" id="idEventa" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
-					</li>  
-					<li>
-						<input type="text" name="namea" class="form-style" placeholder="Nom" id="namea" autocomplete="off">
-						<i class="input-icon uil uil-clipboard"></i>
+						<input type="number" name="IdClientat" class="form-style" placeholder="IdClient" id="IdClientat" >
+						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="email" name="emaila" class="form-style" placeholder="Email" id="emaila" autocomplete="off">
-						<i class="input-icon uil uil-at"></i>
+						<input type="number" name="Id_Chat" class="form-style" placeholder="IdChauffeur" id="Id_Chat" >
+						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
-						<input type="number" name="nbrPlacea" class="form-style" placeholder="NombrePlaces" id="nbrPlacea" autocomplete="off">
-						<i class="input-icon uil uil-users-alt"></i>
+						<input type="text" name="Typeat" class="form-style" placeholder="Type" id="Typeat" >
+						<i class="input-icon uil uil-tag"></i>
 					</li>
 					<li>
-						<input type="number" name="numa" class="form-style" placeholder="Numéro" id="numa" autocomplete="off">
-						<i class="input-icon uil uil-phone"></i>
+						<input type="number" name="Nbr_Persat" class="form-style" placeholder="NombrePersonne" id="Nbr_Persat" >
+						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="number" name="idClienta" class="form-style" placeholder="IdClient" id="idClienta" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
+						<input type="date" name="Dateat" class="form-style" placeholder="Date" id="Dateat" >
+						<i class="input-icon uil uil-user"></i>
 					</li>
-			
+					<li>
+						<input type="text" name="adresseat" class="form-style" placeholder="Adresse" id="adresseat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="nameat" class="form-style" placeholder="Name" id="nameat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="numat" class="form-style" placeholder="Phone" id="numat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="Noteat" class="form-style" placeholder="Note for the driver" id="Noteat" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
 				</ul>
 				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
 			  </form>
@@ -563,38 +567,50 @@ $listReservation = $ReservationC->listReservation();
         
           <div class="card inputdivedit InputlistEdit2 slide-out-right">
                                                                   <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateReserv.php">
+			  <form  class="form-group" method="POST" action="updateTransport.php">
         <ul>
 					<li>
-						<h3>Edit Reservation</h3>
+						<h3>Edit Transport</h3>
 					</li>
 					<li>
-						<input type="number" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
+						<input type="number" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
+						<i class="input-icon uil uil-parcel"></i>
 					</li>
 					<li>
-						<input type="number" name="idEventu" class="form-style" placeholder="idEvent" id="idEventu" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
+					<input type="number" name="IdClientut" class="form-style" placeholder="IdClient" id="IdClientut" >
+						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu" autocomplete="off">
-						<i class="input-icon uil uil-clipboard"></i>
+						<input type="number" name="Id_Chut" class="form-style" placeholder="IdChauffeur" id="Id_Chut" >
+						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
-						<input type="email" name="emailu" class="form-style" placeholder="Email" id="emailu" autocomplete="off">
-						<i class="input-icon uil uil-at"></i>
+						<input type="text" name="Typeut" class="form-style" placeholder="Type" id="Typeut" >
+						<i class="input-icon uil uil-tag"></i>
 					</li>
 					<li>
-						<input type="number" name="nbrPlaceu" class="form-style" placeholder="NombrePlaces" id="nbrPlaceu" autocomplete="off">
-						<i class="input-icon uil uil-users-alt"></i>
+						<input type="number" name="Nbr_Persut" class="form-style" placeholder="NombrePersonne" id="Nbr_Persut" >
+						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="number" name="numu" class="form-style" placeholder="Numéro" id="numu" autocomplete="off">
-						<i class="input-icon uil uil-phone"></i>
+						<input type="date" name="Dateut" class="form-style" placeholder="Date" id="Dateut" >
+						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="number" name="idClientu" class="form-style" placeholder="IdClient" id="idClientu" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
+						<input type="text" name="adresseut" class="form-style" placeholder="Adresse" id="adresseut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="nameut" class="form-style" placeholder="Name" id="nameut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="numut" class="form-style" placeholder="Phone" id="numut" >
+						<i class="input-icon uil uil-user"></i>
+					</li>
+					<li>
+						<input type="text" name="Noteut" class="form-style" placeholder="Note for the driver" id="Noteut" >
+						<i class="input-icon uil uil-user"></i>
 					</li>
 
 				</ul>
