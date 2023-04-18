@@ -103,6 +103,11 @@ function validateFormAddTransport() {
     alert("Le numéro de téléphone doit être composé de 8 chiffres.");
     return false;
   }
+  var dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!date.value.match(dateRegex)) {
+    alert("La date doit être au format YYYY-MM-DD.");
+    return false;
+  }
 
   // Si toutes les vérifications sont passées, retourner true
   return true;
@@ -115,12 +120,12 @@ function validateFormModifTransport() {
   var id_Chut = document.getElementById("Id_Chut").value;
   var typeut = document.getElementById("Typeut").value;
   var nbr_Persut = document.getElementById("Nbr_Persut").value;
-  var dateut = document.getElementById("Dateut").value;
+  var date = document.getElementById("Dateut").value;
   var adresseut = document.getElementById("adresseut").value;
   var nameut = document.getElementById("nameut").value;
   var numut = document.getElementById("numut").value;
 
-  if (idTut == "" || idClientut == "" || id_Chut == "" || typeut == "" || nbr_Persut == "" || dateut == "" || adresseut == "" || nameut == "" || numut == "") {
+  if (idTut == "" || idClientut == "" || id_Chut == "" || typeut == "" || nbr_Persut == "" || date == "" || adresseut == "" || nameut == "" || numut == "") {
     alert("Veuillez remplir tous les champs obligatoires!");
     return false;
   }
@@ -135,6 +140,11 @@ function validateFormModifTransport() {
   var phoneRegex = /^\d{8}$/;
   if (!phoneRegex.test(numut)) {
     alert("Le numéro de téléphone doit être composé de 8 chiffres.");
+    return false;
+  }
+  var dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!date.value.match(dateRegex)) {
+    alert("La date doit être au format YYYY-MM-DD.");
     return false;
   }
   // Si toutes les vérifications sont passées, retourner true
@@ -158,6 +168,11 @@ if (namea == "" || typea == "" || timea == "" || datea == "" || prixa == "" || i
   alert("Tous les champs doivent être remplis.");
   return false;
 }
+var dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+if (!datea.value.match(dateRegex)) {
+  alert("La date doit être au format YYYY-MM-DD.");
+  return false;
+}
   return true;
 }
 
@@ -176,6 +191,11 @@ function validateFormModifierEvent() {
   // Vérifier si les champs sont vides
   if (idEventu == "" || nameu == "" || typeu == "" || timeu == "" || dateu == "" || prixu == "" || imageu == "" || nbrPlaceMaxu == "") {
     alert("Tous les champs doivent être remplis.");
+    return false;
+  }
+  var dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  if (!dateu.value.match(dateRegex)) {
+    alert("La date doit être au format YYYY-MM-DD.");
     return false;
   }
     return true;

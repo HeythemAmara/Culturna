@@ -1,10 +1,6 @@
-
 <?php
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDEVENT/Controller/EventC.php';
 include '../Controller/EventC.php';
-
 $EventC = new EventC();
-var_dump($_POST);
 if (
     isset($_POST['typeu']) &&
     isset($_POST['nameu']) &&

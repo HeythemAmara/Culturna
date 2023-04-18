@@ -115,5 +115,6 @@ class EventC
             die('Error: ' . $e->getMessage());
         }
     }
+
 }
 ?>

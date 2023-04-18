@@ -35,6 +35,45 @@ function validateFormModifReservUser() {
   return true;
 }
 
+function ReserUser() {
+  var name = document.getElementById("namea").value;
+  var email = document.getElementById("emaila").value;
+  var emailRegex = /^\S+@\S+\.\S+$/;
+  if ( email == "" || name == "" ) {
+    alert("Veuillez remplir tous les champs obligatoires!");
+    return false;
+  }
+  
+  else if (!emailRegex.test(email)) {
+    alert("Veuillez entrer une adresse e-mail valide!");
+    return false;
+  }
+  else {
+
+    return true;
+  }
+}
+function ReserUser2() {
+
+  let nbrPlacea = document.getElementById('nbrPlacea').value.trim();
+  let numa = document.getElementById('numa').value.trim();
+  if ( nbrPlacea == "" || numa == "" ) {
+    alert("Veuillez remplir tous les champs obligatoires!");
+    return false;
+  }
+    // Vérification que les valeurs numériques sont positives
+    if (nbrPlacea < 1 ) {
+      alert("Les valeurs numériques doivent être positives.");
+      return false;
+   }
+     // Validation du numéro de téléphone
+     var numRegex = /^\d{8}$/;
+     if (!numRegex.test(numa)) {
+       alert("Veuillez entrer un numéro de téléphone valide (8 chiffres)!");
+       return false;
+     }
+  return true;
+}
 //!========================================================= Transport=========================================================
 function validateFormModifTransportUser() {
   var Id_Tut = document.getElementById("Id_Tut").value;
@@ -68,6 +107,29 @@ function validateFormModifTransportUser() {
   return true;
 }
 
+function DemandeTransportUser1() {
+  var name = document.getElementById("namea").value;
+  var adresse = document.getElementById("adressea").value;
+  if ( adresse == "" || name == "" ) {
+    alert("Veuillez remplir tous les champs obligatoires!");
+    return false;
+  }
+  return true;
+}
+function DemandeTransportUser2() {
+  var Num = document.getElementById("numa").value;
+  var Note = document.getElementById("Notea").value;
+  if ( Num == "" || Note == "" ) {
+    alert("Veuillez remplir tous les champs obligatoires!");
+    return false;
+  }
+  var numRegex = /^\d{8}$/;
+  if (!numRegex.test(Num)) {
+    alert("Veuillez entrer un numéro de téléphone valide (8 chiffres)!");
+    return false;
+  }
+  return true;
+}
 //=========================================================utilisateur=========================================================
 
 function validateFormModifserFront() {

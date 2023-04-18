@@ -334,6 +334,7 @@ $listReservation = $ReservationC->listReservation();
           </div>
         </div>
       </div>
+       <!--! ============================SECTION========================== -->
       <section class="row mb-4 sectionphp">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
@@ -349,7 +350,6 @@ $listReservation = $ReservationC->listReservation();
 									<th class="styleth">Prix</th>
 									<th class="styleth">Image</th>
 									<th class="styleth">NbrPlaceMax</th>
-				                	<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
                         <?php
@@ -368,6 +368,10 @@ $listReservation = $ReservationC->listReservation();
 				                  		<td>
 										  <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
+				                  		<td>
+										  <a  id="edit-event" href="updateEvent.php?idEvent=<?php echo $Event['idEvent']; ?>"><i class="edit-del-icon uil uil-edit"></i></a>
+				                  		</td>
+
 				                  	</tr>
                                       <?php
                           }
@@ -378,8 +382,6 @@ $listReservation = $ReservationC->listReservation();
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd slide-in-right">
-
-
           <!--! ======================================= Input Ajout Modif       -->
 			  <form  class="form-group" method="POST" action="addEvent.php" onsubmit="return validateFormAddEvent()" >          
 
@@ -430,49 +432,49 @@ $listReservation = $ReservationC->listReservation();
         
     <div class="card inputdivedit InputlistEdit slide-out-right">
         <!--! ====================================================== Input Ajout Modif       -->
-      <form class="form-group" method="POST" action="updateEvent.php" onsubmit="return validateFormModifierEvent()">
+      <form class="form-group" method="POST" action="UpdateEvent.php" onsubmit="return validateFormModifierEvent()">
         <ul>
 					<li>
 						<h3>Edit Event</h3>
 					</li>
 					<li>
-			      <input type="number" name="idEventu" class="form-style" placeholder="id Event a Modifier" id="idEventu">
+			      <input type="number" value="<?php echo $event->getIdEvent(); ?>" name="idEventu" class="form-style" placeholder="id Event a Modifier" id="idEventu">
 			      <i class="input-icon uil uil-dialpad-alt"></i>
 		      </li>
 		      <li>
-		      	<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu">
+		      	<input type="text" value="<?php echo $event->getName(); ?>" name="nameu" class="form-style" placeholder="Nom" id="nameu">
 		      	<i class="input-icon uil uil-clipboard"></i>
 		      </li>
           <li>
 	              <i class="input-icon uil uil-file-landscape"></i>
-	                  <select name="typeu" class="form-style" id="typeu">
-	                  	<option value="">Type</option>
-	                  	<option value="Type1">Théatre</option>
-	                  	<option value="Type2">Musique</option>
-		                  <option value="Type3">Culture</option>
-		                  <option value="Type4">Dance</option>
-		                  <option value="Type5">Art</option>
-		                  <option value="Type6">Sport</option>
-	                  </select>
+			<select name="typeu" class="form-style" id="typeu">
+				<option value="">Type</option>
+				<option value="Type1" <?php if ($event->getType() == "Type1") echo "selected"; ?>>Théatre</option>
+				<option value="Type2" <?php if ($event->getType() == "Type2") echo "selected"; ?>>Musique</option>
+				<option value="Type3" <?php if ($event->getType() == "Type3") echo "selected"; ?>>Culture</option>
+				<option value="Type4" <?php if ($event->getType() == "Type4") echo "selected"; ?>>Dance</option>
+				<option value="Type5" <?php if ($event->getType() == "Type5") echo "selected"; ?>>Art</option>
+				<option value="Type6" <?php if ($event->getType() == "Type6") echo "selected"; ?>>Sport</option>
+			</select>
           </li>
 		      <li>
-		      	<input type="time" name="timeu" class="form-style" placeholder="Time" id="timeu">
+		      	<input type="time" name="timeu" class="form-style" placeholder="Time" id="timeu" value="<?php echo $event->getTime(); ?>" >
 		      	<i class="input-icon uil uil-clock"></i>
 		      </li>
 		      <li>
-		      	<input type="date" name="dateu" class="form-style" placeholder="Date" id="dateu">
+		      	<input type="date" name="dateu" class="form-style" placeholder="Date" id="dateu" value="<?php echo $event->getDate(); ?>" >
 		      	<i class="input-icon uil uil-calendar-alt"></i>
 		      </li>
 		      <li>
-		      	<input type="number" name="prixu" class="form-style" placeholder="Prix" id="prixu">
+		      	<input type="number" name="prixu" class="form-style" placeholder="Prix" id="prixu" value="<?php echo $event->getPrix(); ?>" >
 		      	<i class="input-icon uil uil-usd-circle"></i>
 		      </li>
 		      <li>
-		      	<input type="file" name="imageu" class="form-style" placeholder="Image" id="imageu">
+		      	<input type="file" name="imageu" class="form-style" placeholder="Image" id="imageu" value="<?php echo $event->getImage(); ?>" >
 		      	<i class="input-icon uil uil-image"></i>
 		      </li>
 		      <li>
-		      	<input type="number" name="nbrPlaceMaxu" class="form-style" placeholder="PlaceMax" id="nbrPlaceMaxu">
+		      	<input type="number" name="nbrPlaceMaxu" class="form-style" placeholder="PlaceMax" id="nbrPlaceMaxu" value="<?php echo $event->getNbrPlaceMax(); ?>" >
 		      	<i class="input-icon uil uil-user-minus"></i>
 		      </li>
 	      </ul>
@@ -481,7 +483,38 @@ $listReservation = $ReservationC->listReservation();
 
 			</form>
     </div>
- </div>
+ </div> <script>
+  document.getElementById("edit-event").addEventListener("click", function(event) {
+    event.preventDefault(); // prevent the default behavior of the link
+    populateFormFields(); // call the function to populate the form fields
+  });
+
+  function populateFormFields() {
+    // get the ID of the event to be edited from the link URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const idEvent = urlParams.get('idEvent');
+
+    // use AJAX to fetch the event information from the server
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        const event = JSON.parse(xhr.responseText);
+        // populate the form fields with the event information
+        document.getElementById("idEventu").value = event.idEvent;
+        document.getElementById("nameu").value = event.name;
+        document.getElementById("typeu").value = event.type;
+        document.getElementById("timeu").value = event.time;
+        document.getElementById("dateu").value = event.date;
+        document.getElementById("prixu").value = event.prix;
+        document.getElementById("imageu").value = event.image;
+        document.getElementById("nbrPlaceMaxu").value = event.nbrPlaceMax;
+      }
+    };
+    xhr.open('GET', `getEvent.php?idEvent=${idEvent}`);
+    xhr.send();
+  }
+</script>
+
       </section>
       <section class="row mb-4 sectionphp2">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">

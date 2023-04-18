@@ -285,7 +285,7 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 	</section>
 		<!--! Input Reservation ============================================== -->
 	<section class="input-visibility flip-out-hor-top out-of-screen" >
-		<form  method="POST" action="CreerReservation.php" >
+		<form  method="POST" action="CreerReservation.php"  onsubmit="return ReserUser2();"  >
 			<div class="stepper" >
 				<div class="step--1 step-active"></div>
 				<div class="step--2"></div>
@@ -306,7 +306,7 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 				<input type="hidden" name="dateeventa" id="dateeventa"/>
 				<input class="inputreserv" type="text" placeholder="Name" name="namea" id="namea"/>
 				<input class="inputreserv" type="email" placeholder="Email" name="emaila" id="emaila"/>
-				<button class="form__btn" id="btn-1">Next</button>
+				<button class="form__btn" id="btn-1" onclick=" return ReserUser()">Next</button>
 			</div>
 			<div class="form">
 				<a href="#" id="closebtn2"><i class="icon-close uil uil-times-circle"></i></a>
@@ -314,7 +314,6 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 					<h1 class="form--header-title">
 						Get your place now
 					</h1>
-	
 					<p class="form--header-text">
 						Number of available places : <?= $Event['nbrPlaceMax']; ?>
 					</p>
@@ -324,10 +323,12 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 				<input class="inputreserv" type="number" placeholder="Number of Places" name="nbrPlacea" id="nbrPlacea"/>
 				<button class="form__btn" id="btn-3-prev">Previous</button>
 				<button class="form__btn invis" id="btn-3"></button>
+
 				<input type="submit" name="Add" value="Submit" class="form__btn">
 			</div>
 			<div class="form--message"></div>
 		</form>
+
 	</section>
 
 <footer></footer>
@@ -337,5 +338,9 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script  src="./script Event.js"></script>
 <script  src="./scriptInputNextPrevious.js"></script>
+<script src="./assets/JS/InputControlFront.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> 
+
+
 
 </html>

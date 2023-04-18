@@ -1,6 +1,5 @@
 
 <?php
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDEVENT/Controller/ReservationC.php';
 include '../Controller/ReservationC.php';
 //$_POST['prixeventa']
 $test=2;
