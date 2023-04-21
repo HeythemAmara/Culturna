@@ -11,4 +11,3 @@ if (isset($_GET['idReserv']) && !empty($_GET['idReserv'])) {
 } else {
     echo "id is not defined";
 }
-?>
