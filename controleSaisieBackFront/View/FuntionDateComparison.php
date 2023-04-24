@@ -36,7 +36,7 @@ $current_date = date("Y-m-d");
 $two_days_later = date("Y-m-d", strtotime("+2 days"));
 $one_days_later = date("Y-m-d", strtotime("+1 days"));
 
-
+$EventC->deleteExpiredEvents();
 $test=$EventC->historiqueMail($valeur_id,$event_date);
 
 if($test==0)

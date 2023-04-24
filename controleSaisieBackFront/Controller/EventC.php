@@ -33,7 +33,8 @@ class EventC
     function deleteEvent($idEvent)
 {
     $sql = "DELETE FROM event WHERE idEvent = :idEvent;
-            DELETE FROM reservation WHERE idEvent = :idEvent"; // Ajout de la suppression des réservations
+            DELETE FROM reservation WHERE idEvent = :idEvent 
+            "; // Ajout de la suppression des réservations
     $db = config::getConnexion();
     $req = $db->prepare($sql);
     $req->bindValue(':idEvent', $idEvent);
@@ -44,6 +45,20 @@ class EventC
         die('Error:' . $e->getMessage());
     }
 }
+function deleteExpiredEvents()
+{
+    $sql = "DELETE FROM event WHERE CONCAT(date, ' ', time) < NOW()";
+    $db = config::getConnexion();
+    $req = $db->prepare($sql);
+
+    try {
+        $req->execute();
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
+    }
+}
+
+
 
 
     function addEvent($Event)
