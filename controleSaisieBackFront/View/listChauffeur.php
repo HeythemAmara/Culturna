@@ -379,6 +379,15 @@ $listtransport = $TransportC->listTransport();
                                 </a>
                                 <a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
+                              <td>
+                              <a href="./assets/PDF/PDF_Chauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>
+                              &Nom=<?php echo $Chauffeur['Nom']; ?>
+                              &Prenom=<?php echo $Chauffeur['Prenom']; ?>
+                              &Tel=<?php echo $Chauffeur['Tel']; ?>
+                              &Email=<?php echo $Chauffeur['Email']; ?>
+                              &Vehicule=<?php echo $Chauffeur['Vehicule']; ?>
+                              &val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-file-download-alt"></i></a>
+                              </td>
 				                  	</tr>
                                       <?php
                           }
