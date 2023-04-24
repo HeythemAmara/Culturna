@@ -57,3 +57,80 @@
 
   }
   
+  //! User =========================================
+
+  function editUser(IdU,Username,Email,Mdp,Dob,Perm) {
+
+    var input_IdU = document.getElementById("idu");
+    input_IdU.value = IdU;
+
+    var input_Username = document.getElementById("Usernameu");
+    input_Username.value = Username;
+    
+    var input_Email = document.getElementById("emailu");
+    input_Email.value = Email;
+
+    var input_Mdp = document.getElementById("mdpu");
+    input_Mdp.value = Mdp;
+
+    var input_Dob = document.getElementById("dobu");
+    input_Dob.value = Dob;
+
+
+    var input_Perm = document.getElementById("permu");
+    input_Perm.value = Perm;
+
+  }
+  //! Event =========================================
+  
+  function editEvent(idEvent,name,type,time,date,prix,image,nbrPlaceMax) {
+    var input_idEvent = document.getElementById("idEventu");
+    input_idEvent.value = idEvent;
+
+    var input_name = document.getElementById("nameu");
+    input_name.value = name;
+
+    var input_type = document.getElementById("typeu");
+    input_type.value = type;
+
+    var input_time = document.getElementById("timeu");
+    input_time.value = time;
+
+    var input_date = document.getElementById("dateu");
+    input_date.value = date;
+
+    var input_prix = document.getElementById("prixu");
+    input_prix.value = prix;
+
+    var input_image = document.getElementById("imageu");
+    input_image.value = image;
+
+    var input_nbrPlaceMax = document.getElementById("nbrPlaceMaxu");
+    input_nbrPlaceMax.value = nbrPlaceMax;
+
+  }
+  //Reservation ===============================================
+  function editReservation(idReserv,idEvent,name,email,nbrPlace,num,idClient) {
+  
+    var input_idReserv = document.getElementById("idReservu");
+    input_idReserv.value = idReserv;
+    
+    var input_idEvent = document.getElementById("idEventuEdit");
+    input_idEvent.value = idEvent;
+
+    var input_name = document.getElementById("nameuEdit");
+    input_name.value = name;
+
+    var input_email = document.getElementById("emailu");
+    input_email.value = email;
+
+    var input_nbrPlace = document.getElementById("nbrPlaceu");
+    input_nbrPlace.value = nbrPlace;
+
+    var input_num = document.getElementById("numu");
+    input_num.value = num;
+
+    var input_idClient = document.getElementById("idClientu");
+    input_idClient.value = idClient;
+
+  }

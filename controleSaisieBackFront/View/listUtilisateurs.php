@@ -336,16 +336,14 @@ $list = $UtilisateurC->listUtilisateur();
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-                                                                  <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
-				                <table class="tableview">
+            <h3>---User---</h3>
+            <table class="tableview">
 				                <tr class="TitleTab">
-				                	<th class="styleth">Id</th>
 				                	<th class="styleth">Username</th>
 				                	<th class="styleth">Email</th>
-				                	<th class="styleth">Mdp</th>
 				                	<th class="styleth">Dob</th>
 				                	<th class="styleth">Perm</th>
-				                	<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
+				                	
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
 				                <?php
@@ -353,14 +351,21 @@ $list = $UtilisateurC->listUtilisateur();
                         {
                         ?>
 				                	<tr>
-											<td class="styleth"><?= $Utilisateur['IdU']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Username']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Email']; ?></td>
-                							<td class="styleth"><?= $Utilisateur['Mdp']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Dob']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Perm']; ?></td>
 				                		<td>
-				                			<a href="deleteUtilisateur.php?IdU=<?php echo $Utilisateur['IdU']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+                              <a class="toggle-edit" onclick="
+                                    editUser(
+                                      '<?= $Utilisateur['IdU']; ?>',
+                                      '<?= $Utilisateur['Username']; ?>',
+                                      '<?= $Utilisateur['Email']; ?>',
+                                      '<?= $Utilisateur['Mdp']; ?>',
+                                      '<?= $Utilisateur['Dob']; ?>',
+                                      '<?= $Utilisateur['Perm']; ?>'
+                                    )"><i class="edit-del-icon uil uil-edit"></i></a>
+                              <a href="deleteUtilisateur.php?IdU=<?php echo $Utilisateur['IdU']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                		</td>
 				                	</tr>
                                     <?php
@@ -385,7 +390,7 @@ $list = $UtilisateurC->listUtilisateur();
 
 
 
-		  <form  class="form-group" method="POST" action="addUtilisateur.php" onsubmit="return validateFormAddUser()">
+		  <form  class="form-group" method="POST" action="addUtilisateur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddUser()">
 				<ul>
 					<li>
 						<h3> Add</h3>
@@ -417,14 +422,12 @@ $list = $UtilisateurC->listUtilisateur();
         
           <div class="card inputdivedit InputlistEdit slide-out-right">
                                                                   <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateUtilisateur.php" onsubmit="return validateFormModifUser()">
+			  <form  class="form-group" method="POST" action="updateUtilisateur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormModifUser()">
+          <input type="hidden" name="idu" class="form-style" placeholder="Id de l'utilisateur à Modifier" id="idu">
+          <input type="hidden" name="mdpu" class="form-style" placeholder="Mdp" id="mdpu">
         		<ul>
 					<li>
 						<h3>Edit</h3>
-					</li>
-					<li>
-						<input type="number" name="idu" class="form-style" placeholder="Id de l'utilisateur à Modifier" id="idu">
-						<i class="input-icon uil uil-parcel"></i>
 					</li>
 					<li>
 						<input type="text" name="Usernameu" class="form-style" placeholder="Username de l'utilisateur" id="Usernameu">
@@ -433,10 +436,6 @@ $list = $UtilisateurC->listUtilisateur();
 					<li>
 						<input type="text" name="emailu" class="form-style" placeholder="Email" id="emailu">
 						<i class="input-icon uil uil-tag"></i>
-					</li>
-					<li>
-						<input type="password" name="mdpu" class="form-style" placeholder="Mdp" id="mdpu">
-						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
 						<input type="date" name="dobu" class="form-style" placeholder="Dob" id="dobu">
@@ -814,6 +813,7 @@ $list = $UtilisateurC->listUtilisateur();
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./assets Dashboard/js Dashboard/material-dashboard.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
+  <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
 </body>
 

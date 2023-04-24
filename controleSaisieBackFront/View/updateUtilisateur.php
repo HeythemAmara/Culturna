@@ -2,6 +2,7 @@
 <?php
 include_once "../Model/Utilisateur.php";
 include_once "../Controller/UtilisateurC.php";
+$valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 var_dump($_POST);
 if (
@@ -32,15 +33,15 @@ if (
             );
             $UtilisateurC = new UtilisateurC();
             $UtilisateurC->updateUtilisateur($Utilisateur, $_POST['idu']);
-        header('location:listUtilisateurs.php');
+            header('location:listUtilisateurs.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-            header('location:listUtilisateurs.php');
+            header('location:listUtilisateurs.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listUtilisateurs.php');
+        header('location:listUtilisateurs.php?val_id=' . urlencode($valeur_id));
     }
 ?>

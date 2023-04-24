@@ -2,6 +2,7 @@
 <?php
 include_once "../Model/Transport.php";
 include_once "../Controller/TransportC.php";
+$valeur_id = $_GET['val_id'];
 
 $TransportC = new TransportC();
 var_dump($_POST);
@@ -43,15 +44,15 @@ if (
             );
         $TransportC = new TransportC();
         $TransportC->updateTransport($Transport, $_POST['Id_Tut']);
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-            header('location:listChauffeur.php');
+            header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
     }
 ?>

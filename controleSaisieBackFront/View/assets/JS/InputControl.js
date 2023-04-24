@@ -311,11 +311,6 @@ function validateFormModifUser() {
       return false;
   }
 
-  // Vérification de la longueur du mot de passe
-  if (password.length < 8) {
-      alert("Le mot de passe doit contenir au moins 8 caractères !");
-      return false;
-  }
 
   // Si tout est OK, le formulaire est validé
   return true;

@@ -1,8 +1,8 @@
 <?php
 include_once "../Model/Chauffeur.php";
 include_once "../Controller/ChauffeurC.php";
+$valeur_id = $_GET['val_id'];
 
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/ChauffeurC.php';
 var_dump($_POST);
 if (
     isset($_POST['noma']) &&
@@ -29,15 +29,15 @@ if (
             );
         $ChauffeurC = new ChauffeurC();
         $ChauffeurC->addChauffeur($Chauffeur);
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
     }
 ?>

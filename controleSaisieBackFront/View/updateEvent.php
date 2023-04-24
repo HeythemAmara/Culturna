@@ -1,5 +1,6 @@
 <?php
 include '../Controller/EventC.php';
+$valeur_id = $_GET['val_id'];
 $EventC = new EventC();
 if (
     isset($_POST['typeu']) &&
@@ -36,15 +37,15 @@ if (
             );
         $EventC = new EventC();
         $EventC->updateEvent($Event, $_POST['idEventu']);
-        header('location:listEvent.php');
+        header('location:listEvent.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-            header('location:listEvent.php');
+            header('location:listEvent.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listEvent.php');
+        header('location:listEvent.php?val_id=' . urlencode($valeur_id));
     }
 ?>

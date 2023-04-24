@@ -2,6 +2,7 @@
 <?php
 //include 'D:/xampp/htdocs/Culturna/perso/DASHBORDEVENT/Controller/ReservationC.php';
 include '../Controller/ReservationC.php';
+$valeur_id = $_GET['val_id'];
 
 var_dump($_POST);
 if (
@@ -32,15 +33,15 @@ if (
             );
         $ReservationC = new ReservationC();
         $ReservationC->addReservation($Reservation);
-        header('location:listEvent.php');
+        header('location:listEvent.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-        header('location:listEvent.php');
+        header('location:listEvent.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listEvent.php');
+        header('location:listEvent.php?val_id=' . urlencode($valeur_id));
     }
 ?>

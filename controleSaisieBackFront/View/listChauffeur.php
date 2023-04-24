@@ -377,7 +377,7 @@ $listtransport = $TransportC->listTransport();
                                     )">
                                   <i class="edit-del-icon uil uil-edit"></i>
                                 </a>
-				                  			<a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+                                <a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
 				                  	</tr>
                                       <?php
@@ -401,29 +401,29 @@ $listtransport = $TransportC->listTransport();
 
 
 
-			  <form  class="form-group" method="POST" action="addChauffeur.php" onsubmit="return validateFormAddChauffeur()">
+			  <form  class="form-group" method="POST" action="addChauffeur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddChauffeur()">
 				<ul>
 					<li>
 						<h3>Add Chauffeur</h3>
 					</li>
 					<li>
-						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma" autocomplete="off">
+						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma"  >
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="text" name="prenoma" class="form-style" placeholder="Prenom" id="prenoma" autocomplete="off">
+						<input type="text" name="prenoma" class="form-style" placeholder="Prenom" id="prenoma"  >
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
-						<input type="number" name="tela" class="form-style" placeholder="Tel" id="tela" autocomplete="off">
+						<input type="number" name="tela" class="form-style" placeholder="Tel" id="tela"  >
 						<i class="input-icon uil uil-tag"></i>
 					</li>
 					<li>
-						<input type="email" name="emaila" class="form-style" placeholder="Email" id="emaila" autocomplete="off">
+						<input type="email" name="emaila" class="form-style" placeholder="Email" id="emaila"  >
 						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="text" name="vehiculea" class="form-style" placeholder="Vehicule" id="vehiculea" autocomplete="off">
+						<input type="text" name="vehiculea" class="form-style" placeholder="Vehicule" id="vehiculea"  >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 				</ul>
@@ -433,7 +433,7 @@ $listtransport = $TransportC->listTransport();
         
           <div class="card inputdivedit InputlistEdit slide-out-right">
          <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateChauffeur.php" onsubmit="return validateFormModifChauffeur()">
+			  <form  class="form-group" method="POST" action="updateChauffeur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormModifChauffeur()">
           <input type="hidden" name="Id_Chu" class="form-style" placeholder="Id du chauffeur a modifier" id="Id_Chu">
         <ul>
 					<li>
@@ -499,7 +499,7 @@ $listtransport = $TransportC->listTransport();
                                   <td class="styleth"><?= $Transport['Tel']; ?></td>
                                   <td class="styleth"><?= $Transport['Message']; ?></td>
 				                    		  <td>
-                                    <a class="toggle-edit2 input-Transport" onclick="
+                                    <a class="toggle-edit2" onclick="
                                     editTransport(
                                       '<?= $Transport['Id_T']; ?>',
                                       '<?= $Transport['IdClient']; ?>',
@@ -514,7 +514,7 @@ $listtransport = $TransportC->listTransport();
                                     )">
                                       <i class="edit-del-icon uil uil-edit"></i>
                                     </a>
-                                    <a href="deleteTransport.php?Id_T=<?php echo $Transport['Id_T']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+                                    <a href="deleteTransport.php?Id_T=<?php echo $Transport['Id_T']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
                                   </td>
 				                    	</tr>
                                         <?php
@@ -538,7 +538,7 @@ $listtransport = $TransportC->listTransport();
 
 
 
-        <form  class="form-group" method="POST" action="addTransport.php" onsubmit="return validateFormAddTransport()">
+        <form  class="form-group" method="POST" action="addTransport.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddTransport()">
 				<ul>
 					<li>
 						<h3> Add Transport</h3>
@@ -585,8 +585,8 @@ $listtransport = $TransportC->listTransport();
           </div>
         
           <div class="card inputdivedit InputlistEdit2 slide-out-right">
-                                                                  <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateTransport.php" onsubmit="return validateFormModifTransport()">
+        <!--! ====================================================== Input Ajout Modif       -->
+			  <form  class="form-group" method="POST" action="updateTransport.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormModifTransport()">
           <input type="hidden" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
         <ul>
 					<li>

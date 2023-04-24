@@ -2,12 +2,12 @@
 include "../Controller/EventC.php";
 include "../Controller/UtilisateurC.php";
 $EventC = new EventC();
-$listtype1 = $EventC->listEventtype("Type1");
-$listtype2 = $EventC->listEventtype("Type2");
-$listtype3 = $EventC->listEventtype("Type3");
-$listtype4 = $EventC->listEventtype("Type4");
-$listtype5 = $EventC->listEventtype("Type5");
-$listtype6 = $EventC->listEventtype("Type6");
+$listtype1 = $EventC->listEventtype("Theatre");
+$listtype2 = $EventC->listEventtype("Musique");
+$listtype3 = $EventC->listEventtype("Culture");
+$listtype4 = $EventC->listEventtype("Dance");
+$listtype5 = $EventC->listEventtype("Art");
+$listtype6 = $EventC->listEventtype("Sport");
 
 $valeur_id = $_GET['val_id'];
 $resevtest = $_GET['creationreserv'];
@@ -101,7 +101,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
 	  <!--! Liste Event par Type ============================================== -->
 	<section class="List">
 		<ul class="Tablelist">
-			<li class="Type Type1" >
+			<li class="Type Theatre" >
 				<h1 class="Title_Types"> Type 1</h1>
 				<ul class="UnType">
 				<?php
@@ -132,7 +132,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
         		?>	
 				</ul>
 			</li>
-			<li class="Type Type2">
+			<li class="Type Musique">
 				<h1 class="Title_Types" > Type 2</h1>
 				<ul class="UnType">
 				<?php
@@ -162,7 +162,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
        			}
         		?>	
 				</ul>
-			</li><li class="Type Type3">
+			</li><li class="Type Culture">
 				<h1 class="Title_Types"> Type 3</h1>
 				<ul class="UnType">
 				<?php
@@ -192,7 +192,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
        			}
         		?>	
 				</ul>
-			</li><li class="Type Type4">
+			</li><li class="Type Dance">
 				<h1 class="Title_Types"> Type 4</h1>
 				<ul class="UnType">
 				<?php
@@ -222,7 +222,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
        			}
         		?>	
 				</ul>
-			</li><li class="Type Type5">
+			</li><li class="Type Art">
 				<h1 class="Title_Types"> Type 5</h1>
 				<ul class="UnType">
 				<?php
@@ -252,7 +252,7 @@ foreach ($Username as $User) { $NameUser = $User['Username'];}
        			}
         		?>	
 				</ul>
-			</li><li class="Type Type6">
+			</li><li class="Type Sport">
 				<h1 class="Title_Types"> Type 6</h1>
 				<ul class="UnType">
 				<?php

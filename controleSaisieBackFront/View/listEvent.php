@@ -345,23 +345,24 @@ $listReservation = $ReservationC->listReservation();
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
                         <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
+                        <h3>---Event---</h3>
 				                <table class="tableview">
 				                <tr class="TitleTab">
-								<th class="styleth">Id Event</th>
+								<th class="styleth">Event</th>
 									<th class="styleth">Name</th>
 									<th class="styleth">Type</th>
 									<th class="styleth">Time</th>
 									<th class="styleth">Date</th>
 									<th class="styleth">Prix</th>
 									<th class="styleth">Image</th>
-									<th class="styleth">NbrPlaceMax</th>
-				                	<th><a class="toggle-edit"><i class="edit-del-icon uil uil-edit"></i></a></th>
+									<th class="styleth">NbrPlace</th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
                         <?php
                           foreach ($listEvent as $Event) 
                           {
-                          ?>
+                          ?>                    
+
 				                  	<tr>
 									      <td class="styleth"><?= $Event['idEvent']; ?></td>
                         <td class="styleth"><?= $Event['name']; ?></td>
@@ -372,7 +373,20 @@ $listReservation = $ReservationC->listReservation();
                         <td class="styleth"><?= $Event['image']; ?></td>
 						            <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
 				                  		<td>
-										  <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+                              <a class="toggle-edit" onclick="
+                                    editEvent(
+                                      '<?=$Event['idEvent']; ?>',
+                                      '<?= $Event['name']; ?>',
+                                      '<?= $Event['type']; ?>',
+                                      '<?= $Event['time']; ?>',
+                                      '<?= $Event['date']; ?>',
+                                      '<?= $Event['prix']; ?>',
+                                      '<?= $Event['image']; ?>',
+                                      '<?= $Event['nbrPlaceMax']; ?>'
+                                    )">
+                                  <i class="edit-del-icon uil uil-edit"></i>
+                                    </a>
+                                    <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
 				                  	</tr>
                                       <?php
@@ -387,7 +401,7 @@ $listReservation = $ReservationC->listReservation();
 
 
           <!--! ======================================= Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="addEvent.php" onsubmit="return validateFormAddEvent()" >          
+			  <form  class="form-group" method="POST" action="addEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddEvent()" >          
 
 				<ul>
 					<li>
@@ -401,12 +415,12 @@ $listReservation = $ReservationC->listReservation();
 	              <i class="input-icon uil uil-file-landscape"></i>
 	                  <select name="typea" class="form-style" id="typea">
 	                  	<option value="">Type</option>
-	                  	<option value="Type1">Théatre</option>
-	                  	<option value="Type2">Musique</option>
-		                  <option value="Type3">Culture</option>
-		                  <option value="Type4">Dance</option>
-		                  <option value="Type5">Art</option>
-		                  <option value="Type6">Sport</option>
+	                  	<option value="Theatre">Theatre</option>
+	                  	<option value="Musique">Musique</option>
+		                  <option value="Culture">Culture</option>
+		                  <option value="Dance">Dance</option>
+		                  <option value="Art">Art</option>
+		                  <option value="Sport">Sport</option>
 	                  </select>
           </li>
 					<li>
@@ -436,15 +450,12 @@ $listReservation = $ReservationC->listReservation();
         
     <div class="card inputdivedit InputlistEdit slide-out-right">
         <!--! ====================================================== Input Ajout Modif       -->
-      <form class="form-group" method="POST" action="updateEvent.php" onsubmit="return validateFormModifierEvent()">
-        <ul>
+      <form class="form-group" method="POST" action="updateEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormModifierEvent()">
+      <input type="hidden" name="idEventu" class="form-style" placeholder="id Event a Modifier" id="idEventu">  
+      <ul>
 					<li>
 						<h3>Edit Event</h3>
 					</li>
-					<li>
-			      <input type="number" name="idEventu" class="form-style" placeholder="id Event a Modifier" id="idEventu">
-			      <i class="input-icon uil uil-dialpad-alt"></i>
-		      </li>
 		      <li>
 		      	<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu">
 		      	<i class="input-icon uil uil-clipboard"></i>
@@ -453,12 +464,12 @@ $listReservation = $ReservationC->listReservation();
 	              <i class="input-icon uil uil-file-landscape"></i>
 	                  <select name="typeu" class="form-style" id="typeu">
 	                  	<option value="">Type</option>
-	                  	<option value="Type1">Théatre</option>
-	                  	<option value="Type2">Musique</option>
-		                  <option value="Type3">Culture</option>
-		                  <option value="Type4">Dance</option>
-		                  <option value="Type5">Art</option>
-		                  <option value="Type6">Sport</option>
+	                  	<option value="Theatre">Theatre</option>
+	                  	<option value="Musique">Musique</option>
+		                  <option value="Culture">Culture</option>
+		                  <option value="Dance">Dance</option>
+		                  <option value="Art">Art</option>
+		                  <option value="Sport">Sport</option>
 	                  </select>
           </li>
 		      <li>
@@ -493,57 +504,63 @@ $listReservation = $ReservationC->listReservation();
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-                      <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
-				                <table class="tableview">
-				                  <tr class="TitleTab">
-								  <th class="styleth">Id Reservation</th>
-							<th class="styleth">Id Event</th>
-							<th class="styleth">Name</th>
-							<th class="styleth">Email</th>
-							<th class="styleth">nbrPlaces</th>
-							<th class="styleth">Num</th>
-							<th class="styleth">Id Client</th>
-				                  	<th><a class="toggle-edit2"><i class="edit-del-icon uil uil-edit"></i></a></th>
-				                  	<th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
-				                  </tr>
-                          <?php
-                            foreach ($listReservation as $Reservation) 
-                            {
-                            ?>
-				                    	<tr>
-						<td class="styleth"><?= $Reservation['idReserv']; ?></td>
+            <h3>---Reservation---</h3>
+				      <table class="tableview">
+				        <tr class="TitleTab">
+							    <th class="styleth">Event</th>
+							    <th class="styleth">Name</th>
+							    <th class="styleth">Email</th>
+							    <th class="styleth">nbrPlace</th>
+							    <th class="styleth">Num</th>
+							    <th class="styleth">Client</th>				              
+                  <th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
+				        </tr>
+                  <?php
+                  foreach ($listReservation as $Reservation) 
+                  {
+                  ?>
+				            <tr>
                         <td class="styleth"><?= $Reservation['idEvent']; ?></td>
                         <td class="styleth"><?= $Reservation['name']; ?></td>
                         <td class="styleth"><?= $Reservation['email']; ?></td>
                         <td class="styleth"><?= $Reservation['nbrPlace']; ?></td>
                         <td class="styleth"><?= $Reservation['num']; ?></td>
-						<td class="styleth"><?= $Reservation['idClient']; ?></td>
-				        <td>
-						<a href="deleteReserv.php?idReserv=<?php echo $Reservation['idReserv']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-				        </td>
-				                    	</tr>
-                                        <?php
-                            }
-                            ?>
-                          </table>  
-		                    </div>
+	                      <td class="styleth"><?= $Reservation['idClient']; ?></td>
+			                  <td>
+                          <a class="toggle-edit2" onclick="
+                             editReservation(
+                              '<?= $Reservation['idReserv']; ?>',
+                              '<?= $Reservation['idEvent']; ?>',
+                              '<?= $Reservation['name']; ?>',
+                              '<?= $Reservation['email']; ?>',
+                              '<?= $Reservation['nbrPlace']; ?>',
+                              '<?= $Reservation['num']; ?>',
+                              '<?= $Reservation['idClient']; ?>'
+                            )">
+                              <i class="edit-del-icon uil uil-edit"></i>
+                          </a>
+                          <a href="deleteReserv.php?idReserv=<?php echo $Reservation['idReserv']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+			                  </td>
+				            </tr>
+                  <?php
+                  }
+                  ?>
+              </table>  
+		        </div>
           </div> 
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd2 slide-in-right">
 
 
-
-
-
-
+          
           <!--! ====================================================== Input Ajout Modif       -->
 
 
 
 
 
-        <form  class="form-group" method="POST" action="addReserv.php" onsubmit="return validateFormAddReserv()">
+        <form  class="form-group" method="POST" action="addReserv.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddReserv()">
 				<ul>
 					<li>
 						<h3> Add Reservation</h3>
@@ -579,38 +596,35 @@ $listReservation = $ReservationC->listReservation();
           </div>
         
           <div class="card inputdivedit InputlistEdit2 slide-out-right">
-                                                                  <!--! ====================================================== Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="updateReserv.php" onsubmit="return validateFormModifReserv()">
+        <!--! ====================================================== Input Ajout Modif       -->
+			  <form  class="form-group" method="POST" action="updateReserv.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormModifReserv()">
+        <input type="hidden" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu"  >
         <ul>
 					<li>
 						<h3>Edit Reservation</h3>
 					</li>
 					<li>
-						<input type="number" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
+						<input type="number" name="idEventu" class="form-style" placeholder="idEvent" id="idEventuEdit"  >
 						<i class="input-icon uil uil-dialpad-alt"></i>
 					</li>
 					<li>
-						<input type="number" name="idEventu" class="form-style" placeholder="idEvent" id="idEventu" autocomplete="off">
-						<i class="input-icon uil uil-dialpad-alt"></i>
-					</li>
-					<li>
-						<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu" autocomplete="off">
+						<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameuEdit"  >
 						<i class="input-icon uil uil-clipboard"></i>
 					</li>
 					<li>
-						<input type="email" name="emailu" class="form-style" placeholder="Email" id="emailu" autocomplete="off">
+						<input type="email" name="emailu" class="form-style" placeholder="Email" id="emailu"  >
 						<i class="input-icon uil uil-at"></i>
 					</li>
 					<li>
-						<input type="number" name="nbrPlaceu" class="form-style" placeholder="NombrePlaces" id="nbrPlaceu" autocomplete="off">
+						<input type="number" name="nbrPlaceu" class="form-style" placeholder="NombrePlaces" id="nbrPlaceu"  >
 						<i class="input-icon uil uil-users-alt"></i>
 					</li>
 					<li>
-						<input type="number" name="numu" class="form-style" placeholder="Numéro" id="numu" autocomplete="off">
+						<input type="number" name="numu" class="form-style" placeholder="Numéro" id="numu"  >
 						<i class="input-icon uil uil-phone"></i>
 					</li>
 					<li>
-						<input type="number" name="idClientu" class="form-style" placeholder="IdClient" id="idClientu" autocomplete="off">
+						<input type="number" name="idClientu" class="form-style" placeholder="IdClient" id="idClientu"  >
 						<i class="input-icon uil uil-dialpad-alt"></i>
 					</li>
 
@@ -981,6 +995,7 @@ $listReservation = $ReservationC->listReservation();
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./assets Dashboard/js Dashboard/material-dashboard.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
+  <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
 </body>
 

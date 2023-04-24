@@ -1,7 +1,7 @@
 <?php
 include_once "../Controller/TransportC.php";
+$valeur_id = $_GET['val_id'];
 
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/TransportC.php';
 var_dump($_POST);
 if (
     isset($_POST['IdClientat']) &&
@@ -40,15 +40,15 @@ if (
             );
         $TransportC = new TransportC();
         $TransportC->addTransport($Transport);
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         } 
     else 
         {
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
         }
     }
 else 
     {
-        header('location:listChauffeur.php');
+        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
     }
 ?>
