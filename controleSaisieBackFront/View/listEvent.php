@@ -381,7 +381,6 @@ $listReservation = $ReservationC->listReservation();
                                       '<?= $Event['time']; ?>',
                                       '<?= $Event['date']; ?>',
                                       '<?= $Event['prix']; ?>',
-                                      '<?= $Event['image']; ?>',
                                       '<?= $Event['nbrPlaceMax']; ?>'
                                     )">
                                   <i class="edit-del-icon uil uil-edit"></i>

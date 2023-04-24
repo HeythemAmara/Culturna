@@ -31,18 +31,20 @@ class EventC
     }
     
     function deleteEvent($idEvent)
-    {
-        $sql = "DELETE FROM event WHERE idEvent = :idEvent";
-        $db = config::getConnexion();
-        $req = $db->prepare($sql);
-        $req->bindValue(':idEvent', $idEvent);
+{
+    $sql = "DELETE FROM event WHERE idEvent = :idEvent;
+            DELETE FROM reservation WHERE idEvent = :idEvent"; // Ajout de la suppression des réservations
+    $db = config::getConnexion();
+    $req = $db->prepare($sql);
+    $req->bindValue(':idEvent', $idEvent);
 
-        try {
-            $req->execute();
-        } catch (Exception $e) {
-            die('Error:' . $e->getMessage());
-        }
+    try {
+        $req->execute();
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
     }
+}
+
 
     function addEvent($Event)
     {
@@ -133,8 +135,6 @@ class EventC
             return 1;
         }
     }
-
-
     public function DateEvent($id)
     {
         try 

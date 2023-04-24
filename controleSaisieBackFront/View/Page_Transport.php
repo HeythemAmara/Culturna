@@ -102,7 +102,6 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 		<div class="Tablelist">
 			<table class="tableview">
 				<tr class="TitleTab">
-					<th class="styleth">Id Transport</th>
 					<th class="styleth">Type</th>
 					<th class="styleth">Nbr Personne</th>
 					<th class="styleth">Date</th>
@@ -116,7 +115,6 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
         {
         ?>
 					<tr>
-                        <td class="styleth"><?= $Transport['Id_T']; ?></td>
                         <td class="styleth"><?= $Transport['Type']; ?></td>
                         <td class="styleth"><?= $Transport['Nbr_Pers']; ?></td>
                         <td class="styleth"><?= $Transport['Date']; ?></td>
@@ -124,6 +122,21 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
                         <td class="styleth"><?= $Transport['Nom']; ?></td>
                         <td class="styleth"><?= $Transport['Tel']; ?></td>
                         <td class="styleth"><?= $Transport['Message']; ?></td>
+						<td>
+							<a class="toggle-edit" onclick="
+                                    editTranspFront(
+                                      '<?=$Transport['Id_T']; ?>',
+                                      '<?= $Transport['Type']; ?>',
+                                      '<?= $Transport['Nbr_Pers']; ?>',
+                                      '<?= $Transport['Date']; ?>',
+                                      '<?= $Transport['Adresse']; ?>',
+									  '<?= $Transport['Nom']; ?>',
+                                      '<?= $Transport['Tel']; ?>',
+									  '<?= $Transport['Message']; ?>'
+                                    )">
+                                  <i class="edit-del-icon uil uil-edit"></i>
+                                    </a>
+						</td>
 						<td>
 							<?php $test=$Transport['Id_T'];
 							echo "<a href='FunctiondeleteTransp.php?val_id=" . $valeur_id ."&Id_T=".$test."'><i class='edit-del-icon uil uil-trash-alt'></i></a>"; ?>
@@ -137,15 +150,11 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 		<div class="InputlistEdit">
 
 			<form  class="form-group" method="POST" action="FunctionUpdateTransp.php"  onsubmit="return validateFormModifTransportUser();" >
-				
+			<input type="hidden" value="<?= $valeur_id; ?>"  name="idclienta" id="idclienta">
+			<input type="hidden" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
 				<ul>
 					<li>
 						<h3>Edit Transport</h3>
-					</li>
-					<li>
-                        <input type="hidden" value="<?= $valeur_id; ?>"  name="idclienta" id="idclienta">
-						<input type="number" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
-						<i class="input-icon uil uil-parcel"></i>
 					</li>
 					<li>
 						<input type="text" name="Typeut" class="form-style" placeholder="Type" id="Typeut" >
@@ -192,5 +201,7 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script  src="./assets/JS/scriptdashboard.js"></script>
 <script src="./assets/JS/InputControlFront.js"></script>
+<script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
+
 
 </html>
