@@ -102,7 +102,6 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 		<div class="Tablelist">
 			<table class="tableview">
 				<tr class="TitleTab">
-					<th class="styleth">Id Reservation</th>
 					<th class="styleth">Name</th>
 					<th class="styleth">Email</th>
 					<th class="styleth">nbrPlaces</th>
@@ -113,11 +112,22 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
         {
         ?>
 					<tr>
-                        <td class="styleth"><?= $Reservation['idReserv']; ?></td>
                         <td class="styleth"><?= $Reservation['name']; ?></td>
                         <td class="styleth"><?= $Reservation['email']; ?></td>
                         <td class="styleth"><?= $Reservation['nbrPlace']; ?></td>
                         <td class="styleth"><?= $Reservation['num']; ?></td>
+						<td>
+							<a class="toggle-edit" onclick="
+                                    editReservFront(
+                                      '<?=$Reservation['idReserv']; ?>',
+                                      '<?= $Reservation['name']; ?>',
+                                      '<?= $Reservation['email']; ?>',
+                                      '<?= $Reservation['nbrPlace']; ?>',
+                                      '<?= $Reservation['num']; ?>'
+                                    )">
+                                  <i class="edit-del-icon uil uil-edit"></i>
+                                    </a>
+						</td>
 						<td>
 							<?php $test=$Reservation['idReserv'];
 							echo "<a href='FunctiondeleteRerser.php?val_id=" . $valeur_id ."&idReserv=".$test."'><i class='edit-del-icon uil uil-trash-alt'></i></a>"; ?>
@@ -131,14 +141,11 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 		<div class="InputlistEdit">
 
 		<form class="form-group" method="POST" action="FunctionUpdateReserv.php" onsubmit="return validateFormModifReservUser();">
-   	 <ul>
+		<input type="hidden" value="<?= $valeur_id; ?>" name="idclienta" id="idclienta">
+            <input type="hidden" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
+		<ul>
         <li>
             <h3>Edit Reservation</h3>
-        </li>
-        <li>
-            <input type="hidden" value="<?= $valeur_id; ?>" name="idclienta" id="idclienta">
-            <input type="number" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
-            <i class="input-icon uil uil-dialpad-alt"></i>
         </li>
         <li>
             <input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu" autocomplete="off">
@@ -172,5 +179,7 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script  src="./assets/JS/scriptdashboard.js"></script>
 <script src="./assets/JS/InputControlFront.js"></script>
+<script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
+
 
 </html>

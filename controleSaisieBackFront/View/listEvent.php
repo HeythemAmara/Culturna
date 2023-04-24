@@ -381,7 +381,6 @@ $listReservation = $ReservationC->listReservation();
                                       '<?= $Event['time']; ?>',
                                       '<?= $Event['date']; ?>',
                                       '<?= $Event['prix']; ?>',
-                                      '<?= $Event['image']; ?>',
                                       '<?= $Event['nbrPlaceMax']; ?>'
                                     )">
                                   <i class="edit-del-icon uil uil-edit"></i>
@@ -836,7 +835,7 @@ $listReservation = $ReservationC->listReservation();
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 320, 500, 100, 200, 230, 500],
+          data: [800, 20, 300, 600, 500, 100, 200, 230, 500],
           maxBarThickness: 6
 
         }],

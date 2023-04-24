@@ -1,4 +1,5 @@
-//! Transport =========================================
+//! =============================== Transport =========================================
+  //=============================TransportBack================================
 
   function editTransport(Id_T,IdClient,Id_Ch,Type,Nbr_Pers,Date,Adresse,Nom,Tel,Message) {
     var input_Id_T = document.getElementById("Id_Tut");
@@ -32,7 +33,34 @@
     input_Message.value = Message;
 
   }
+  //=============================TransportFront================================
+  function editTranspFront(Id_T,Type,Nbr_Pers,Date,Adresse,Nom,Tel,Message) {
+    var input_Id_T = document.getElementById("Id_Tut");
+    input_Id_T.value = Id_T;
 
+    var input_Type = document.getElementById("Typeut");
+    input_Type.value = Type;
+
+    var input_Nbr_Pers = document.getElementById("Nbr_Persut");
+    input_Nbr_Pers.value = Nbr_Pers;
+
+    var input_Date = document.getElementById("Dateut");
+    input_Date.value = Date;
+
+    var input_Adresse = document.getElementById("adresseut");
+    input_Adresse.value = Adresse;
+
+    var input_Nom = document.getElementById("nameut");
+    input_Nom.value = Nom;
+
+    var input_Tel = document.getElementById("numut");
+    input_Tel.value = Tel;
+
+    var input_Message = document.getElementById("Noteut");
+    input_Message.value = Message;
+
+  }
+  
 //! Chauffeur =========================================
 
   function editChauffeur(Id_Ch,Nom,Prenom,Tel,Email,Vehicule) {
@@ -81,9 +109,9 @@
     input_Perm.value = Perm;
 
   }
-  //! Event =========================================
-  
-  function editEvent(idEvent,name,type,time,date,prix,image,nbrPlaceMax) {
+  //! =============================== Event =========================================
+
+  function editEvent(idEvent,name,type,time,date,prix,nbrPlaceMax) {
     var input_idEvent = document.getElementById("idEventu");
     input_idEvent.value = idEvent;
 
@@ -102,14 +130,11 @@
     var input_prix = document.getElementById("prixu");
     input_prix.value = prix;
 
-    var input_image = document.getElementById("imageu");
-    input_image.value = image;
-
     var input_nbrPlaceMax = document.getElementById("nbrPlaceMaxu");
     input_nbrPlaceMax.value = nbrPlaceMax;
 
   }
-  //Reservation ===============================================
+  // ====================== ReservationBack =========================
   function editReservation(idReserv,idEvent,name,email,nbrPlace,num,idClient) {
   
     var input_idReserv = document.getElementById("idReservu");
@@ -133,4 +158,22 @@
     var input_idClient = document.getElementById("idClientu");
     input_idClient.value = idClient;
 
+  }
+  //======================= ReservationFront ===============================
+  function editReservFront(idReserv,name,email,nbrPlace,num) {
+  
+    var input_idReserv = document.getElementById("idReservu");
+    input_idReserv.value = idReserv;
+    
+    var input_name = document.getElementById("nameu");
+    input_name.value = name;
+
+    var input_email = document.getElementById("emailu");
+    input_email.value = email;
+
+    var input_nbrPlace = document.getElementById("nbrPlaceu");
+    input_nbrPlace.value = nbrPlace;
+
+    var input_num = document.getElementById("numu");
+    input_num.value = num;
   }

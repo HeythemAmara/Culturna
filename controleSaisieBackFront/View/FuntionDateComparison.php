@@ -22,14 +22,12 @@ $DateEvent = $EventC->DateEvent($idEvent);
 foreach ($DateEvent as $datee){ $event_date = $datee['date']; } ; // Date de l'évènement
 foreach ($DateEvent as $nom){ $event_name = $nom['name']; } ; // Nom de l'évènement
 
-
-
 $mail = new PHPMailer(true);
 $alert = '';
 
 // Email et Message
 foreach ($Reserv as $Userr){ $email = $Userr['email']; } ;      //receiver Email
-$message = "Vous avez reservé l'évènement ".$event_name." le ".$event_date;    //Message sent
+$message = "Vous avez un évènement nommé ".$event_name."reservé  le ".$event_date;    //Message sent
 
 // Date actuelle
 $current_date = date("Y-m-d");
@@ -38,7 +36,7 @@ $current_date = date("Y-m-d");
 $two_days_later = date("Y-m-d", strtotime("+2 days"));
 $one_days_later = date("Y-m-d", strtotime("+1 days"));
 
-
+$EventC->deleteExpiredEvents();
 $test=$EventC->historiqueMail($valeur_id,$event_date);
 
 if($test==0)
@@ -74,13 +72,6 @@ if($test==0)
 header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
 
 ?>
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
