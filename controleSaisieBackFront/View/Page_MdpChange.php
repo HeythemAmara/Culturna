@@ -2,13 +2,36 @@
 include "../Controller/UtilisateurC.php";
 
 
-//$valeur_id = $_GET['val_id'];
-$valeur_id =13;
+//$valeur_id =13;
+$valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $list=$UtilisateurC->listUserId($valeur_id);
-$test=0;
+$email = $_GET['Email'];
 
+
+if(isset($_POST['update']))
+{
+    if (
+        !empty($_POST['update'])
+       ) 
+       {
+        $Utilisateur = new Utilisateur(
+            NULL,
+            NULL,
+            $_POST['mdpu'],
+            NULL,
+            NULL
+            );
+            $UtilisateurC = new UtilisateurC();
+            $UtilisateurC->updateMdpUser($Utilisateur, $email);
+        header('location:Page_accueil.php?val_id=' . $valeur_id);
+        } 
+    else 
+        {
+            //header('location:Page_accueil.php?val_id=' . $valeur_id);
+        }
+    }
 
 ?>
 
@@ -44,7 +67,7 @@ $test=0;
             <ul>
 				<li><?php echo "<a href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?></li>
                 <li><a href="#">Clubs</a></li>
-                <li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?></li>
+                <li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Evenement</a>"; ?></li>
                 <li><a href="#">Reclamation</a></li>
 				<li><a href="#">Magasin</a></li>
                 <li><?php echo "<a href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reservation</a>"; ?></li>
@@ -85,7 +108,7 @@ $test=0;
 					<input type="password" name="mdpu" class="form-style" placeholder="Password" id="mdpu">
 					</li>
 				</ul>
-				<input type="submit" name="Update" value="Submit" class="btn ">
+				<input type="submit" name="update" value="Submit" class="btn ">
 			</form>
 			</li>
 			</ul>

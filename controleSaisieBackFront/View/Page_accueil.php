@@ -104,7 +104,7 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 											</div>
 											<input type="submit" name="Login" value="Submit" class="btn mt-2">
                             				<p class="mb-0 mt-4 text-center">
-												<a href="Page_GiveEmail.php" class="link">Forgot your password?</a>
+												<a href="Page_GiveEmail.php?val_id= <?= $valeur_id ?>" class="link">Forgot your password?</a>
 											</p>
 				      					</div>
 			      					</div>

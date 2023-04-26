@@ -11,8 +11,30 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $ChauffeurC = new ChauffeurC();
 $listchauffeur = $ChauffeurC->listChauffeur();
 
+$count2Wheels = $ChauffeurC->countStatVehicule("Bike");
+$count4Wheels = $ChauffeurC->countStatVehicule("Car");
+$countplus4Wheels = $ChauffeurC->countStatVehicule("Bus");
+
 $TransportC = new TransportC();
 $listtransport = $TransportC->listTransport();
+
+$countEvent = $TransportC->countStatType("Event");
+$countClub = $TransportC->countStatType("Club");
+$countDelivery = $TransportC->countStatType("Delivery");
+
+$countJan = $TransportC->countStatMonth('01');
+$countFeb = $TransportC->countStatMonth('02');
+$countMar = $TransportC->countStatMonth('03');
+$countApr = $TransportC->countStatMonth('04');
+$countMay = $TransportC->countStatMonth('05');
+$countJun = $TransportC->countStatMonth('06');
+$countJul = $TransportC->countStatMonth('07');
+$countAug = $TransportC->countStatMonth('08');
+$countSep = $TransportC->countStatMonth('09');
+$countOct = $TransportC->countStatMonth('10');
+$countNov = $TransportC->countStatMonth('11');
+$countDec = $TransportC->countStatMonth('12');
+
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +134,7 @@ $listtransport = $TransportC->listTransport();
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></span>
+                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -289,13 +311,9 @@ $listtransport = $TransportC->listTransport();
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Requests</h6>
+              <p class="text-sm ">Number of Transport Requested</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-              </div>
             </div>
           </div>
         </div>
@@ -309,13 +327,9 @@ $listtransport = $TransportC->listTransport();
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Requestes </h6>
+              <p class="text-sm "> Monthly Transports Requested</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> updated 4 min ago </p>
-              </div>
             </div>
           </div>
         </div>
@@ -329,13 +343,9 @@ $listtransport = $TransportC->listTransport();
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Vehicule</h6>
+              <p class="text-sm ">Driver's Vehicule</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
-                <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">just updated</p>
-              </div>
             </div>
           </div>
         </div>
@@ -432,8 +442,13 @@ $listtransport = $TransportC->listTransport();
 						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="text" name="vehiculea" class="form-style" placeholder="Vehicule" id="vehiculea"  >
-						<i class="input-icon uil uil-user"></i>
+            <i class="input-icon uil uil-tag"></i>
+	                  <select name="vehiculea" class="form-style" id="vehiculea">
+	                  	<option value="">Vehicule</option>
+	                  	<option value="Bike">2 wheels</option>
+	                  	<option value="Car">4 wheels</option>
+		                  <option value="Bus">+4 wheels</option>
+	                  </select>
 					</li>
 				</ul>
 				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
@@ -465,8 +480,13 @@ $listtransport = $TransportC->listTransport();
 						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="text" name="vehiculeu" class="form-style" placeholder="Vehicule" id="vehiculeu">
-						<i class="input-icon uil uil-user"></i>
+            <i class="input-icon uil uil-tag"></i>
+	                  <select name="vehiculeu" class="form-style" id="vehiculeu">
+	                  	<option value="">Vehicule</option>
+	                  	<option value="Bike">2 wheels</option>
+	                  	<option value="Car">4 wheels</option>
+		                  <option value="Bus">+4 wheels</option>
+	                  </select>
 					</li>
 
 				</ul>
@@ -560,10 +580,15 @@ $listtransport = $TransportC->listTransport();
 						<input type="number" name="Id_Chat" class="form-style" placeholder="IdChauffeur" id="Id_Chat" >
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
-					<li>
-						<input type="text" name="Typeat" class="form-style" placeholder="Type" id="Typeat" >
-						<i class="input-icon uil uil-tag"></i>
-					</li>
+          <li>
+	              <i class="input-icon uil uil-tag"></i>
+	                  <select name="Typeat" class="form-style" id="Typeat">
+	                  	<option value="">Type</option>
+	                  	<option value="Event">Event</option>
+	                  	<option value="Club">Club</option>
+		                  <option value="Delivery">Delivery</option>
+	                  </select>
+          </li>
 					<li>
 						<input type="number" name="Nbr_Persat" class="form-style" placeholder="NombrePersonne" id="Nbr_Persat" >
 						<i class="input-icon uil uil-home"></i>
@@ -609,10 +634,15 @@ $listtransport = $TransportC->listTransport();
 						<input type="number" name="Id_Chut" class="form-style" placeholder="IdChauffeur" id="Id_Chut" >
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
-					<li>
-						<input type="text" name="Typeut" class="form-style" placeholder="Type" id="Typeut" >
-						<i class="input-icon uil uil-tag"></i>
-					</li>
+          <li>
+	              <i class="input-icon uil uil-tag"></i>
+	                  <select name="Typeut" class="form-style" id="Typeut">
+	                  	<option value="">Type</option>
+	                  	<option value="Event">Event</option>
+	                  	<option value="Club">Club</option>
+		                  <option value="Delivery">Delivery</option>
+	                  </select>
+          </li>
 					<li>
 						<input type="number" name="Nbr_Persut" class="form-style" placeholder="NombrePersonne" id="Nbr_Persut" >
 						<i class="input-icon uil uil-home"></i>
@@ -747,20 +777,23 @@ $listtransport = $TransportC->listTransport();
   <script src="./assets Dashboard/js Dashboard/plugins/smooth-scrollbar.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/plugins/chartjs.min.js"></script>
   <script>
+    var Event     =<?= $countEvent ?>;
+    var Club      =<?= $countClub ?>;
+    var Delivery =<?= $countDelivery ?>;
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: ["Event", "Club", "Delivery"],
         datasets: [{
-          label: "Sales",
+          label: "Transports Requested",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 50, 10, 50, 50, 10, 40],
+          data: [Event, Club, Delivery],
           maxBarThickness: 6
         }, ],
       },
@@ -829,13 +862,26 @@ $listtransport = $TransportC->listTransport();
 
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
+    var Jan  = <?= $countJan ?>;
+    var Feb  = <?= $countFeb ?>;
+    var Mar  = <?= $countMar ?>;
+    var Apr  = <?= $countApr ?>;
+    var May  = <?= $countMay ?>;
+    var Jun  = <?= $countJun ?>;
+    var Jul  = <?= $countJul ?>;
+    var Aug  = <?= $countAug ?>;
+    var Sep  = <?= $countSep ?>;
+    var Oct  = <?= $countOct ?>;
+    var Nov  = <?= $countNov ?>;
+    var Dec  = <?= $countDec ?>;
+
 
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
-          label: "Mobile apps",
+          label: "Requested",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
@@ -846,7 +892,7 @@ $listtransport = $TransportC->listTransport();
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 320, 500, 100, 200, 230, 500],
+          data: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
           maxBarThickness: 6
 
         }],
@@ -912,26 +958,24 @@ $listtransport = $TransportC->listTransport();
     });
 
     var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+    var Wheels2 = <?= $count2Wheels ?>;
+    var Wheels4 = <?= $count4Wheels ?>;
+    var Wheelsp4 = <?= $countplus4Wheels ?>;
 
     new Chart(ctx3, {
-      type: "line",
+      type: "bar",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["2Wheels", "4Wheels", "+4Wheels"],
         datasets: [{
-          label: "Mobile apps",
-          tension: 0,
+          label: "Vehicule",
+          tension: 0.4,
           borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: [Wheels2, Wheels4, Wheelsp4],
           maxBarThickness: 6
-
-        }],
+        }, ],
       },
       options: {
         responsive: true,
@@ -956,9 +1000,10 @@ $listtransport = $TransportC->listTransport();
               color: 'rgba(255, 255, 255, .2)'
             },
             ticks: {
-              display: true,
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
               padding: 10,
-              color: '#f8f9fa',
               font: {
                 size: 14,
                 weight: 300,
@@ -966,15 +1011,17 @@ $listtransport = $TransportC->listTransport();
                 style: 'normal',
                 lineHeight: 2
               },
-            }
+              color: "#fff"
+            },
           },
           x: {
             grid: {
               drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
+              display: true,
+              drawOnChartArea: true,
               drawTicks: false,
-              borderDash: [5, 5]
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
             },
             ticks: {
               display: true,

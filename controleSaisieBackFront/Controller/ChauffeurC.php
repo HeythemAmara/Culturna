@@ -28,7 +28,6 @@ class ChauffeurC
     public function deleteChauffeur(int $id)
     {
         try {
-
             $pdo = config::getConnexion();
             $sql = "DELETE FROM `chauffeur` WHERE Id_Ch=" . $id . "";
             $query = $pdo->prepare($sql);
@@ -45,7 +44,6 @@ class ChauffeurC
         VALUES (NULL, :nom, :prenom, :tel, :email, :vehicule)";
         $db = config::getConnexion();
         try {
-            
             $query = $db->prepare($sql);
             $query->execute([
 
@@ -60,11 +58,9 @@ class ChauffeurC
         }
     }
 
-
     public function findChauffeurById($id)
     {
         try {
-
             $pdo = config::getConnexion();
             $sql = "SELECT * FROM `chauffeur` WHERE Id_Ch=" . $id . "";
             $query = $pdo->prepare($sql);
@@ -79,7 +75,6 @@ class ChauffeurC
     public function updateChauffeur($Chauffeur, $id)
     {
         try {
-
             $pdo = config::getConnexion();
             $sql = "UPDATE `chauffeur` SET `nom`=:NomChauffeur,`Prenom`=:PrenomChauffeur,`Tel`=:TelChauffeur,`Email`=:EmailChauffeur,`Vehicule`=:Vehicule WHERE Id_Ch=:Id_Ch";
             $query = $pdo->prepare($sql);
@@ -95,4 +90,25 @@ class ChauffeurC
             echo "Modification Echouer: " . $e->getMessage();
         }
     }
+
+
+    public function countStatVehicule($Vehicule)
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `chauffeur` WHERE Vehicule= :Veh ";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':Veh', $Vehicule);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }
+
+
 }

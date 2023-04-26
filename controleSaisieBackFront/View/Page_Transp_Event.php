@@ -1,15 +1,17 @@
 <?php
 include '../Controller/EventC.php';
 include "../Controller/UtilisateurC.php";
+include "../Controller/ChauffeurC.php";
 
+
+$ChauffeurC = new ChauffeurC();
+$listchauffeur = $ChauffeurC->listChauffeur();
 $valeur_id = $_GET['val_id'];
 $resevtest = $_GET['creationreserv'];
 $datee = $_GET['dateevent'];
 $nbrplace = $_GET['nbrpersonne'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
-$test=0;
-
 
 ?>
 
@@ -48,7 +50,7 @@ $test=0;
             <ul>
                 <li><?php echo "<a href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?></li>
                 <li><a href="#">Clubs</a></li>
-                <li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?></li>
+                <li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Evenement</a>"; ?></li>
                 <li><a href="#">Reclamation</a></li>
 				<li><a href="#">Magasin</a></li>
                 <li><a href="#">Dashboard</a></li>
@@ -74,7 +76,7 @@ $test=0;
 	<section class="List">
 		<div class="affiche"></div>
 		<ul class="buttonslist">
-			<li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Back</a>"; ?></li>
+			<li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Back</a>"; ?></li>
 			<li class="btnrequesttransport hide"><button class="toggle">Request Transport</button></li>
 		</ul>
 		
@@ -117,6 +119,17 @@ $test=0;
 					</p>
 				</div>
 				<input type="hidden" value="<?= $valeur_id; ?>"  name="idclienta" id="idclienta">
+				<select name="idcha" class="inputreserv" id="idcha">
+	                  	<option value="1">Chauffeur</option>
+						  <?php
+        					foreach ($listchauffeur as $diver) 
+        						{
+        						?>
+								<option value="<?= $diver['Id_Ch']; ?>"><?= $diver['Nom']; ?> <?= $diver['Prenom']; ?></option>
+								<?php
+								}
+        						?>
+	            </select>
 				<input class="inputreserv" type="tel" placeholder="Phone Number" name="numa" id="numa"/>
 				<input class="inputreserv" type="text" placeholder="A note for the driver" name="Notea" id="Notea"/>
 				<button class="form__btn" id="btn-3-prev">Previous</button>

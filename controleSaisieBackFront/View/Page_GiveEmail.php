@@ -1,5 +1,56 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+require_once './assets/Mailing/Exception.php';
+require_once './assets/Mailing/PHPMailer.php';
+require_once './assets/Mailing/SMTP.php';
+
 include "../Controller/UtilisateurC.php";
+
+	$valeur_id=13;	
+	$valeur_id = $_GET['val_id'];
+	$mail = new PHPMailer(true);
+	$alert = '';
+  
+
+	if(isset($_POST['submit'])) {
+
+		//generation de clé
+		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$key = '';
+		for ($i = 0; $i < 8; $i++) {
+		  $key .= $chars[rand(0, strlen($chars) - 1)];
+		}
+
+		//mailing
+		$email = $_POST['email'];
+	
+		try {
+			$mail->isSMTP();
+			$mail->Host= 'smtp.gmail.com';
+			$mail->SMTPAuth= true;
+			$mail->Username= 'culturnacop@gmail.com';
+			$mail->Password= 'kdpxcaqpexwxnlbn';
+			$mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Port= 587;
+	
+			$mail->setFrom('culturnacop@gmail.com' , ); 
+			$mail->addAddress($email); 
+	
+			$mail->Subject = 'Message Received (Contact Page)';
+			$mail->Body = '<h3>Le code est : '.$key.'</h3>';
+			$mail->IsHTML(true);
+	
+			$mail->send();
+			$alert = 'Message envoyé avec succès !';
+
+			header('location:FunctionComparaisonMdp.php?val_id=' . $valeur_id .'&key='.$key.'&Email='.$email);
+
+	
+		} catch (Exception $e) {
+			$alert = 'Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer plus tard.';
+		}
+	}
 
 ?>
 
@@ -37,17 +88,15 @@ include "../Controller/UtilisateurC.php";
             </ul>
         </div>
     </header>
-
-
-
-
-	
-
-
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
 			<ul>
+				<li>
+					<?php if($alert != ''): ?>
+					<div><?php echo $alert ?></div>
+					<?php endif; ?>
+				</li>
 			<li>
 			<form class="form-group mt-4" method="POST" action=""  onsubmit="return validateFormModifserFront();">
 				<ul>
@@ -55,10 +104,10 @@ include "../Controller/UtilisateurC.php";
 					<h1>Donnez Votre Email</h1>
 					</li>
 					<li>
-					<input type="email" name="emailu" class="form-style" placeholder="Email" id="emailu">
+						<input type="email" name="email" class="form-style" placeholder="Email" id="email">
 					</li>
 				</ul>
-				<input type="submit" name="Update" value="Submit" class="btn ">
+				<input type="submit" name="submit" value="Submit" class="btn ">
 			</form>
 			</li>
 			</ul>

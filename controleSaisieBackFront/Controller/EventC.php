@@ -18,17 +18,32 @@ class EventC
         }
     }
 
-    public function listEventtype(string $typee)
+    public function listEventtype(string $typee,$trie)
     {
-        $sql = "SELECT * FROM event WHERE type='$typee'";
-        $db = config::getConnexion();
-        try {
-            $liste = $db->query($sql);
-            return $liste;
-        } catch (Exception $e) {
-            die('Error:' . $e->getMessage());
+        if($trie==0)
+        {
+            $sql = "SELECT * FROM event WHERE type='$typee' ";
+            $db = config::getConnexion();
+            try {
+                $liste = $db->query($sql);
+                return $liste;
+            } catch (Exception $e) {
+                die('Error:' . $e->getMessage());
+            }
+        }
+        else
+        {
+            $sql = "SELECT * FROM event WHERE type='$typee' ORDER BY date ASC";
+            $db = config::getConnexion();
+            try {
+                $liste = $db->query($sql);
+                return $liste;
+            } catch (Exception $e) {
+                die('Error:' . $e->getMessage());
+            }
         }
     }
+    
     
     function deleteEvent($idEvent)
 {
@@ -167,5 +182,9 @@ function deleteExpiredEvents()
             return 0;
         }  
     }
+
+    
 }
 ?>
+
+

@@ -112,7 +112,7 @@ $listReservation = $ReservationC->listReservation();
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></span>
+                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -288,9 +288,71 @@ $listReservation = $ReservationC->listReservation();
                 </div>
               </div>
             </div>
+            <!-- heree -->
+ 
+            <?php
+// Connexion à la base de données
+$pdo = config::getConnexion();
+
+// Requête SQL pour récupérer les données de la première statistique
+$sql1 = "SELECT type, COUNT(*) as nb_events FROM event GROUP BY type";
+
+// Exécution de la requête SQL pour la première statistique
+$stmt1 = $pdo->query($sql1);
+
+// Récupération des résultats sous forme d'un tableau pour la première statistique
+$results1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+// Construction du tableau de données pour la première statistique
+$data1 = array();
+foreach ($results1 as $row) {
+    $type = $row['type'];
+    $count = $row['nb_events'];
+    $data1[$type] = $count;
+}
+
+// Requête SQL pour récupérer les données de la deuxième statistique
+$sql2 = "SELECT MONTH(date) as month1, COUNT(*) as count FROM event GROUP BY  MONTH(date)";
+
+// Exécution de la requête SQL pour la deuxième statistique
+$stmt2 = $pdo->prepare($sql2);
+$stmt2->execute();
+
+// Récupération des résultats sous forme d'un tableau pour la deuxième statistique
+$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+// Construction du tableau de données pour la deuxième statistique
+$data2 = array();
+foreach ($results2 as $row) {
+
+    $month2 = $row['month1'];
+    $count = $row['count'];
+    $label = date('M ', mktime(0, 0, 0, $month2, 1)); // formatage du label
+    $data2[$label] = $count;
+}
+
+// Exécute la requête SQL pour récupérer les données de nombre total de prix par mois
+$sql3 = "SELECT MONTH(date) as month2, SUM(prix) as total_prix FROM event GROUP BY MONTH(date)";
+$stmt3 = $pdo->prepare($sql3);
+$stmt3->execute();
+$results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+// Crée un tableau de labels de mois et de données de nombre total de prix
+$label3 = [];
+$data3 = [];
+foreach ($results3 as $row) {
+    $month3 = $row['month2'];
+    $total_prix = $row['total_prix'];
+    $label3[] = date('M', mktime(0, 0, 0, $month3, 1));
+    $data3[] = $total_prix;
+}
+
+
+?>
+<!------selon le type--------------->
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Types of the events</h6>
+              <p class="text-sm ">Number of events for each type</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -308,9 +370,11 @@ $listReservation = $ReservationC->listReservation();
                 </div>
               </div>
             </div>
+            <!-----------------selon date-------------------------->
+
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Dates of the events </h6>
+              <p class="text-sm ">Number of events for each month</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -328,9 +392,11 @@ $listReservation = $ReservationC->listReservation();
                 </div>
               </div>
             </div>
+            <!-----------------------selon prix------------------------------------->
+
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Price of the events </h6>
+              <p class="text-sm ">Monthly earnings</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -346,17 +412,17 @@ $listReservation = $ReservationC->listReservation();
             <div class="card-body px-0 pb-2 tableviewdiv">
                         <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
                         <h3>---Event---</h3>
-				                <table class="tableview">
+				        <table class="tableview" id="tableau">
 				                <tr class="TitleTab">
-								<th class="styleth">Event</th>
-									<th class="styleth">Name</th>
-									<th class="styleth">Type</th>
-									<th class="styleth">Time</th>
-									<th class="styleth">Date</th>
-									<th class="styleth">Prix</th>
-									<th class="styleth">Image</th>
-									<th class="styleth">NbrPlace</th>
-				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
+								                  <th class="styleth">Event</th>
+									                <th class="styleth">Name</th>
+									                <th class="styleth">Type</th>
+									                <th class="styleth">Time</th>
+									                <th class="styleth">Date</th>
+									                <th class="styleth">Prix</th>
+									                <th class="styleth">Image</th>
+									                <th class="styleth">NbrPlace</th>
+				                	        <th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
                         <?php
                           foreach ($listEvent as $Event) 
@@ -364,15 +430,15 @@ $listReservation = $ReservationC->listReservation();
                           ?>                    
 
 				                  	<tr>
-									      <td class="styleth"><?= $Event['idEvent']; ?></td>
-                        <td class="styleth"><?= $Event['name']; ?></td>
-                        <td class="styleth"><?= $Event['type']; ?></td>
-                        <td class="styleth"><?= $Event['time']; ?></td>
-                        <td class="styleth"><?= $Event['date']; ?></td>
-                        <td class="styleth"><?= $Event['prix']; ?></td>
-                        <td class="styleth"><?= $Event['image']; ?></td>
-						            <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
-				                  		<td>
+									               <td class="styleth"><?= $Event['idEvent']; ?></td>
+                                 <td class="styleth"><?= $Event['name']; ?></td>
+                                 <td class="styleth"><?= $Event['type']; ?></td>
+                                 <td class="styleth"><?= $Event['time']; ?></td>
+                                 <td class="styleth"><?= $Event['date']; ?></td>
+                                 <td class="styleth"><?= $Event['prix']; ?></td>
+                                 <td class="styleth"><?= $Event['image']; ?></td>
+						                     <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
+				                  		   <td>
                               <a class="toggle-edit" onclick="
                                     editEvent(
                                       '<?=$Event['idEvent']; ?>',
@@ -391,10 +457,89 @@ $listReservation = $ReservationC->listReservation();
                                       <?php
                           }
                           ?>		
-                          </table>  
-		                    </div>
+               </table>  
+                  <button class="uil uil-step-backward" id="bouton-precedent" disabled></button>
+                  <button class="uil uil-skip-forward" id="bouton-suivant"></button>
+             </div>
           </div> 
         </div>
+<!-- Le code HTML est inchangé -->
+
+<script>
+  const tableau = document.getElementById('tableau').querySelectorAll('tbody tr');
+  const nbLignesParPage = 5;
+  const nbPages = Math.ceil(tableau.length / nbLignesParPage);
+  let pageCourante = 1;
+
+  const tableau2 = document.getElementById('tableau2').querySelectorAll('tbody tr');
+  const nbLignesParPage2 = 5;
+  const nbPages2 = Math.ceil(tableau2.length / nbLignesParPage2);
+  let pageCourante2 = 1;
+
+
+  // Masquer toutes les lignes sauf les 5 premières
+  for (let i = nbLignesParPage; i < tableau.length; i++) {
+    tableau[i].style.display = 'none';
+  }
+  //tab2
+  for (let i = nbLignesParPage2; i < tableau2.length; i++) {
+    tableau2[i].style.display = 'none';
+  }
+
+  // Désactiver le bouton Précédent initialement
+  document.getElementById('bouton-precedent').disabled = true;
+  document.getElementById('bouton-precedent-nouveau').disabled = true;
+
+  // Activer/désactiver les boutons et afficher les lignes correspondantes en fonction de la page courante
+  function afficherPage() {
+    const debut = (pageCourante - 1) * nbLignesParPage;
+    const fin = debut + nbLignesParPage;
+    for (let i = 0; i < tableau.length; i++) {
+      tableau[i].style.display = (i >= debut && i < fin) ? '' : 'none';
+    }
+    document.getElementById('bouton-suivant').disabled = (pageCourante >= nbPages);
+    document.getElementById('bouton-precedent').disabled = (pageCourante <= 1);
+
+  }
+  function afficherPage2() {
+    const debut = (pageCourante2 - 1) * nbLignesParPage2;
+    const fin = debut + nbLignesParPage2;
+    for (let i = 0; i < tableau2.length; i++) {
+      tableau2[i].style.display = (i >= debut && i < fin) ? '' : 'none';
+    }
+
+    document.getElementById('bouton-suivant-nouveau').disabled = (pageCourante2 >= nbPages2);
+    document.getElementById('bouton-precedent-nouveau').disabled = (pageCourante2 <= 1);
+  }
+
+  // Ajouter un événement au clic sur le bouton Suivant
+  document.getElementById('bouton-suivant').addEventListener('click', function() {
+    pageCourante++;
+    afficherPage();
+  });
+
+  // Ajouter un événement au clic sur le bouton Précédent
+  document.getElementById('bouton-precedent').addEventListener('click', function() {
+    pageCourante--;
+    afficherPage();
+  });
+  document.getElementById('bouton-suivant-nouveau').addEventListener('click', function() {
+    pageCourante2++;
+    afficherPage2();
+  });
+
+  // Ajouter un événement au clic sur le bouton Précédent
+  document.getElementById('bouton-precedent-nouveau').addEventListener('click', function() {
+    pageCourante2--;
+    afficherPage2();
+  });
+  // Afficher la première page initialement
+  afficherPage();
+  afficherPage2();
+
+</script>
+
+
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd slide-in-right">
 
@@ -504,7 +649,7 @@ $listReservation = $ReservationC->listReservation();
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
             <h3>---Reservation---</h3>
-				      <table class="tableview">
+				      <table class="tableview" id="tableau2">
 				        <tr class="TitleTab">
 							    <th class="styleth">Event</th>
 							    <th class="styleth">Name</th>
@@ -544,7 +689,9 @@ $listReservation = $ReservationC->listReservation();
                   <?php
                   }
                   ?>
-              </table>  
+              </table> 
+                  <button class="uil uil-step-backward" id="bouton--precedent-nouveau" disabled></button>
+                  <button class="uil uil-skip-forward" id="bouton--suivant-nouveau" ></button>
 		        </div>
           </div> 
         </div>
@@ -736,20 +883,20 @@ $listReservation = $ReservationC->listReservation();
   <script src="./assets Dashboard/js Dashboard/plugins/smooth-scrollbar.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/plugins/chartjs.min.js"></script>
   <script>
+ 
     var ctx = document.getElementById("chart-bars").getContext("2d");
-
-    new Chart(ctx, {
+   new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: <?php echo json_encode(array_column($results1, 'type')); ?>,
         datasets: [{
-          label: "Sales",
+          label: "Nombre d'événements",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 50, 10, 50, 50, 10, 40],
+          data: <?php echo json_encode(array_column($results1, 'nb_events')); ?>,
           maxBarThickness: 6
         }, ],
       },
@@ -777,7 +924,7 @@ $listReservation = $ReservationC->listReservation();
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 500,
+              suggestedMax: <?php echo max(array_column($results1, 'nb_events')); ?>,
               beginAtZero: true,
               padding: 10,
               font: {
@@ -817,95 +964,95 @@ $listReservation = $ReservationC->listReservation();
     });
 
 
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
+  var ctx2 = document.getElementById("chart-line").getContext("2d");
 
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [800, 20, 300, 600, 500, 100, 200, 230, 500],
-          maxBarThickness: 6
+new Chart(ctx2, {
+  type: "line",
+  data: {
+    labels: <?= json_encode(array_keys($data2)) ?>,
+    datasets: [{
+      label: 'Nombre d\'événements',
+      tension: 0,
+      borderWidth: 0,
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(255, 255, 255, .8)",
+      pointBorderColor: "transparent",
+      borderColor: "rgba(255, 255, 255, .8)",
+      borderColor: "rgba(255, 255, 255, .8)",
+      borderWidth: 4,
+      backgroundColor: "transparent",
+      fill: true,
+      data: <?= json_encode(array_values($data2)) ?>,
+      maxBarThickness: 6
 
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      }
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
+    scales: {
+      y: {
+        grid: {
+          drawBorder: false,
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+          borderDash: [5, 5],
+          color: 'rgba(255, 255, 255, .2)'
         },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: 'rgba(255, 255, 255, .2)'
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
           },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#f8f9fa',
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
+        }
       },
-    });
+      x: {
+        grid: {
+          drawBorder: false,
+          display: false,
+          drawOnChartArea: false,
+          drawTicks: false,
+          borderDash: [5, 5]
+        },
+        ticks: {
+          display: true,
+          color: '#f8f9fa',
+          padding: 10,
+          font: {
+            size: 14,
+            weight: 300,
+            family: "Roboto",
+            style: 'normal',
+            lineHeight: 2
+          },
+        }
+      },
+    },
+  },
+});
 
     var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
 
     new Chart(ctx3, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: <?php echo json_encode($label3); ?>,
         datasets: [{
           label: "Mobile apps",
           tension: 0,
@@ -917,7 +1064,7 @@ $listReservation = $ReservationC->listReservation();
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: <?php echo json_encode($data3); ?>,
           maxBarThickness: 6
 
         }],

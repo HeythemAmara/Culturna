@@ -1,14 +1,61 @@
 <?php
 include "../Controller/UtilisateurC.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+require_once './assets/Mailing/Exception.php';
+require_once './assets/Mailing/PHPMailer.php';
+require_once './assets/Mailing/SMTP.php';
 
-$valeur_id = $_GET['val_id'];
 //$valeur_id =7;
+$valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $list=$UtilisateurC->listUserId($valeur_id);
-$test=0;
+$test=0; 
 
+$mail = new PHPMailer(true);
+$alert = '';
+
+foreach ($Username as $Userr) {}
+
+if(isset($_POST['changemdp'])) {
+
+	//generation de clé
+	$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$key = '';
+	for ($i = 0; $i < 8; $i++) {
+	  $key .= $chars[rand(0, strlen($chars) - 1)];
+	}
+
+	//mailing
+	$email = $Userr["Email"] ;
+
+	try {
+		$mail->isSMTP();
+		$mail->Host= 'smtp.gmail.com';
+		$mail->SMTPAuth= true;
+		$mail->Username= 'culturnacop@gmail.com';
+		$mail->Password= 'kdpxcaqpexwxnlbn';
+		$mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
+		$mail->Port= 587;
+
+		$mail->setFrom('culturnacop@gmail.com' , ); 
+		$mail->addAddress($email); 
+
+		$mail->Subject = 'Message Received (Contact Page)';
+		$mail->Body = '<h3>Le code est : '.$key.'</h3>';
+		$mail->IsHTML(true);
+
+		$mail->send();
+		$alert = 'Message envoyé avec succès !';
+
+		header('location:FunctionComparaisonMdp.php?val_id=' . $valeur_id .'&key='. $key . '&Email=' . $email);
+
+
+	} catch (Exception $e) {
+		$alert = 'Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer plus tard.';
+	}
+}
 
 ?>
 
@@ -86,7 +133,7 @@ $test=0;
 				<label for="Usernameu"> Username </label>
 				<input type="text" name="Usernameu" class="form-style" value="<?= $Userr['Username']; ?>" id="Usernameu">
 				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn ">
+				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
 			</form>
 			</li>
 			<li>
@@ -100,7 +147,7 @@ $test=0;
 				<label for="emailu"> Email </label>
 				<input type="email" name="emailu" class="form-style" value="<?= $Userr['Email']; ?>" id="emailu">
 				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn ">
+				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
 			</form>
 			</li>
 			<li>
@@ -114,11 +161,16 @@ $test=0;
 				<label for="dobu"> DOB " <?= $Userr['Dob']; ?> " </label>	
 				<input type="date" name="dobu" class="form-style" id="dobu">
 				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn ">
+				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
 			</form>
 			</li>
 			<li>
-			<?php echo "<a href='Page_accueil.php?val_id=" . 0 ."' class='btn' style='margin-top: 100px;'>Disconnect</a>"; ?>
+				
+				<form action="" method="post">
+  					<input type="submit" name="changemdp" value="Change Password" class="btn" style="margin-top: 100px; margin-right: 230px;">
+				</form>
+
+				<?php echo "<a href='Page_accueil.php?val_id=" . 0 ."' class='btn' style='margin-top: 100px; margin-right: 30px;'>Disconnect</a>"; ?>
 			</li>
 			</ul>
 		</div>

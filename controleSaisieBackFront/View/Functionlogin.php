@@ -5,7 +5,6 @@ var_dump($_POST);
 if (
     isset($_POST['loginUsername']) &&
     isset($_POST['loginpass']) 
-
    ) 
 {
     if (
@@ -42,6 +41,5 @@ else
         $valeur_id=0;
         header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
         exit;
-        
     }
 ?>

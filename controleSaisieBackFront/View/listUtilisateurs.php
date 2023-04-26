@@ -5,6 +5,10 @@ $valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $list = $UtilisateurC->listUtilisateur();
+
+$countClient= $UtilisateurC->countStatPerm("Client");
+$countAdmin= $UtilisateurC->countStatPerm("Admin");
+
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +108,7 @@ $list = $UtilisateurC->listUtilisateur();
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></span>
+                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -388,7 +392,7 @@ $list = $UtilisateurC->listUtilisateur();
 
 
 
-
+                    
 
 		  <form  class="form-group" method="POST" action="addUtilisateur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddUser()">
 				<ul>
@@ -411,10 +415,14 @@ $list = $UtilisateurC->listUtilisateur();
 						<input type="date" name="doba" class="form-style" placeholder="Dob" id="doba">
 						<i class="input-icon uil uil-user"></i>
 					</li>
-					<li>
-						<input type="text" name="perma" class="form-style" placeholder="Permission" id="perma">
-						<i class="input-icon uil uil-truck"></i>
-					</li>
+          <li>
+	              <i class="input-icon uil uil-truck"></i>
+	                  <select name="perma" class="form-style" id="perma">
+	                  	<option value="">Type</option>
+	                  	<option value="Admin">Admin</option>
+	                  	<option value="Client">Client</option>
+	                  </select>
+          </li>
 				</ul>
 				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
 			  </form>
@@ -441,11 +449,14 @@ $list = $UtilisateurC->listUtilisateur();
 						<input type="date" name="dobu" class="form-style" placeholder="Dob" id="dobu">
 						<i class="input-icon uil uil-user"></i>
 					</li>
-					<li>
-						<input type="text" name="permu" class="form-style" placeholder="Perm" id="permu">
-						<i class="input-icon uil uil-truck"></i>
-					</li>
-
+          <li>
+	              <i class="input-icon uil uil-truck"></i>
+	                  <select name="permu" class="form-style" id="permu">
+	                  	<option value="">Type</option>
+	                  	<option value="Admin">Admin</option>
+	                  	<option value="Client">Client</option>
+	                  </select>
+          </li>
 				</ul>
 				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
 			  </form>
@@ -534,7 +545,7 @@ $list = $UtilisateurC->listUtilisateur();
         <div class="mt-3 d-flex">
           <h6 class="mb-0">Navbar Fixed</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">        
           </div>
         </div>
         <hr class="horizontal dark my-3">
@@ -555,20 +566,23 @@ $list = $UtilisateurC->listUtilisateur();
   <script src="./assets Dashboard/js Dashboard/plugins/smooth-scrollbar.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/plugins/chartjs.min.js"></script>
   <script>
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
+    var Client = <?= $countClient ?>;
+    var Admin = <?= $countAdmin ?>;
 
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: ["Client", "Admin"],
         datasets: [{
-          label: "Sales",
+          label: "User",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 50, 10, 50, 50, 10, 40],
+          data: [Client, Admin],
           maxBarThickness: 6
         }, ],
       },

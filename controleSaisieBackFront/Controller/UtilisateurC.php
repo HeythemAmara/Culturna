@@ -1,4 +1,4 @@
-<?php
+    <?php
 include_once "../config.php";
 include_once "../Model/Utilisateur.php";
 class UtilisateurC
@@ -196,23 +196,23 @@ public function nomUtilisateur($Id)
     }
 
     public function LogAdmin($Id)
-{
-    try 
     {
-        $pdo = config::getConnexion();// Establish a connection to the database using the config::getConnexion() function
-        $sql = "SELECT * FROM `utilisateurs` where IdU=" . $Id . "";// Construct a SQL query to retrieve all columns from the "utilisateurs" table where the ID matches the given parameter
-        $query = $pdo->prepare($sql);// Prepare the SQL query for execution
-        $query->execute();// Execute the prepared query
-        $result = $query->fetchColumn(5);// Fetch all the results of the query and store them in the $result variable
-        echo $result;
-        return $result;
+        try 
+        {
+            $pdo = config::getConnexion();// Establish a connection to the database using the config::getConnexion() function
+            $sql = "SELECT * FROM `utilisateurs` where IdU=" . $Id . "";// Construct a SQL query to retrieve all columns from the "utilisateurs" table where the ID matches the given parameter
+            $query = $pdo->prepare($sql);// Prepare the SQL query for execution
+            $query->execute();// Execute the prepared query
+            $result = $query->fetchColumn(5);// Fetch all the results of the query and store them in the $result variable
+            echo $result;
+            return $result;
+     }
+     catch (PDOException $e) 
+     {
+         echo "error add: " . $e->getMessage();// If an exception occurs, display an error message containing the exception message
+         return 0;
+      }
     }
-    catch (PDOException $e) 
-    {
-        echo "error add: " . $e->getMessage();// If an exception occurs, display an error message containing the exception message
-        return 0;
-    }
-}
 
     //hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
@@ -261,6 +261,40 @@ public function nomUtilisateur($Id)
             ]);
         } catch (PDOException $e) {
             echo "Modification Echouer: " . $e->getMessage();
+        }
+    }
+
+    public function updateMdpUser($Utilisateur, $id)
+    {
+        try {
+
+            $pdo = config::getConnexion();
+            $sql = "UPDATE `utilisateurs` SET `Mdp`=:mdp WHERE Email=:id_u";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "mdp" => $Utilisateur->getMdp(),
+                "id_u" => $id
+            ]);
+        } catch (PDOException $e) {
+            echo "Modification Echouer: " . $e->getMessage();
+        }
+    }
+
+    public function countStatPerm($Perm)
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `utilisateurs` WHERE `Perm` = :Perm";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':Perm', $Perm);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
         }
     }
 }

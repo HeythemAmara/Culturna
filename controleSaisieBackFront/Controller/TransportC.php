@@ -139,4 +139,43 @@ class TransportC
             echo "Modification Echouer: " . $e->getMessage();
         }
     }
+
+    public function countStatType($Type)
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `transport` WHERE `Type` = :type";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':type', $Type);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }
+    
+    public function countStatMonth($month)
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `transport` WHERE DATE_FORMAT(`Date`, '%m') = :month";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':month', $month);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }
+    
+
+    
 }

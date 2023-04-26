@@ -109,6 +109,7 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
                     <th class="styleth">Nom</th>
 					<th class="styleth">Tel</th>
 					<th class="styleth">Message</th>
+					<th class="styleth">Action</th>
 				</tr>
 				<?php
         foreach ($list as $Transport) 
@@ -122,7 +123,7 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
                         <td class="styleth"><?= $Transport['Nom']; ?></td>
                         <td class="styleth"><?= $Transport['Tel']; ?></td>
                         <td class="styleth"><?= $Transport['Message']; ?></td>
-						<td>
+						<td class="styleth">
 							<a class="toggle-edit" onclick="
                                     editTranspFront(
                                       '<?=$Transport['Id_T']; ?>',
@@ -136,10 +137,19 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
                                     )">
                                   <i class="edit-del-icon uil uil-edit"></i>
                                     </a>
-						</td>
-						<td>
+						
 							<?php $test=$Transport['Id_T'];
 							echo "<a href='FunctiondeleteTransp.php?val_id=" . $valeur_id ."&Id_T=".$test."'><i class='edit-del-icon uil uil-trash-alt'></i></a>"; ?>
+						
+						<a href="./assets/PDF/PDF_Transport.php?Id_T=<?php echo $Transport['Id_T']; ?>
+                              &Type=<?php echo $Transport['Type']; ?>
+                              &Nbr_Pers=<?php echo $Transport['Nbr_Pers']; ?>
+                              &Date=<?php echo $Transport['Date']; ?>
+                              &Adresse=<?php echo $Transport['Adresse']; ?>
+                              &Nom=<?php echo $Transport['Nom']; ?>
+							  &Tel=<?php echo $Transport['Tel']; ?>
+							  &Message=<?php echo $Transport['Message']; ?>
+                              &val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-file-download-alt"></i></a>
 						</td>
 					</tr>
                     <?php
