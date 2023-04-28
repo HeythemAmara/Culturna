@@ -12,7 +12,7 @@ if (
     isset($_FILES['imageum'])&&
     isset($_POST['id_cu']) &&
     isset($_POST['nom_clu'])
-
+//aaaaaaaaaaaaaaaaaaaaaaaa
    ) 
    {
     if (
