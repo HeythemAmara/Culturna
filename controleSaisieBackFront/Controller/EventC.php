@@ -44,7 +44,7 @@ class EventC
         }
     }
     
-    
+
     function deleteEvent($idEvent)
 {
     $sql = "DELETE FROM event WHERE idEvent = :idEvent;
@@ -183,6 +183,32 @@ function deleteExpiredEvents()
         }  
     }
 
+    function getDatesEvenements() {
+        try 
+        {
+            $pdo = config::getConnexion();
+
+            $requete = "SELECT date FROM event";
+            $resultat = $pdo->query($requete);
+            $evenements = array();
+            while ($ligne = $resultat->fetch(PDO::FETCH_ASSOC)) {
+                $evenements[] = $ligne['date'];
+            }
+                $dates_evenements = array();
+            foreach ($evenements as $evenement) {
+                $date_evenement = new DateTime($evenement);
+                $dates_evenements[] = $date_evenement->format('Y-m-d');
+            }
+        
+            return $dates_evenements;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+            return 0;
+        }  
+
+    }
     
 }
 ?>

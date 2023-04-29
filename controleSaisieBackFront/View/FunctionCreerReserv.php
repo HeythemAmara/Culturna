@@ -1,7 +1,8 @@
 
 <?php
 include '../Controller/ReservationC.php';
-//$_POST['prixeventa']
+include '../Controller/EventC.php';
+
 $test=2;
 echo $_POST['dateeventa'];
 var_dump($_POST);

@@ -176,6 +176,18 @@ class TransportC
         }
     }
     
-
+    public function listTransportpourchauffeur($var)
+    {
+        $sql = "SELECT * FROM transport where Id_Ch = :var";
+        $db = config::getConnexion();
+        $req = $db->prepare($sql);
+        $req->bindValue(':var', $var);
+        try {
+            $req->execute();
+            return $req;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
     
 }

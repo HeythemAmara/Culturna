@@ -21,6 +21,10 @@ if (
         {
             header('location:listUtilisateurs.php?val_id=' . urlencode($valeur_id));
         }
+        else if($isAdmin=="Staff")
+        {
+            header('location:Page_Chauffeur.php?val_id=' . urlencode($valeur_id));
+        }
         else
         {
             header('location:FuntionDateComparison.php?val_id=' . urlencode($valeur_id));

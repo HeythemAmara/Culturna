@@ -2,7 +2,7 @@
 include "../Controller/UtilisateurC.php";
 $UtilisateurC = new UtilisateurC();
 $list = $UtilisateurC->listUtilisateur();
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $test=0;
 
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);

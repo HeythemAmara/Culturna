@@ -28,7 +28,8 @@ if (
             $_POST['prenomu'],
             $_POST['telu'],
             $_POST['emailu'],
-            $_POST['vehiculeu']
+            $_POST['vehiculeu'],
+            NULL
             );
         $ChauffeurC = new ChauffeurC();
         $ChauffeurC->updateChauffeur($Chauffeur, $_POST['Id_Chu']);

@@ -3,16 +3,18 @@ include "../Controller/EventC.php";
 include "../Controller/ReservationC.php";
 include "../Controller/UtilisateurC.php";
 
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 
 $EventC = new EventC();
 $listEvent = $EventC->listEvent();
+$event_calender = $EventC->getDatesEvenements();
 
 $ReservationC = new ReservationC();
 $listReservation = $ReservationC->listReservation();
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,7 @@ $listReservation = $ReservationC->listReservation();
   </title>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-icons.css" rel="stylesheet" />
+  <link href="./assets/CSS/Calendrier.css" rel="stylesheet" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-svg.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -35,6 +38,9 @@ $listReservation = $ReservationC->listReservation();
   <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/dashboard.css" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -129,6 +135,11 @@ $listReservation = $ReservationC->listReservation();
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0 btnCalendar">
+                <i class="uil uil-calendar-alt fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
@@ -205,12 +216,88 @@ $listReservation = $ReservationC->listReservation();
           </ul>
         </div>
       </div>
-    </nav>
+    </nav>  
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
+    <div class="container-fluid py-4 container-calender slide-out-right calendrierhidden calendrieraffiche" >
+      
+        <!-- Calendar -->
+
+
+    <div class="container" >
+      <div class="left">
+        <div class="calendar ">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date">december 2015</div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="days"></div>
+          <div class="goto-today">
+            <div class="goto">
+              <input type="text" placeholder="mm/yyyy" class="date-input" />
+              <button class="goto-btn">Go</button>
+            </div>
+            <button class="today-btn">Today</button>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="today-date">
+          <div class="event-day">wed</div>
+          <div class="event-date">12th december 2022</div>
+        </div>
+        <div class="events"></div>
+        <div class="add-event-wrapper">
+          <div class="add-event-header">
+            <div class="title">Add Note</div>
+            <i class="fas fa-times close"></i>
+          </div>
+          <div class="add-event-body">
+            <div class="add-event-input">
+              <input type="text" placeholder="Note Name" class="event-name" />
+            </div>
+            <div class="add-event-input">
+              <input
+                type="text"
+                placeholder="Note Time From"
+                class="event-time-from"
+              />
+            </div>
+            <div class="add-event-input">
+              <input
+                type="text"
+                placeholder="Note Time To"
+                class="event-time-to"
+              />
+            </div>
+          </div>
+          <div class="add-event-footer">
+            <button class="add-event-btn">Add Note</button>
+          </div>
+        </div>
+      </div>
+      <button class="add-event">
+        <i class="fas fa-plus"></i>
+      </button>
+  </div>
+
+
+
+        <!-- End of calendar -->
+        
+      <!--
+        <div class="row">
+      <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">weekend</i>
@@ -243,40 +330,8 @@ $listReservation = $ReservationC->listReservation();
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 class="mb-0">3,462</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 class="mb-0">$103,430</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
-            </div>
-          </div>
-        </div>
+      </div>-->
+        
       </div>
       <div class="row mt-4">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
@@ -412,7 +467,7 @@ foreach ($results3 as $row) {
             <div class="card-body px-0 pb-2 tableviewdiv">
                         <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
                         <h3>---Event---</h3>
-				        <table class="tableview" id="tableau">
+				        <table class="tableview tableau1">
 				                <tr class="TitleTab">
 								                  <th class="styleth">Event</th>
 									                <th class="styleth">Name</th>
@@ -436,7 +491,8 @@ foreach ($results3 as $row) {
                                  <td class="styleth"><?= $Event['time']; ?></td>
                                  <td class="styleth"><?= $Event['date']; ?></td>
                                  <td class="styleth"><?= $Event['prix']; ?></td>
-                                 <td class="styleth"><?= $Event['image']; ?></td>
+                                 <td class="styleth">
+									<img src="./ImageEvent/<?= $Event['image']; ?>" alt="Evenement" class="img_event" width="90"></td>
 						                     <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
 				                  		   <td>
                               <a class="toggle-edit" onclick="
@@ -458,94 +514,19 @@ foreach ($results3 as $row) {
                           }
                           ?>		
                </table>  
-                  <button class="uil uil-step-backward" id="bouton-precedent" disabled></button>
-                  <button class="uil uil-skip-forward" id="bouton-suivant"></button>
+                  <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
+                  <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
              </div>
           </div> 
         </div>
 <!-- Le code HTML est inchangé -->
-
-<script>
-  const tableau = document.getElementById('tableau').querySelectorAll('tbody tr');
-  const nbLignesParPage = 5;
-  const nbPages = Math.ceil(tableau.length / nbLignesParPage);
-  let pageCourante = 1;
-
-  const tableau2 = document.getElementById('tableau2').querySelectorAll('tbody tr');
-  const nbLignesParPage2 = 5;
-  const nbPages2 = Math.ceil(tableau2.length / nbLignesParPage2);
-  let pageCourante2 = 1;
-
-
-  // Masquer toutes les lignes sauf les 5 premières
-  for (let i = nbLignesParPage; i < tableau.length; i++) {
-    tableau[i].style.display = 'none';
-  }
-  //tab2
-  for (let i = nbLignesParPage2; i < tableau2.length; i++) {
-    tableau2[i].style.display = 'none';
-  }
-
-  // Désactiver le bouton Précédent initialement
-  document.getElementById('bouton-precedent').disabled = true;
-  document.getElementById('bouton-precedent-nouveau').disabled = true;
-
-  // Activer/désactiver les boutons et afficher les lignes correspondantes en fonction de la page courante
-  function afficherPage() {
-    const debut = (pageCourante - 1) * nbLignesParPage;
-    const fin = debut + nbLignesParPage;
-    for (let i = 0; i < tableau.length; i++) {
-      tableau[i].style.display = (i >= debut && i < fin) ? '' : 'none';
-    }
-    document.getElementById('bouton-suivant').disabled = (pageCourante >= nbPages);
-    document.getElementById('bouton-precedent').disabled = (pageCourante <= 1);
-
-  }
-  function afficherPage2() {
-    const debut = (pageCourante2 - 1) * nbLignesParPage2;
-    const fin = debut + nbLignesParPage2;
-    for (let i = 0; i < tableau2.length; i++) {
-      tableau2[i].style.display = (i >= debut && i < fin) ? '' : 'none';
-    }
-
-    document.getElementById('bouton-suivant-nouveau').disabled = (pageCourante2 >= nbPages2);
-    document.getElementById('bouton-precedent-nouveau').disabled = (pageCourante2 <= 1);
-  }
-
-  // Ajouter un événement au clic sur le bouton Suivant
-  document.getElementById('bouton-suivant').addEventListener('click', function() {
-    pageCourante++;
-    afficherPage();
-  });
-
-  // Ajouter un événement au clic sur le bouton Précédent
-  document.getElementById('bouton-precedent').addEventListener('click', function() {
-    pageCourante--;
-    afficherPage();
-  });
-  document.getElementById('bouton-suivant-nouveau').addEventListener('click', function() {
-    pageCourante2++;
-    afficherPage2();
-  });
-
-  // Ajouter un événement au clic sur le bouton Précédent
-  document.getElementById('bouton-precedent-nouveau').addEventListener('click', function() {
-    pageCourante2--;
-    afficherPage2();
-  });
-  // Afficher la première page initialement
-  afficherPage();
-  afficherPage2();
-
-</script>
-
 
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd slide-in-right">
 
 
           <!--! ======================================= Input Ajout Modif       -->
-			  <form  class="form-group" method="POST" action="addEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddEvent()" >          
+			  <form  id="eventForm"class="form-group" method="POST" action="addEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddEvent()" >          
 
 				<ul>
 					<li>
@@ -588,7 +569,7 @@ foreach ($results3 as $row) {
 						<i class="input-icon uil uil-user-minus"></i>
 					</li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Add" value="Submit" class="btninput mt-4 Add-event-PHP-JS" onclick="addeventtocalender()">
 			  </form>
           </div>
         
@@ -649,7 +630,7 @@ foreach ($results3 as $row) {
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
             <h3>---Reservation---</h3>
-				      <table class="tableview" id="tableau2">
+				      <table class="tableview tableau2">
 				        <tr class="TitleTab">
 							    <th class="styleth">Event</th>
 							    <th class="styleth">Name</th>
@@ -690,8 +671,8 @@ foreach ($results3 as $row) {
                   }
                   ?>
               </table> 
-                  <button class="uil uil-step-backward" id="bouton--precedent-nouveau" disabled></button>
-                  <button class="uil uil-skip-forward" id="bouton--suivant-nouveau" ></button>
+                  <button class="uil uil-step-backward" id= "bouton-precedent2"disabled></button>
+                  <button class="uil uil-skip-forward" id="bouton-suivant2"></button>
 		        </div>
           </div> 
         </div>
@@ -1143,6 +1124,9 @@ new Chart(ctx2, {
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
+  <script src="./assets/JS/pagination.js"></script>
+  <script src="./assets/JS/Calendrier.js"></script>
+
 </body>
 
 </html>

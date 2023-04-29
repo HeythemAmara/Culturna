@@ -355,7 +355,7 @@ $countDec = $TransportC->countStatMonth('12');
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
                       <h3>---Drivers---</h3>
-                      <table class="tableview">
+                      <table class="tableview tableau1">
 				                <tr class="TitleTab">
 				                	<!--<th class="styleth">#</th>-->
 				                	<th class="styleth">First Name</th>
@@ -402,7 +402,9 @@ $countDec = $TransportC->countStatMonth('12');
                                       <?php
                           }
                           ?>		
-                          </table>  
+                          </table> 
+                    <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
+                    <button class="uil uil-skip-forward" id="bouton-suivant1"></button> 
 		                    </div>
           </div> 
         </div>
@@ -450,6 +452,18 @@ $countDec = $TransportC->countStatMonth('12');
 		                  <option value="Bus">+4 wheels</option>
 	                  </select>
 					</li>
+          <li>
+						<input type="text" name="Usernamea" class="form-style" placeholder="Username" id="Usernamea">
+						<i class="input-icon uil uil-box"></i>
+					</li>
+					<li>
+						<input type="password" name="mdpa" class="form-style" placeholder="Mdp" id="mdpa">
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="date" name="doba" class="form-style" placeholder="Dob" id="doba">
+						<i class="input-icon uil uil-user"></i>
+					</li>
 				</ul>
 				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
 			  </form>
@@ -488,6 +502,18 @@ $countDec = $TransportC->countStatMonth('12');
 		                  <option value="Bus">+4 wheels</option>
 	                  </select>
 					</li>
+          <li>
+						<input type="text" name="Usernameu" class="form-style" placeholder="Username" id="Usernameu">
+						<i class="input-icon uil uil-box"></i>
+					</li>
+					<li>
+						<input type="password" name="mdpu" class="form-style" placeholder="Mdp" id="mdpu">
+						<i class="input-icon uil uil-home"></i>
+					</li>
+					<li>
+						<input type="date" name="dobu" class="form-style" placeholder="Dob" id="dobu">
+						<i class="input-icon uil uil-user"></i>
+					</li>
 
 				</ul>
 				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
@@ -495,12 +521,12 @@ $countDec = $TransportC->countStatMonth('12');
           </div>
         </div>
       </section>
-      <section class="row mb-4 sectionphp">
+      <section class="row mb-4 sectionphp" style="margin-top: 170px;">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
-            <div class="card-body px-0 pb-2 tableviewdiv">
+            <div class="card-body px-0 pb-2 tableviewdiv" >
             <h3>---Transport---</h3>
-				                <table class="tableview">
+				                <table class="tableview tableau2">
 				                  <tr class="TitleTab">
 				                  	<th class="styleth">Client</th>
 				                  	<th class="styleth">Chauffeur</th>
@@ -549,23 +575,16 @@ $countDec = $TransportC->countStatMonth('12');
                                         <?php
                             }
                             ?>
-                          </table>  
+                          </table> 
+                      <button class="uil uil-step-backward" id= "bouton-precedent2"disabled></button>
+                      <button class="uil uil-skip-forward" id="bouton-suivant2"></button> 
 		                    </div>
           </div> 
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd2 slide-in-right">
 
-
-
-
-
-
           <!--! ====================================================== Input Ajout Modif       -->
-
-
-
-
 
         <form  class="form-group" method="POST" action="addTransport.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddTransport()">
 				<ul>
@@ -1054,6 +1073,8 @@ $countDec = $TransportC->countStatMonth('12');
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
+  <script src="./assets/JS/pagination.js"></script>
+
 </body>
 
 </html>

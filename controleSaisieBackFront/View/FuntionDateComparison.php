@@ -8,19 +8,23 @@ include_once "../Controller/UtilisateurC.php";
 include_once "../Controller/EventC.php";
 include_once "../Controller/ReservationC.php";
 
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 
 
 $ReservationC = new ReservationC();
 $Reserv = $ReservationC->DateReservation($valeur_id);
 
+
 foreach ($Reserv as $ide){ $idEvent = $ide['idEvent']; } ; // Id de l'évènement
+echo "IdEvent: ".$idEvent."<br>";
 
 $EventC = new EventC();
 $DateEvent = $EventC->DateEvent($idEvent);
 
-foreach ($DateEvent as $datee){ $event_date = $datee['date']; } ; // Date de l'évènement
-foreach ($DateEvent as $nom){ $event_name = $nom['name']; } ; // Nom de l'évènement
+foreach ($DateEvent as $datee){ $event_date = $datee['date'];  // Date de l'évènement
+                                $event_name = $datee['name']; } ; // Nom de l'évènement
+echo "DateEvent: ".$event_date."<br>";
+echo "DateEvent: ".$event_name."<br>";
 
 $mail = new PHPMailer(true);
 $alert = '';
@@ -28,7 +32,7 @@ $alert = '';
 // Email et Message
 foreach ($Reserv as $Userr){ $email = $Userr['email']; } ;      //receiver Email
 $message = "Vous avez un évènement nommé ".$event_name."reservé  le ".$event_date;    //Message sent
-
+echo "Email: ".$email."<br>";
 // Date actuelle
 $current_date = date("Y-m-d");
 
@@ -84,7 +88,7 @@ header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
 
 </head>
 <body>
-    <div id="load">
+     <div id="load">
       <div>G</div>
       <div>N</div>
       <div>I</div>
@@ -92,6 +96,6 @@ header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
       <div>A</div>
       <div>O</div>
       <div>L</div>
-    </div>
+    </div> 
 </body>
 </html>

@@ -5,10 +5,30 @@ $valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $list = $UtilisateurC->listUtilisateur();
-
+//-----------------------------------------------------------------------Debut stat----------------------------------------------
 $countClient= $UtilisateurC->countStatPerm("Client");
 $countAdmin= $UtilisateurC->countStatPerm("Admin");
+//----------------------------------------------------------
+$age_categories = $UtilisateurC->categorize_age();
+$less_than_18 = $age_categories["less_than_18"];
+$between_18_25 = $age_categories["between_18_25"];
+$between_25_40 = $age_categories["between_25_40"];
+$more_than_40 = $age_categories["more_than_40"];
+//--------------------------------------------------------------
+$countJan = $UtilisateurC->countStatMonthUsers('01');
+$countFeb = $UtilisateurC->countStatMonthUsers('02');
+$countMar = $UtilisateurC->countStatMonthUsers('03');
+$countApr = $UtilisateurC->countStatMonthUsers('04');
+$countMay = $UtilisateurC->countStatMonthUsers('05');
+$countJun = $UtilisateurC->countStatMonthUsers('06');
+$countJul = $UtilisateurC->countStatMonthUsers('07');
+$countAug = $UtilisateurC->countStatMonthUsers('08');
+$countSep = $UtilisateurC->countStatMonthUsers('09');
+$countOct = $UtilisateurC->countStatMonthUsers('10');
+$countNov = $UtilisateurC->countStatMonthUsers('11');
+$countDec = $UtilisateurC->countStatMonthUsers('12');
 
+//------------------------------------------------------------------------End stat
 ?>
 
 <!DOCTYPE html>
@@ -285,8 +305,8 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Number of Users and Admins</h6>
+              <p class="text-sm ">(<span class="font-weight-bolder">!</span>) the number of users and admins in our website</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -305,8 +325,8 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Range of ages </h6>
+              <p class="text-sm "> (<span class="font-weight-bolder">!</span>) The age groups of our website's users </p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -341,13 +361,13 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
             <h3>---User---</h3>
-            <table class="tableview">
+            <table class="tableview tableau1">
 				                <tr class="TitleTab">
 				                	<th class="styleth">Username</th>
 				                	<th class="styleth">Email</th>
 				                	<th class="styleth">Dob</th>
 				                	<th class="styleth">Perm</th>
-				                	
+                          <th class="styleth">Last Login</th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
 				                <?php
@@ -359,6 +379,7 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
                 							<td class="styleth"><?= $Utilisateur['Email']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Dob']; ?></td>
                 							<td class="styleth"><?= $Utilisateur['Perm']; ?></td>
+                              <td class="styleth"><?= $Utilisateur['last_log']; ?></td>
 				                		<td>
                               <a class="toggle-edit" onclick="
                                     editUser(
@@ -368,6 +389,7 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
                                       '<?= $Utilisateur['Mdp']; ?>',
                                       '<?= $Utilisateur['Dob']; ?>',
                                       '<?= $Utilisateur['Perm']; ?>'
+                                      '<?= $Utilisateur['last_log']; ?>'
                                     )"><i class="edit-del-icon uil uil-edit"></i></a>
                               <a href="deleteUtilisateur.php?IdU=<?php echo $Utilisateur['IdU']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                		</td>
@@ -375,8 +397,9 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
                                     <?php
                         }
                         ?>	
-
                           </table>  
+                          <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
+                          <button class="uil uil-skip-forward" id="bouton-suivant1"></button> 
 		                    </div>
           </div> 
         </div>
@@ -649,29 +672,28 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
       },
     });
 
-
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0,
-          borderWidth: 0,
-          pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
-          pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderWidth: 4,
-          backgroundColor: "transparent",
-          fill: true,
-          data: [50, 40, 300, 320, 500, 100, 200, 230, 500],
-          maxBarThickness: 6
+    var less_than_18= <?= $less_than_18 ?>;
+    var between_18_25 = <?= $between_18_25 ?>;
+    var between_25_40 = <?= $between_25_40 ?>;
+    var more_than_40 = <?= $more_than_40 ?>;
 
-        }],
+
+    new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: ["less_than_18", "between_18_25", "between_25_40", "more_than_40"],
+        datasets: [{
+          label: "User",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: [less_than_18, between_18_25, between_25_40, more_than_40],
+          maxBarThickness: 6
+        }, ],
       },
       options: {
         responsive: true,
@@ -696,8 +718,9 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
               color: 'rgba(255, 255, 255, .2)'
             },
             ticks: {
-              display: true,
-              color: '#f8f9fa',
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
               padding: 10,
               font: {
                 size: 14,
@@ -706,15 +729,17 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
                 style: 'normal',
                 lineHeight: 2
               },
-            }
+              color: "#fff"
+            },
           },
           x: {
             grid: {
               drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
+              display: true,
+              drawOnChartArea: true,
               drawTicks: false,
-              borderDash: [5, 5]
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
             },
             ticks: {
               display: true,
@@ -734,11 +759,23 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
     });
 
     var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+    var Jan  = <?= $countJan ?>;
+    var Feb  = <?= $countFeb ?>;
+    var Mar  = <?= $countMar ?>;
+    var Apr  = <?= $countApr ?>;
+    var May  = <?= $countMay ?>;
+    var Jun  = <?= $countJun ?>;
+    var Jul  = <?= $countJul ?>;
+    var Aug  = <?= $countAug ?>;
+    var Sep  = <?= $countSep ?>;
+    var Oct  = <?= $countOct ?>;
+    var Nov  = <?= $countNov ?>;
+    var Dec  = <?= $countDec ?>;
 
     new Chart(ctx3, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
           label: "Mobile apps",
           tension: 0,
@@ -750,7 +787,7 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: [ Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
           maxBarThickness: 6
 
         }],
@@ -829,6 +866,8 @@ $countAdmin= $UtilisateurC->countStatPerm("Admin");
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
+  <!-- <script src="./assets/JS/pagination.js"></script> -->
+  <script src="./assets/JS/paginationUser.js"></script>
 </body>
 
 </html>

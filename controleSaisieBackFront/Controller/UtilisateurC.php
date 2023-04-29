@@ -1,9 +1,8 @@
-    <?php
+<?php
 include_once "../config.php";
 include_once "../Model/Utilisateur.php";
 class UtilisateurC
 {
-
     public function listUtilisateur()
     {
         try 
@@ -105,7 +104,7 @@ class UtilisateurC
         }
     }
 
-    public function login($Username, $Mdp)
+    /*public function login($Username, $Mdp)
     {
         try {
             $pdo = config::getConnexion();
@@ -146,7 +145,9 @@ class UtilisateurC
                 return 0;
             }
         }
-    }
+    }*/
+
+
     
     // This function takes a user ID as a parameter and returns information about the user from a database table
 public function nomUtilisateur($Id)
@@ -167,6 +168,137 @@ public function nomUtilisateur($Id)
     }
 }
 
+public function idUtilisateur($name)
+{
+    try 
+    {
+        $pdo = config::getConnexion();
+        $sql = "SELECT * FROM `utilisateurs` WHERE Username = :name";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':name', $name);
+        $query->execute();
+        $result = $query->fetch();
+        return $result['IdU'];
+    }
+    catch (PDOException $e) 
+    {
+        echo "Error: " . $e->getMessage();
+        return 0;
+    }
+}
+
+
+
+/*public function login($Username, $Mdp)
+{
+    try {
+        $pdo = config::getConnexion();
+        $sql = "INSERT INTO `utilisateurs`(`IdU`, `Username`, `Email`, `Mdp`, `Dob`, `Perm`) 
+                VALUES (:IdU, :Username, :email, :mdp, :dob, :perm)";
+        $query = $pdo->prepare($sql);
+        $query->execute([
+            "IdU" => 1,
+            "Username" => $Username,
+            "email" => "NULL",
+            "mdp" => $Mdp,
+            "dob" => "NULL",
+            "perm" => "NULL"
+        ]);
+        echo " mich mawjouda ";
+        $sqll = "DELETE FROM `utilisateurs` WHERE IdU=1"; // Remove unnecessary concatenation
+        $queryy = $pdo->prepare($sqll);
+        $queryy->execute();
+        echo $queryy->rowCount() . " records deleted";
+
+        return 0;
+    } catch (PDOException $ex) { // Add variable name for catch block
+        echo " mawjouda     ";
+        try {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `utilisateurs` WHERE `Username`=:Username"; // Use parameterized query to avoid SQL injection
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "Username" => $Username
+            ]);
+            $result = $query->fetchAll();
+            foreach ($result as $User) {
+                echo $User['IdU'];
+            }
+
+            //update the last_log field for the user
+            $sql = "UPDATE `utilisateurs` SET `last_log`=NOW() WHERE `IdU`=:userId";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "userId" => $User['IdU']
+            ]);
+
+            return $User['IdU'];
+        } catch (PDOException $ex) { // Add variable name for nested catch block
+            echo "error add: " . $ex->getMessage();
+            return 0;
+        }
+    }
+}*/
+
+public function login($Username, $Mdp)
+{
+    try {
+        $pdo = config::getConnexion();
+        $sql = "INSERT INTO `utilisateurs`(`IdU`, `Username`, `Email`, `Mdp`, `Dob`, `Perm`) 
+                VALUES (:IdU, :Username, :email, :mdp, :dob, :perm)";
+        $query = $pdo->prepare($sql);
+        $query->execute([
+            "IdU" => 1,
+            "Username" => $Username,
+            "email" => "NULL",
+            "mdp" => $Mdp,
+            "dob" => "NULL",
+            "perm" => "NULL"
+        ]);
+        echo " mich mawjouda ";
+        $sqll = "DELETE FROM `utilisateurs` WHERE IdU=1"; // Remove unnecessary concatenation
+        $queryy = $pdo->prepare($sqll);
+        $queryy->execute();
+        echo $queryy->rowCount() . " records deleted";
+
+        return 0;
+    } catch (PDOException $ex) { // Add variable name for catch block
+        echo " mawjouda     ";
+        try {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `utilisateurs` WHERE `Username`=:Username"; // Use parameterized query to avoid SQL injection
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "Username" => $Username
+            ]);
+            $result = $query->fetchAll();
+            foreach ($result as $User) {
+                echo $User['IdU'];
+            }
+
+            // Update the last_log field for the user
+            $sql = "UPDATE `utilisateurs` SET `last_log`=NOW() WHERE `IdU`=:userId";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "userId" => $User['IdU']
+            ]);
+
+            // Add the user's username and last login date to the historiqueLogin table
+            $sql = "INSERT INTO `historiqueLogin`(`NameUser`, `DateLog`) 
+                    VALUES (:NameUser, :DateLog)";
+            $query = $pdo->prepare($sql);
+            $query->execute([
+                "NameUser" => $User['Username'],
+                "DateLog" => date("Y-m-d H:i:s")
+            ]);
+
+            return $User['IdU'];
+        } catch (PDOException $ex) { // Add variable name for nested catch block
+            echo "error add: " . $ex->getMessage();
+            return 0;
+        }
+    }
+}
 
 
 
@@ -297,4 +429,79 @@ public function nomUtilisateur($Id)
             echo "error add: " . $e->getMessage();
         }
     }
+
+    function categorize_age() {
+        // Connect to the MySQL database using PDO
+        $pdo = config::getConnexion();
+    
+        // Query the database to retrieve birth dates of people
+        $sql = "SELECT Dob FROM utilisateurs";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $Dobs = $query->fetchAll(PDO::FETCH_COLUMN);
+    
+        // Initialize age category counters
+        $less_than_18 = 0;
+        $between_18_25 = 0;
+        $between_25_40 = 0;
+        $more_than_40 = 0;
+    
+        // Loop through each person's birth date and calculate their age
+        foreach ($Dobs as $Dob) {
+            // Calculate the age using the DATEDIFF() function in SQL
+            $sql = "SELECT DATEDIFF(CURDATE(), '$Dob')/365 AS age";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $age = (int)$result['age'];
+    
+            // Increment the appropriate age category counter
+            if ($age < 18) {
+                $less_than_18++;
+            } else if ($age >= 18 && $age <= 25) {
+                $between_18_25++;
+            } else if ($age > 25 && $age <= 40) {
+                $between_25_40++;
+            } else {
+                $more_than_40++;
+            }
+        }
+    
+        // Return the age categories as an array
+        return array(
+            "less_than_18" => $less_than_18,
+            "between_18_25" => $between_18_25,
+            "between_25_40" => $between_25_40,
+            "more_than_40" => $more_than_40
+        );
+    
+        // Close the database connection
+        //$pdo = null;
+    }
+    
+    
+
+      public function countStatMonthUsers($month)
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `historiqueLogin` WHERE DATE_FORMAT(`DateLog`, '%m') = :month";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':month', $month);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }
+      
+
+
 }
+
+
+

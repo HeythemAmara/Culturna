@@ -7,8 +7,7 @@ require_once './assets/Mailing/SMTP.php';
 
 include "../Controller/UtilisateurC.php";
 
-	$valeur_id=13;	
-	$valeur_id = $_GET['val_id'];
+	$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 	$mail = new PHPMailer(true);
 	$alert = '';
   

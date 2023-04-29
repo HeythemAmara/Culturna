@@ -1,3 +1,4 @@
+//!========================================================= Transport et chauffeur=========================================================
 function validateFormAddChauffeur() {
   const nomRegex = /^[A-Za-z]+$/;
   const prenomRegex = /^[A-Za-z]+$/;
@@ -260,7 +261,7 @@ function validateFormModifierEvent() {
   }
 
 
-//=========================================================utilisateur=========================================================
+//!========================================================= Utilisateur=========================================================
 function validateFormAddUser() {
   var username = document.forms[0]["Usernamea"].value;
   var email = document.forms[0]["emaila"].value;
@@ -282,8 +283,8 @@ function validateFormAddUser() {
   }
 
   // Vérification que le mot de passe contient au moins 8 caractères
-  if (password.length < 8) {
-      alert("Le mot de passe doit contenir au moins 8 caractères");
+  if (password.length < 4) {
+      alert("Le mot de passe doit contenir au moins 4 caractères");
       return false;
   }
   return true;

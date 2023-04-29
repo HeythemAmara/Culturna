@@ -9,16 +9,18 @@ class Utilisateur
     private  $Mdp = null;
     private  $Dob = null;
     private  $Perm = null;
+    private $last_log= null;
 
     // TODO Constructeur
 
-    public function __construct($Username, $Email, $Mdp, $Dob,$Perm)
+    public function __construct($Username, $Email, $Mdp, $Dob,$Perm,$last_log)
     {
         $this->Username = $Username;
         $this->Email = $Email;
         $this->Mdp = $Mdp;
         $this->Dob = $Dob;
         $this->Perm = $Perm;
+        $this->last_log=$last_log;
     }
 
     // TODO Getters & Setters
@@ -81,5 +83,15 @@ class Utilisateur
     public function setPerm(int $Perm)
     {
         $this->Perm = $Perm;
+    }
+
+    public function getlast_log()
+    {
+        return $this->last_log;
+    }
+
+    public function setlast_log(int $last_log)
+    {
+        $this->last_log = $last_log;
     }
 }

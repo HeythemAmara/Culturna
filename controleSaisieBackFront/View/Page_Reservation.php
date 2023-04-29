@@ -100,7 +100,7 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
-			<table class="tableview">
+			<table class="tableview tableau1">
 				<tr class="TitleTab">
 					<th class="styleth">Name</th>
 					<th class="styleth">Email</th>
@@ -137,6 +137,8 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
         }
         ?>	
 			</table>
+			<button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
+            <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
 		</div>
 		<div class="InputlistEdit">
 
@@ -180,6 +182,8 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 <script  src="./assets/JS/scriptdashboard.js"></script>
 <script src="./assets/JS/InputControlFront.js"></script>
 <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
+<script src="./assets/JS/pagination.js"></script>
+
 
 
 </html>

@@ -9,16 +9,18 @@ class Chauffeur
     private $TelChauffeur = null;
     private $EmailChauffeur = null;
     private $Vehicule = null;
+    private $id_compte = null;
 
     // TODO Constructeur
 
-    public function __construct($NomChauffeur,$PrenomChauffeur,$TelChauffeur,$EmailChauffeur,$Vehicule)
+    public function __construct($NomChauffeur,$PrenomChauffeur,$TelChauffeur,$EmailChauffeur,$Vehicule,$id_compte)
     {
         $this->NomChauffeur = $NomChauffeur;
         $this->PrenomChauffeur = $PrenomChauffeur;
         $this->TelChauffeur = $TelChauffeur;
         $this->EmailChauffeur = $EmailChauffeur;
         $this->Vehicule = $Vehicule;
+        $this->id_compte = $id_compte;
     }
 
     // TODO Getters & Setters
@@ -83,5 +85,14 @@ class Chauffeur
         $this->Vehicule = $Vehicule;
     }
 
+    public function getid_compte()
+    {
+        return $this->id_compte;
+    }
+
+    public function setid_compte(int $id_compte)
+    {
+        $this->id_compte = $id_compte;
+    }
 
 }

@@ -41,7 +41,7 @@ class ChauffeurC
     function addChauffeur($Chauffeur)
     {
         $sql = "INSERT INTO chauffeur  
-        VALUES (NULL, :nom, :prenom, :tel, :email, :vehicule)";
+        VALUES (NULL, :nom, :prenom, :tel, :email, :vehicule, :id_compte)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -51,7 +51,8 @@ class ChauffeurC
                 'prenom' => $Chauffeur->getPrenomChauffeur(),
                 'tel' => $Chauffeur->getTelChauffeur(),
                 'email' => $Chauffeur->getEmailChauffeur(),
-                'vehicule' => $Chauffeur->getVehicule()
+                'vehicule' => $Chauffeur->getVehicule(),
+                'id_compte' => $Chauffeur->getid_compte()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -110,5 +111,24 @@ class ChauffeurC
         }
     }
 
+
+    public function idChauffeur($id_Compte)
+{
+    try 
+    {
+        $pdo = config::getConnexion();
+        $sql = "SELECT * FROM `chauffeur` WHERE id_compte = :id_compte";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':id_compte', $id_Compte);
+        $query->execute();
+        $result = $query->fetch();
+        return $result['Id_Ch'];
+    }
+    catch (PDOException $e) 
+    {
+        echo "Error: " . $e->getMessage();
+        return 0;
+    }
+}
 
 }
