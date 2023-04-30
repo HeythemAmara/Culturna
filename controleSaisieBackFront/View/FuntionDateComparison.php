@@ -76,7 +76,7 @@ if($test==0)
 header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
 
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
@@ -98,4 +98,4 @@ header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
       <div>L</div>
     </div> 
 </body>
-</html>
+</html> -->

@@ -467,7 +467,8 @@ foreach ($results3 as $row) {
             <div class="card-body px-0 pb-2 tableviewdiv">
                         <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
                         <h3>---Event---</h3>
-				        <table class="tableview tableau1">
+                        <input type="text" id="search-input" class="form-style " onkeyup="search()" placeholder="Search for event name...">
+				        <table class="tableview tableau1" id="tableau1">
 				                <tr class="TitleTab">
 								                  <th class="styleth">Event</th>
 									                <th class="styleth">Name</th>
@@ -519,6 +520,35 @@ foreach ($results3 as $row) {
              </div>
           </div> 
         </div>
+        <script>
+          function search() {
+             // Declare variables
+                 var input, filter, table, tr, td, i, txtValue;
+                                 input = document.getElementById("search-input");
+                 filter = input.value.toUpperCase();
+                 table = document.getElementById("tableau1");
+                 tr = table.getElementsByTagName("tr");
+
+                 // Loop through all table rows, and hide those that don't match the search query
+                 for (i = 0; i < tr.length; i++) {
+                   td = tr[i].getElementsByTagName("td")[1]; 
+                   if (td) {
+                     txtValue = td.textContent || td.innerText;
+                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                       tr[i].style.display = "";
+                     } else {
+                       tr[i].style.display = "none";
+                     }
+                   }
+                 }
+                }
+                document.getElementById("search-input").addEventListener("input", function(event) {
+                    search();
+                });
+                document.getElementById("search-input").addEventListener("blur", function() {
+                  search();
+          });
+        </script>
 <!-- Le code HTML est inchangé -->
 
         <div class="col-lg-4 col-md-6">
@@ -630,7 +660,8 @@ foreach ($results3 as $row) {
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
             <h3>---Reservation---</h3>
-				      <table class="tableview tableau2">
+            <input type="text" id="search-input2" class="form-style " onkeyup="search2()" placeholder="Search for event name...">
+				      <table class="tableview tableau2" id="tableau2">
 				        <tr class="TitleTab">
 							    <th class="styleth">Event</th>
 							    <th class="styleth">Name</th>
@@ -676,6 +707,36 @@ foreach ($results3 as $row) {
 		        </div>
           </div> 
         </div>
+        
+        <script>
+          function search2() {
+             // Declare variables
+                 var input, filter, table, tr, td, i, txtValue;
+                   input = document.getElementById("search-input2");
+                 filter = input.value.toUpperCase();
+                 table = document.getElementById("tableau2");
+                 tr = table.getElementsByTagName("tr");
+
+                 // Loop through all table rows, and hide those that don't match the search query
+                 for (i = 0; i < tr.length; i++) {
+                   td = tr[i].getElementsByTagName("td")[1]; 
+                   if (td) {
+                     txtValue = td.textContent || td.innerText;
+                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                       tr[i].style.display = "";
+                     } else {
+                       tr[i].style.display = "none";
+                     }
+                   }
+                 }
+                }
+                document.getElementById("search-input2").addEventListener("input", function(event) {
+                    search2();
+                });
+                document.getElementById("search-input2").addEventListener("blur", function() {
+                  search2();
+          });
+        </script>
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd2 slide-in-right">
 

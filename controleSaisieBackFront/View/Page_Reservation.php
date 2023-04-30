@@ -12,6 +12,9 @@ $test=0;
 $ReservationC = new ReservationC();
 $list = $ReservationC->listReservationpourclient($valeur_id);
 
+$EventC = new EventC();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +105,7 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 		<div class="Tablelist">
 			<table class="tableview tableau1">
 				<tr class="TitleTab">
+				  <th class="styleth">Event Name</th>
 					<th class="styleth">Name</th>
 					<th class="styleth">Email</th>
 					<th class="styleth">nbrPlaces</th>
@@ -110,8 +114,11 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 				<?php
         foreach ($list as $Reservation) 
         {
+			$nameEvent = $EventC->DateEvent($Reservation['idEvent']);
+			 foreach ($nameEvent as $Event) {$idevent= $Event['name'];}  
         ?>
 					<tr>
+					    <td class="styleth"><?= $idevent; ?></td>	 
                         <td class="styleth"><?= $Reservation['name']; ?></td>
                         <td class="styleth"><?= $Reservation['email']; ?></td>
                         <td class="styleth"><?= $Reservation['nbrPlace']; ?></td>

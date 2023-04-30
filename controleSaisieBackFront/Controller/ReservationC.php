@@ -20,7 +20,7 @@ class reservationC
 
     public function listReservationpourclient($var)
     {
-        $sql = "SELECT idReserv,name,email,nbrPlace,num FROM reservation where idClient = :var";
+        $sql = "SELECT * FROM reservation where idClient = :var";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':var', $var);
