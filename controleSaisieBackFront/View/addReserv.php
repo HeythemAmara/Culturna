@@ -2,6 +2,8 @@
 <?php
 //include 'D:/xampp/htdocs/Culturna/perso/DASHBORDEVENT/Controller/ReservationC.php';
 include '../Controller/ReservationC.php';
+include '../Controller/EventC.php';
+
 $valeur_id = $_GET['val_id'];
 
 var_dump($_POST);
@@ -33,6 +35,10 @@ if (
             );
         $ReservationC = new ReservationC();
         $ReservationC->addReservation($Reservation);
+
+        $EventC = new EventC(); 
+        $EventC->DeccEvent($_POST['idEventa'], $_POST['nbrPlacea']);
+        
         header('location:listEvent.php?val_id=' . urlencode($valeur_id));
         } 
     else 

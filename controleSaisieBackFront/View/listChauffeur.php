@@ -3,7 +3,7 @@ include "../Controller/ChauffeurC.php";
 include "../Controller/UtilisateurC.php";
 include "../Controller/TransportC.php";
 
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
@@ -51,12 +51,14 @@ $countDec = $TransportC->countStatMonth('12');
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-icons.css" rel="stylesheet" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-svg.css" rel="stylesheet" />
+  <link href="./assets/CSS/Chat.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/material-dashboard.css" rel="stylesheet" />
   <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/dashboard.css" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -151,6 +153,11 @@ $countDec = $TransportC->countStatMonth('12');
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0 btnChat">
+                <i class="uil uil-chat fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
@@ -229,76 +236,49 @@ $countDec = $TransportC->countStatMonth('12');
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
+    <div class="container-fluid py-4 slide-out-right chathidden Chataffiche">
+
+
+          <!-- Chat-Start -->
+          <div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+<div class="col-md-6">
+            <div class="card card-bordered">
+              <div class="card-header">
+                <h4 class="card-title"><strong>Admin Chat</strong></h4>
               </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                <h4 class="mb-0">$53k</h4>
+
+
+              <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
+                <div class="media media-chat">
+                  <div class="media-body">  
+                    <h3>Hi</h3>
+                    <p>How are you ...???</p>
+                    <p>What are you doing tomorrow?<br> Can we come up a bar?</p>
+                    <p class="meta"><time datetime="2023">23:58</time></p>
+                  </div>
+                </div>
+
+            
+
+              <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div></div></div>
+
+              <div class="publisher bt-1 border-light">
+                <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
+                <form action="">
+                  <input class="publisher-input" type="text" placeholder="Write something">
+                  <input type="submit" name="Message" value="Submit" class="publisher-btn text-info">
+                </form>
               </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
-            </div>
+
+             </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 class="mb-0">2,300</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
-            </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 class="mb-0">3,462</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
-            </div>
           </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-header p-3 pt-2">
-              <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                <i class="material-icons opacity-10">weekend</i>
-              </div>
-              <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 class="mb-0">$103,430</h4>
-              </div>
-            </div>
-            <hr class="dark horizontal my-0">
-            <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
-            </div>
           </div>
-        </div>
+          <!-- Chat-End -->
+
       </div>
       <div class="row mt-4">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
@@ -390,13 +370,13 @@ $countDec = $TransportC->countStatMonth('12');
                                 <a href="deleteChauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
 				                  		</td>
                               <td>
-                              <a href="./assets/PDF/PDF_Chauffeur.php?Id_Ch=<?php echo $Chauffeur['Id_Ch']; ?>
-                              &Nom=<?php echo $Chauffeur['Nom']; ?>
-                              &Prenom=<?php echo $Chauffeur['Prenom']; ?>
-                              &Tel=<?php echo $Chauffeur['Tel']; ?>
-                              &Email=<?php echo $Chauffeur['Email']; ?>
-                              &Vehicule=<?php echo $Chauffeur['Vehicule']; ?>
-                              &val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-file-download-alt"></i></a>
+                              <a href="./assets/PDF/PDF_Chauffeur.php?a=<?php echo $Chauffeur['Id_Ch']; ?>
+                              &b=<?php echo $Chauffeur['Nom']; ?>
+                              &c=<?php echo $Chauffeur['Prenom']; ?>
+                              &d=<?php echo $Chauffeur['Tel']; ?>
+                              &e=<?php echo $Chauffeur['Email']; ?>
+                              &f=<?php echo $Chauffeur['Vehicule']; ?>
+                              &g=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-file-download-alt"></i></a>
                               </td>
 				                  	</tr>
                                       <?php
@@ -1074,6 +1054,7 @@ $countDec = $TransportC->countStatMonth('12');
   <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
   <script src="./assets/JS/pagination.js"></script>
+  <script src="./assets/JS/Chat.js"></script>
 
 </body>
 

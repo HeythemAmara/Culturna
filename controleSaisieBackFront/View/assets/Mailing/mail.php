@@ -1,5 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require_once '../Mailing/Exception.php';
 require_once '../Mailing/PHPMailer.php';
 require_once '../Mailing/SMTP.php';
@@ -12,6 +14,16 @@ if(isset($_POST['submit'])) {
     $email = $_POST['email'];
     $message = $_POST['message'];
 
+    // Vérification que l'image a bien été envoyée
+    if(isset($_FILES['image_data']) && $_FILES['image_data']['error'] == 0){
+        $image_data = file_get_contents($_FILES['image_data']['tmp_name']);
+        $image_data = base64_encode($image_data);
+        $image_type = $_FILES['image_data']['type'];
+    } else {
+        $image_data = '';
+        $image_type = '';
+    }
+
     try {
         $mail->isSMTP();
         $mail->Host= 'smtp.gmail.com';
@@ -21,11 +33,17 @@ if(isset($_POST['submit'])) {
         $mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port= 587;
 
-        $mail->setFrom('culturnacop@gmail.com' , ); 
+        $mail->setFrom('culturnacop@gmail.com', 'Nom du site'); 
         $mail->addAddress($email); 
 
         $mail->Subject = 'Message Received (Contact Page)';
         $mail->Body = '<h3>Name : '.$name.'<br>Email : '.$email.'<br>Message : '.$message.'</h3>';
+
+        // Ajout de l'image en pièce jointe
+        if(!empty($image_data)){
+            $mail->addStringAttachment(base64_decode($image_data), 'image.png', 'base64', $image_type);
+        }
+
         $mail->IsHTML(true);
 
         $mail->send();
@@ -41,14 +59,13 @@ if(isset($_POST['submit'])) {
 <html>
 <head>
     <title>Formulaire de Contact</title>
-    <script src="./send_email.js"></script>
 </head>
 <body>
     <h1>Contactez-nous</h1>
     <?php if($alert != ''): ?>
     <div><?php echo $alert ?></div>
     <?php endif; ?>
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
         <label for="name">Nom :</label>
         <input type="text" id="name" name="name" required>
 
@@ -58,38 +75,8 @@ if(isset($_POST['submit'])) {
         <label for="message">Message :</label>
         <textarea id="message" name="message" required></textarea>
 
+        <label for="image_data">Image :</label>
+        <input type="file" name="image_data">
+
         <input type="submit" name="submit" value="Envoyer">
     </form>
-
-    <!-- Validation du formulaire avant l'envoi -->
-    <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-            let name = document.querySelector('#name').value.trim();
-            let email = document.querySelector('#email').value.trim();
-            let message = document.querySelector('#message').value.trim();
-
-            // Vérification des champs
-            if (name === '' || email === '' || message === '') {
-                alert('Tous les champs sont obligatoires');
-                event.preventDefault();
-                return false;
-            }
-
-            // Vérification de l'email
-            if (!isValidEmail(email)) {
-                alert("L'email n'est pas valide");
-                event.preventDefault();
-                return false;
-            }
-
-            return true;
-        });
-
-        // Fonction de validation d'email
-        function isValidEmail(email) {
-            let re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-    </script>
-</body>
-</html>

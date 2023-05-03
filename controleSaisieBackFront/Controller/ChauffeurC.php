@@ -131,4 +131,52 @@ class ChauffeurC
     }
 }
 
+
+function Sharelocation($id_Chauffeur,$id_Client,$latitude,$longitude)
+    {
+        $sql = "INSERT INTO DriverLocation  
+        VALUES (:IdClient, :IdChauffeur, :Latitude, :Longitude)";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([
+
+                'IdClient' => $id_Client,
+                'IdChauffeur' => $id_Chauffeur,
+                'Latitude' => $latitude,
+                'Longitude' => $longitude
+            ]);
+        } catch (Exception $e) {
+            try {
+                $sql = "UPDATE `DriverLocation` SET `Latitude`=:Latitude,`Longitude`=:Longitude WHERE `IdClient`=:IdClient AND`IdChauffeur`=:IdChauffeur";
+                $query = $db->prepare($sql);
+                $query->execute([
+                    'IdClient' => $id_Client,
+                    'IdChauffeur' => $id_Chauffeur,
+                    'Latitude' => $latitude,
+                    'Longitude' => $longitude
+                ]);
+            } catch (PDOException $e) {
+                echo "Modification Echouer: " . $e->getMessage();
+            }
+        }
+    }
+
+
+    public function getLocation($idChauffeur, $idClient)
+    {
+        try {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM `DriverLocation` WHERE idChauffeur = ? AND idClient = ?";
+            $query = $pdo->prepare($sql);
+            $query->execute([$idChauffeur, $idClient]);
+            $result = $query->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+            error_log("Error getting location: " . $e->getMessage());
+            throw new Exception("Error getting location");
+        }
+    }
+
+
 }

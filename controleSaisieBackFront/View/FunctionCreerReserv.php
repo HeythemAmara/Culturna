@@ -35,6 +35,10 @@ if (
             );
         $ReservationC = new ReservationC();
         $ReservationC->addReservation($Reservation);
+        $ReservationC->updateReservationPrice($_POST['idEventa']);
+
+        $EventC = new EventC(); 
+        $EventC->DeccEvent($_POST['idEventa'], $_POST['nbrPlacea']);
         $test=1;
         header('location:Page_Transp_Event.php?val_id=' . $_POST['idclienta'].'&creationreserv='.$test .'&dateevent='.$_POST['dateeventa'] .'&nbrpersonne='.$_POST['nbrPlacea']);
         echo "done";

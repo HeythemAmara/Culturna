@@ -17,6 +17,10 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
   <link rel="stylesheet" href="./assets/CSS/style Main Page.css">
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
 
 </head>
 <body>
@@ -102,6 +106,7 @@ $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 												<input type="password" name="loginpass" class="form-style" placeholder="Your Password" id="loginpass"  >
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
+											<div class="g-recaptcha" data-sitekey="6LcnHdElAAAAAEBXzMkeQr5mZ6t_kh6xeZ6EUTp8"></div>
 											<input type="submit" name="Login" value="Submit" class="btn mt-2">
                             				<p class="mb-0 mt-4 text-center">
 												<a href="Page_GiveEmail.php?val_id= <?= $valeur_id ?>" class="link">Forgot your password?</a>

@@ -1,14 +1,12 @@
 <?php
-include '../Controller/TransportC.php';
-include '../Controller/ChauffeurC.php';
-include "../Controller/UtilisateurC.php";
+include_once '../Controller/TransportC.php';
+include_once '../Controller/ChauffeurC.php';
+include_once "../Controller/UtilisateurC.php";
 
 
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
-$test=0;
-$id_Client=0;
 
 $ChauffeurC= new ChauffeurC();
 $id_chauffeur=$ChauffeurC->idChauffeur($valeur_id);
@@ -46,7 +44,7 @@ $list = $ReservationC->listTransportpourchauffeur($id_chauffeur);
         		{
         		?>
 						<li>
-							<?php echo "<a href='Page_Profile.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>".$User['Username']."</a>"; ?>
+							<?php echo "<a href='Page_Profile.php?val_id=" . $valeur_id ."'>".$User['Username']."</a>"; ?>
 						</li>
 						<?php
 				}
@@ -84,7 +82,7 @@ $list = $ReservationC->listTransportpourchauffeur($id_chauffeur);
 						<td class="styleth">
 							<?php $test=$Transport['Id_T'];
 							$id_Client= $Transport['IdClient'];
-							echo "<a href='./assets/Map/ShareLocalisation.php?val_id=" . $valeur_id ."&id_Chauffeur=". $id_chauffeur ."&id_Client=". $id_Client ."'><i class='edit-del-icon uil uil-check'></i></a>"; ?>
+							echo "<a href='./FunctionShareLocalisation.php?val_id=" . $valeur_id ."&id_Chauffeur=". $id_chauffeur ."&id_Client=". $id_Client ."'><i class='edit-del-icon uil uil-check'></i></a>"; ?>
 						</td>
 					</tr>
                     <?php

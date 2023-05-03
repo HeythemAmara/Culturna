@@ -67,13 +67,6 @@ $EventC = new EventC();
             </ul>
         </div>
     </header>
-
-
-
-
-	
-
-
 	<!--! Burger Menu or Sidebar ============================================== -->
 
 	<div class="burger">
@@ -103,7 +96,8 @@ $EventC = new EventC();
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
-			<table class="tableview tableau1">
+		<input type="text" id="search-input" class="form-style " onkeyup="search()" placeholder="Search for event name...">
+			<table class="tableview tableau1" id="tableau1">
 				<tr class="TitleTab">
 				  <th class="styleth">Event Name</th>
 					<th class="styleth">Name</th>
@@ -126,6 +120,7 @@ $EventC = new EventC();
 						<td>
 							<a class="toggle-edit" onclick="
                                     editReservFront(
+                                      '<?=$Reservation['idEvent']; ?>',
                                       '<?=$Reservation['idReserv']; ?>',
                                       '<?= $Reservation['name']; ?>',
                                       '<?= $Reservation['email']; ?>',
@@ -147,11 +142,41 @@ $EventC = new EventC();
 			<button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
             <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
 		</div>
+		<script>
+          function search() {
+             // Declare variables
+                 var input, filter, table, tr, td, i, txtValue;
+                                 input = document.getElementById("search-input");
+                 filter = input.value.toUpperCase();
+                 table = document.getElementById("tableau1");
+                 tr = table.getElementsByTagName("tr");
+
+                 // Loop through all table rows, and hide those that don't match the search query
+                 for (i = 0; i < tr.length; i++) {
+                   td = tr[i].getElementsByTagName("td")[0]; 
+                   if (td) {
+                     txtValue = td.textContent || td.innerText;
+                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                       tr[i].style.display = "";
+                     } else {
+                       tr[i].style.display = "none";
+                     }
+                   }
+                 }
+                }
+                document.getElementById("search-input").addEventListener("input", function(event) {
+                    search();
+                });
+                document.getElementById("search-input").addEventListener("blur", function() {
+                  search();
+          });
+        </script>
 		<div class="InputlistEdit">
 
 		<form class="form-group" method="POST" action="FunctionUpdateReserv.php" onsubmit="return validateFormModifReservUser();">
 		<input type="hidden" value="<?= $valeur_id; ?>" name="idclienta" id="idclienta">
-            <input type="hidden" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
+    <input type="hidden" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu" autocomplete="off">
+    <input type="hidden" name="idEventu" class="form-style" placeholder="id Reservation a Modifier" id="idEventu" autocomplete="off">
 		<ul>
         <li>
             <h3>Edit Reservation</h3>

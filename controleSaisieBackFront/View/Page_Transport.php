@@ -100,7 +100,9 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
-			<table class="tableview tableau1">
+		<input type="text" id="search-input" class="form-style " onkeyup="search()" placeholder="Search for types of transport...">
+
+			<table class="tableview tableau1" id="tableau1">
 				<tr class="TitleTab">
 					<th class="styleth">Type</th>
 					<th class="styleth">Nbr Personne</th>
@@ -159,6 +161,35 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 				<button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
         		<button class="uil uil-skip-forward" id="bouton-suivant1"></button>
 		</div>
+		<script>
+          function search() {
+             // Declare variables
+                 var input, filter, table, tr, td, i, txtValue;
+                                 input = document.getElementById("search-input");
+                 filter = input.value.toUpperCase();
+                 table = document.getElementById("tableau1");
+                 tr = table.getElementsByTagName("tr");
+
+                 // Loop through all table rows, and hide those that don't match the search query
+                 for (i = 0; i < tr.length; i++) {
+                   td = tr[i].getElementsByTagName("td")[0]; 
+                   if (td) {
+                     txtValue = td.textContent || td.innerText;
+                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                       tr[i].style.display = "";
+                     } else {
+                       tr[i].style.display = "none";
+                     }
+                   }
+                 }
+                }
+                document.getElementById("search-input").addEventListener("input", function(event) {
+                    search();
+                });
+                document.getElementById("search-input").addEventListener("blur", function() {
+                  search();
+          });
+        </script>
 		<div class="InputlistEdit">
 
 			<form  class="form-group" method="POST" action="FunctionUpdateTransp.php"  onsubmit="return validateFormModifTransportUser();" >

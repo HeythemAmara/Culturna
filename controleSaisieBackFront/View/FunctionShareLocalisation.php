@@ -1,49 +1,49 @@
 <?php
-include "../Controller/UtilisateurC.php";
+include_once '../Controller/TransportC.php';
+include_once '../Controller/ChauffeurC.php';
+include_once "../Controller/UtilisateurC.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 require_once './assets/Mailing/Exception.php';
 require_once './assets/Mailing/PHPMailer.php';
 require_once './assets/Mailing/SMTP.php';
 
-//$valeur_id =7;
-$valeur_id = $_GET['val_id'];
+
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
+$id_Chauffeur = isset($_GET['id_Chauffeur']) ? $_GET['id_Chauffeur'] : 0;
+$id_Client = isset($_GET['id_Client']) ? $_GET['id_Client'] : 0;
+
+echo "<br>".$valeur_id."<br>";
+echo "<br>".$id_Chauffeur."<br>";
+echo "<br>".$id_Client."<br>";
+
 $UtilisateurC = new UtilisateurC();
-$Username= $UtilisateurC->nomUtilisateur($valeur_id);
-$list=$UtilisateurC->listUserId($valeur_id);
-$test=0; 
+$email= $UtilisateurC->emailUtilisateur($id_Client);
+
+$ChauffeurC = new ChauffeurC();
+
 
 $mail = new PHPMailer(true);
 $alert = '';
 
-foreach ($Username as $Userr) {}
+$link="https://c0b7-197-19-242-220.ngrok-f
+ree.app/Culturna/perso/controleSaisieBackFront/View/Page_SharedLocalisation.php?id_Client=".$id_Client."&id_chauffeur=".$id_Chauffeur;
 
-if(isset($_POST['changemdp'])) {
 
-	//generation de clé
-	$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$key = '';
-	for ($i = 0; $i < 8; $i++) {
-	  $key .= $chars[rand(0, strlen($chars) - 1)];
-	}
+    try {
+        $mail->isSMTP();
+        $mail->Host= 'smtp.gmail.com';
+        $mail->SMTPAuth= true;
+        $mail->Username= 'culturnacop@gmail.com';
+        $mail->Password= 'kdpxcaqpexwxnlbn';
+        $mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port= 587;
 
-	//mailing
-	$email = $Userr["Email"] ;
+        $mail->setFrom('culturnacop@gmail.com' , ); 
+        $mail->addAddress($email); 
 
-	try {
-		$mail->isSMTP();
-		$mail->Host= 'smtp.gmail.com';
-		$mail->SMTPAuth= true;
-		$mail->Username= 'culturnacop@gmail.com';
-		$mail->Password= 'kdpxcaqpexwxnlbn';
-		$mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port= 587;
-
-		$mail->setFrom('culturnacop@gmail.com' , ); 
-		$mail->addAddress($email); 
-
-		$mail->Subject = 'Message Received (Contact Page)';
-		$mail->Body ='
+        $mail->Subject = 'Message Received (Contact Page)';
+        $mail->Body = '
         <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -422,7 +422,7 @@ color: rgba(255,255,255,1);
                         <h1 class="logo"><a href="./Page_accueil.php">Culturna</a></h1>
                         <h2>Heythem is Coming</h2>
                         <img src="./assets Dashboard/img Dashboard/logo-white.png" alt="">
-                        <p>Le code est : '.$key.'</p>
+                        <p>'. $link .'</p>
                         <p><a href="./Page_accueil.php" class="btn btn-primary">Read more</a></p>
                     </div>
                 </td>
@@ -435,146 +435,107 @@ color: rgba(255,255,255,1);
 </center>
 </body>
 </html>';
-		$mail->IsHTML(true);
+        $mail->IsHTML(true);
 
-		$mail->send();
-		$alert = 'Message envoyé avec succès !';
+        $mail->send();
 
-		header('location:FunctionComparaisonMdp.php?val_id=' . $valeur_id .'&key='. $key . '&Email=' . $email);
+    } catch (Exception $e) {
+        $alert = 'Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer plus tard.';
+    }
 
-
-	} catch (Exception $e) {
-		$alert = 'Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer plus tard.';
-	}
-}
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="./assets Dashboard/img Dashboard/favicon.png">
-  <title> Culturna </title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
-  <link rel="stylesheet" href="./assets/CSS/Reservation.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
+    
+    <div id="map"></div>
+    <div id="details" style="background-color: white;"></div>
 
-	<!--! Background Animation ================================================== -->
-	<section class="bganim">
-		<div class='air air1'></div>
-		<div class='air air2'></div>
-		<div class='air air3'></div>
-		<div class='air air4'></div>
-	</section>
+    <script>
+var reqcount = 0;
+var prevCoords = null;
 
-	<!--! Header ================================================== -->
+navigator.geolocation.watchPosition(successCallback);
 
-    <header id="header">
-        <div class="header-back">
-            <a href="#" class="Skapere">Skapere</a>
-        </div>
+function successCallback(position) {
+    const { accuracy, latitude, longitude, altitude, heading, speed } = position.coords;
+    // Show a map centered at latitude / longitude.
+    reqcount++;
+    details.innerHTML = "Accuracy: "+accuracy+"<br>";
+    details.innerHTML += "Latitude: "+latitude+" | Longitude: "+longitude+"<br>";
+    details.innerHTML += "Altitude: "+altitude+"<br>";
+    details.innerHTML += "Heading: "+heading+"<br>";
+    details.innerHTML += "Speed: "+speed+"<br>";
+    details.innerHTML += "reqcount: "+reqcount;
 
-        <div class="header-back">
-            <ul>
-				<li><?php echo "<a href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?></li>
-                <li><a href="#">Clubs</a></li>
-                <li><?php echo "<a href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?></li>
-                <li><a href="#">Reclamation</a></li>
-				<li><a href="#">Magasin</a></li>
-                <li><?php echo "<a href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reservation</a>"; ?></li>
-				<li><?php echo "<a href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?></li>
-                <?php
-        		foreach ($Username as $Userr) 
-        		{
-        		?>
-						<li							 ><a href="#"				class="connecter active"><?= $Userr['Username']; ?></a></li>
-						<?php
-				}
-        		?>
-				<?php
-				foreach ($list as $Userr) 
-        		{}
-        		?>
-            </ul>
-        </div>
-    </header>
+    // Send the latitude and longitude to the server
+    sendCoordsToServer(latitude, longitude);
 
+    // Check if the new coordinates are different from the previous coordinates
+    if (prevCoords == null || prevCoords.latitude != latitude || prevCoords.longitude != longitude) {
+        map.innerHTML = '<iframe width="350" height="450" src="https://maps.google.com/maps?q='+latitude+','+longitude+'&amp;z=15&amp;output=embed"></iframe>';
+        prevCoords = { latitude, longitude };
+    }
+}
 
+function sendCoordsToServer(latitude, longitude) {
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
 
+    // Set the URL of the server-side script to the current PHP script
+    var url = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>' + '?id_Chauffeur=<?php echo $id_Chauffeur ?>&id_Client=<?php echo $id_Client ?>';
 
-	
+    // Set the HTTP method (GET or POST) and specify that we want to make an asynchronous request
+    xhr.open('POST', url, true);
 
+    // Set the request headers (if needed)
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-	  <!--! Table or list ============================================== -->
-	<section class="List">
-		<div class="Tablelist">
-			<ul>
-				<li>
-			<form class="form-group" method="POST" action="FunctionUpdateNameUser.php"  onsubmit="return validateFormModifserFront();">
-				<ul><li>
-				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
-				<input type="hidden" value="<?= $Userr["Email"] ?>" name="emailu">
-				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
-				<input type="hidden" value="<?= $Userr["Dob"] ?>" name="dobu">
-				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
-				<label for="Usernameu"> Username </label>
-				<input type="text" name="Usernameu" class="form-style" value="<?= $Userr['Username']; ?>" id="Usernameu">
-				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
-			</form>
-			</li>
-			<li>
-			<form class="form-group mt-4" method="POST" action="FunctionUpdateEmailUser.php"  onsubmit="return validateFormModifserFront();">
-				<ul><li>
-				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
-				<input type="hidden" value="<?= $Userr["Username"] ?>" name="Usernameu">
-				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
-				<input type="hidden" value="<?= $Userr["Dob"] ?>" name="dobu">
-				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
-				<label for="emailu"> Email </label>
-				<input type="email" name="emailu" class="form-style" value="<?= $Userr['Email']; ?>" id="emailu">
-				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
-			</form>
-			</li>
-			<li>
-			<form class="form-group mt-4" method="POST" action="FunctionUpdateDobUser.php"  onsubmit="return validateFormModifserFront();">
-				<ul><li>
-				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
-				<input type="hidden" value="<?= $Userr["Username"] ?>" name="Usernameu">
-				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
-				<input type="hidden" value="<?= $Userr["Email"] ?>" name="emailu">
-				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
-				<label for="dobu"> DOB " <?= $Userr['Dob']; ?> " </label>	
-				<input type="date" name="dobu" class="form-style" id="dobu">
-				</li></ul>
-				<input type="submit" name="Update" value="Submit" class="btn " style='margin-top: 10px; margin-right: 30px;'>
-			</form>
-			</li>
-			<li>
-				
-				<form action="" method="post">
-  					<input type="submit" name="changemdp" value="Change Password" class="btn" style="margin-top: 100px; margin-right: 230px;">
-				</form>
+    // Define the data that we want to send to the server
+    var data = 'latitude=' + encodeURIComponent(latitude) + '&longitude=' + encodeURIComponent(longitude);
 
-				<?php echo "<a href='Page_accueil.php?val_id=" . 0 ."' class='btn' style='margin-top: 100px; margin-right: 30px;'>Disconnect</a>"; ?>
-			</li>
-			</ul>
-		</div>
-	</section>
+    // Send the request with the data
+    xhr.send(data);
 
-	<!--! Scroll back to top ================================================== -->
-	<div class="scroll-to-top"></div>
+    // Add an AJAX call to the Sharelocation function to update the location without reloading the page
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = this.responseText;
+            console.log(response);
+            // Call the Sharelocation function with the updated latitude and longitude values
+            <?php $ChauffeurC->Sharelocation($id_Chauffeur, $id_Client, "'+latitude+'", "'+longitude+'"); ?>
+        }
+    };
+}
+</script>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the latitude and longitude values from the POST request
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
+
+    $id_Chauffeur = isset($_GET['id_Chauffeur']) ? $_GET['id_Chauffeur'] : 0;
+    $id_Client = isset($_GET['id_Client']) ? $_GET['id_Client'] : 0;
+
+    // Do something with the latitude and longitude values, such as saving them to a database
+    $ChauffeurC->Sharelocation($id_Chauffeur, $id_Client, $latitude, $longitude);
+    // Send a response back to the client
+    echo 'Latitude: ' . $latitude . ' | Longitude: ' . $longitude;
+}  
 
     
+?>
+
+
+
 </body>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script  src="./assets/JS/scriptdashboard.js"></script>
-<script src="./assets/JS/InputControlFront.js"></script>
-
 </html>

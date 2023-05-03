@@ -4,9 +4,14 @@ include_once "../Controller/UtilisateurC.php";
 var_dump($_POST);
 if (
     isset($_POST['loginUsername']) &&
-    isset($_POST['loginpass']) 
+    isset($_POST['loginpass']) &&
+    $_POST['g-recaptcha-response'] != "" 
    ) 
 {
+    $secret = '6LcnHdElAAAAAEu_Wb-OghQ19Am0Uaju8WGpw433';
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
+        if ($responseData->success){
     if (
         !empty($_POST['loginUsername']) &&
         !empty($_POST['loginpass'])
@@ -38,7 +43,7 @@ if (
         header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
         exit;
         }
-    }
+    }}
 else 
     {
         echo"Non2";

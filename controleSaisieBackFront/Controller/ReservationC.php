@@ -49,7 +49,7 @@ class reservationC
     function addReservation($reservation)
     {
         $sql = "INSERT INTO reservation  
-        VALUES (NULL, :idEvent, :ln, :ad, :em, :dob , :idc )";
+        VALUES (NULL, :idEvent, :ln, :ad, :em, :dob , :idc ,0)";
         $db = config::getConnexion();
         try {
             
@@ -156,6 +156,56 @@ class reservationC
             return 0;
         }  
     }
+    /*function updateReservationPrice($idEvent, $prix) {
+        try {
+            $db = config::getConnexion();
+            $query = $db->prepare("
+                UPDATE reservation 
+                SET prixReserv = nbrPlace * (
+                    SELECT prix FROM event WHERE idEvent = :idEvent
+                )
+                WHERE idEvent = :idEvent
+            ");
+            $query->execute([
+                ':idEvent' => $idEvent,
+            ]);
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }*/
+    function updateReservationPrice($idEvent) {
+        try {
+            $db = config::getConnexion();
+            
+            $reservations = $db->prepare("SELECT idReserv, nbrPlace FROM reservation WHERE idEvent = :idEvent");
+            $reservations->execute([':idEvent' => $idEvent]);
+            
+            $event = $db->prepare("SELECT prix FROM event WHERE idEvent = :idEvent");
+            $event->execute([':idEvent' => $idEvent]);
+            $prix = $event->fetchColumn();
+            
+            $query = $db->prepare("
+                UPDATE reservation 
+                SET prixReserv = :prix * nbrPlace
+                WHERE idEvent = :idEvent AND idReserv = :idReserv
+            ");
+            
+            foreach($reservations as $reservation) {
+                $query->execute([
+                    ':idEvent' => $idEvent,
+                    ':idReserv' => $reservation['idReserv'],
+                    ':prix' => $prix,
+                ]);
+            }
+    
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    
+
 
 }
 ?>

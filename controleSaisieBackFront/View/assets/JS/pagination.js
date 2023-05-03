@@ -47,5 +47,5 @@ function paginerTableau(tableauSelector, nbLignesParPage, boutonPrecedentSelecto
     afficherPage();
   }
 
-paginerTableau('.tableau1', 3, '#bouton-precedent1', '#bouton-suivant1');//event 
-paginerTableau('.tableau2', 3, '#bouton-precedent2', '#bouton-suivant2');//reservation
+paginerTableau('.tableau1', 6, '#bouton-precedent1', '#bouton-suivant1');//event 
+paginerTableau('.tableau2', 6, '#bouton-precedent2', '#bouton-suivant2');//reservation

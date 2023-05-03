@@ -160,7 +160,10 @@
 
   }
   //======================= ReservationFront ===============================
-  function editReservFront(idReserv,name,email,nbrPlace,num) {
+  function editReservFront(idEventu,idReserv,name,email,nbrPlace,num) {
+
+    var input_idEventu = document.getElementById("idEventu");
+    input_idEventu.value = idEventu;
   
     var input_idReserv = document.getElementById("idReservu");
     input_idReserv.value = idReserv;

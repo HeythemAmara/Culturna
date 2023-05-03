@@ -500,6 +500,25 @@ public function login($Username, $Mdp)
     }
       
 
+    public function EmailUtilisateur($id)
+{
+    try 
+    {
+        $pdo = config::getConnexion();
+        $sql = "SELECT * FROM `utilisateurs` WHERE IdU = :id";
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':id', $id);
+        $query->execute();
+        $result = $query->fetch();
+        return $result['Email'];
+    }
+    catch (PDOException $e) 
+    {
+        echo "Error: " . $e->getMessage();
+        return 0;
+    }
+}
+
 
 }
 

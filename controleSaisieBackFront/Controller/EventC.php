@@ -209,6 +209,23 @@ function deleteExpiredEvents()
         }  
 
     }
+    function DeccEvent($idEventa, $nbrPlacea) {
+        try {
+            $db = config::getConnexion();
+            $query = $db->prepare("
+                UPDATE event 
+                SET nbrPlaceMax = nbrPlaceMax - :nbrPlacea
+                WHERE idEvent=:idEventa
+            ");
+            $query->execute([
+                ':idEventa' => $idEventa,
+                ':nbrPlacea' => $nbrPlacea
+            ]);
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
     
 }
 ?>

@@ -630,15 +630,17 @@ function sortTableByDate() {
 
 
           <!--! ======================================= Input Ajout Modif       -->
-			  <form  id="eventForm"class="form-group" method="POST" action="addEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddEvent()" >          
-
+			  <form  id="eventForm"class="form-group form" method="POST" action="addEvent.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddEvent()" > 
 				<ul>
 					<li>
 						<h3>Add Event</h3>
 					</li>
-          <li>
+          <li class="form-control">
 					<input type="text" name="namea" class="form-style" placeholder="Nom" id="namea">
 						<i class="input-icon uil uil-clipboard"></i>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
 					</li>
           <li>
 	              <i class="input-icon uil uil-file-landscape"></i>
@@ -652,29 +654,45 @@ function sortTableByDate() {
 		                  <option value="Sport">Sport</option>
 	                  </select>
           </li>
-					<li>
+					<li class="form-control">
 						<input type="time" name="timea" class="form-style" placeholder="Time" id="timea">
 						<i class="input-icon uil uil-clock"></i>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
 					</li>
-					<li>
+					<li class="form-control">
 						<input type="date" name="datea" class="form-style" placeholder="Date" id="datea">
 						<i class="input-icon uil uil-calendar-alt"></i>
-					</li>
-					<li>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
+          </li>
+					<li class="form-control">
 						<input type="number" name="prixa" class="form-style" placeholder="Prix" id="prixa">
 						<i class="input-icon uil uil-usd-circle"></i>
-					</li>
-					<li>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
+          </li>
+					<li class="form-control">
 						<input type="file" name="imagea" class="form-style" placeholder="Image" id="imagea">
 						<i class="input-icon uil uil-image"></i>
-					</li>
-					<li>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
+          </li>
+					<li class="form-control">
 						<input type="number" name="nbrPlaceMaxa" class="form-style" placeholder="PlaceMax" id="nbrPlaceMaxa">
 						<i class="input-icon uil uil-user-minus"></i>
-					</li>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation"></i>
+            <small>Message d'erreur</small>
+          </li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4 Add-event-PHP-JS" onclick="addeventtocalender()">
+				<input type="submit" name="Add" value="Submit" class="btninput mt-4 Add-event-PHP-JS fas fa-user-plus" onclick="addeventtocalender()">
 			  </form>
+        
           </div>
         
     <div class="card inputdivedit InputlistEdit slide-out-right">
