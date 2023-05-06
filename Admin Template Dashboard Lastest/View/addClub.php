@@ -34,13 +34,16 @@ if (
             $_POST['namea'],
             $_POST['typea'],
             $_POST['maila'],
-            $target_file
+            $target_file,
+            5
            
             );
             $ClubC = new ClubC();
         
         $ClubC->addClub($Club);
         header('location:listClubNew.php');
+
+        
         } 
     else 
         {

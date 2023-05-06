@@ -74,12 +74,12 @@ $listTheatre = $Matc->listMattype("Théatre");
 	  <nav class="navadmin">
 		<ul class="main">
 		  	<li><h3 href="#" >Type de materiel</h3></li>
-		  	<li><a href="#" class="active">Football</a></li>
-		  	<li><a href="#">BasketBall</a></li>
-		  	<li><a href="#">Tennis</a></li>
-		  	<li><a href="#">Dessin</a></li>
-		  	<li><a href="#">Théatre</a></li>
-				<li><a href="ClubFront.php" >Voir la liste des Clubs</h4></li>
+		  	<li><a href="#Football" class="active">Football</a></li>
+		  	<li><a href="#BasketBall">BasketBall</a></li>
+		  	<li><a href="#Tennis">Tennis</a></li>
+		  	<li><a href="#Dessin">Dessin</a></li>
+		  	<li><a href="#Théatre">Théatre</a></li>
+				<li><a href="ClubFront.php" >Voir la liste des Clubs</a></li>
 		</ul>
 	  </nav>
 

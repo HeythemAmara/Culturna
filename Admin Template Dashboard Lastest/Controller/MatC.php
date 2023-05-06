@@ -14,6 +14,23 @@ class MaterielC
             die('Error:' . $e->getMessage());
         }
     }
+    public function countTypeMat($type) //stat
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM materiel WHERE type_M	 = :ty";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':ty', $type);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }  
     public function listMattype(string $typee)
     {
         $sql = "SELECT * FROM materiel WHERE type_M='$typee'";

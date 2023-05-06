@@ -3,6 +3,57 @@ include '../config.php';
 include '../Model/Club.php';
 class ClubC
 {
+    public function countType($type) //stat
+    {
+        try 
+        {
+            $pdo = config::getConnexion();
+            $sql = "SELECT * FROM club WHERE type_C = :ty";
+            $query = $pdo->prepare($sql);
+            $query->bindParam(':ty', $type);
+            $query->execute();
+            $count = $query->rowCount();
+            return $count;
+        }
+        catch (PDOException $e) 
+        {
+            echo "error add: " . $e->getMessage();
+        }
+    }  
+    function updateNoteClub($note, $nomClub) {
+        $db = config::getConnexion();
+        $sql = "UPDATE club SET noteC = :note WHERE nom_C = :nomClub";
+        try {
+            $query = $db->prepare($sql);
+            $query->execute(['note' => $note, 'nomClub' => $nomClub]);
+            return true;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
+    
+
+    function findClubByName($name) {
+        $db = config::getConnexion();
+        $sql = "SELECT * FROM club WHERE nom_C = :name";
+        try {
+            $query = $db->prepare($sql);
+            $query->execute(['name' => $name]);
+            $clubData = $query->fetch(PDO::FETCH_ASSOC);
+            if ($clubData) {
+                $club = new Club($clubData['id_Club'], $clubData['nom_C'], $clubData['type_C'], $clubData['mailC'], $clubData['image'],$clubData['noteC']);
+                return $club;
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+    
+
+
+
     public function listClub()
     {
         $db = config::getConnexion();
@@ -29,12 +80,21 @@ class ClubC
     }
     function deleteClub($idClub)
     {
+
         $sql = "DELETE FROM club WHERE id_Club = :id_Club";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id_Club', $idClub);
-
-        try {
+        
+        try {$sql2 = "DELETE FROM materiel WHERE id_Club_fk = :id_M2";
+            $req2 = $db->prepare($sql2);
+            $req2->bindValue(':id_M2', $idClub);
+    
+            try {
+                $req2->execute();
+            } catch (Exception $e) {
+                die('Error:' . $e->getMessage());
+            }
             $req->execute();
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
@@ -42,10 +102,11 @@ class ClubC
     }
 
     function addClub($Club)
-    {
+    {   
+        $n=5;
         $db = config::getConnexion();
         $sql = "INSERT INTO club  
-        VALUES (NULL, :name, :type ,:mail,:image)";
+        VALUES (NULL, :name, :type ,:mail,:image,:note)";
         try {
             
             $query = $db->prepare($sql);
@@ -53,8 +114,8 @@ class ClubC
                 'name' => $Club->getName(),
                 'type' => $Club->gettype(),
                 'mail'=>$Club->getmail() ,
-                'image'=>$Club->getimage()
-
+                'image'=>$Club->getimage(),
+                'note'=>$n
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();

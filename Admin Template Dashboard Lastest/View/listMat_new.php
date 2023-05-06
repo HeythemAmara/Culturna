@@ -4,7 +4,11 @@
 include '../Controller/MatC.php';
 $MatC = new MaterielC();
 $list = $MatC->listMateriel();
-
+$countFoot= $MatC->countTypeMat("Football");
+$countbasket= $MatC->countTypeMat("BasketBall");
+$countTennis= $MatC->countTypeMat("Tennis");
+$counttheatre= $MatC->countTypeMat("Théatre");
+$countdessin= $MatC->countTypeMat("Dessin");
 
 ?>
 
@@ -282,7 +286,7 @@ $list = $MatC->listMateriel();
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
+              <h6 class="mb-0 "> Nombre des materiels classé par type</h6>
               <p class="text-sm ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
@@ -338,7 +342,10 @@ $list = $MatC->listMateriel();
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
                                                                   <!--! ====================================================== Affichage Tableauxxxx Lennnnaaaaa -->
-				                <table class="tableview">
+                        <button id="sort-alpha">Tri alphabétique </button>
+                        
+				                <table class="tableview" id ="tableau1">
+                          
 				                <tr class="TitleTab">
 				                	<th class="styleth">Id Materiel</th>
 				                	<th class="styleth">Nom Materiel</th>
@@ -382,6 +389,32 @@ $list = $MatC->listMateriel();
 		                    </div>
           </div> 
         </div>
+        <script>
+document.getElementById("sort-alpha").addEventListener("click", function() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tableau1");
+    switching = true;
+
+    // Run loop until no switching is needed
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[1];
+            y = rows[i + 1].getElementsByTagName("td")[1];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+});
+</script>   
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd slide-in-right">
 
@@ -615,18 +648,24 @@ $list = $MatC->listMateriel();
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
+    var Football = <?= $countFoot ?>;
+    var Basket = <?= $countbasket ?>;
+    var Tennis = <?= $countTennis ?>;
+    var Théatre = <?= $counttheatre ?>;
+    var dessin = <?= $countdessin ?>;
+
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: ["Football", "BasketBall", "Tennis", "Théatre", "Dessin"],
         datasets: [{
-          label: "Sales",
+          label: "Nombre",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 50, 10, 50, 50, 10, 40],
+          data: [Football, Basket, Tennis, Théatre, dessin],
           maxBarThickness: 6
         }, ],
       },
@@ -872,5 +911,38 @@ $list = $MatC->listMateriel();
   <script src="./assets Dashboard/js Dashboard/material-dashboard.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
 </body>
+<script>
+document.getElementById("sort-by-price").addEventListener("change", function() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tableau1");
+    switching = true;
+
+    // Run loop until no switching is needed
+    while (switching) {
+        switching = false;
+        rows = table.getElementsByTagName("tr");
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[5];
+            y = rows[i + 1].getElementsByTagName("td")[5];
+            if (document.getElementById("sort-by-price").value == "desc") {
+                if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (document.getElementById("sort-by-price").value == "asc") {
+                if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+});
+</script>
 
 </html>

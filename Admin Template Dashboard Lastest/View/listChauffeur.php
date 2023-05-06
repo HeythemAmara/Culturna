@@ -1,19 +1,19 @@
 <?php
-include "../Controller/ChauffeurC.php";
+include_once '../Controller/TransportC.php';
+include_once '../Controller/ChauffeurC.php';
+include_once "../Controller/UtilisateurC.php";
 
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/ChauffeurC.php';
+$$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
+$UtilisateurC = new UtilisateurC();
+$Username= $UtilisateurC->nomUtilisateur($valeur_id);
 
-include "../Controller/TransportC.php";
+$ChauffeurC= new ChauffeurC();
+$id_chauffeur=$ChauffeurC->idChauffeur($valeur_id);
 
-//include 'D:/xampp/htdocs/Culturna/perso/DASHBORDLIVRAISON/Controller/TransportC.php';
+$ReservationC = new TransportC();
+$list = $ReservationC->listTransportpourchauffeur($id_chauffeur);
 
-$ChauffeurC = new ChauffeurC();
-$listchauffeur = $ChauffeurC->listChauffeur();
-
-$TransportC = new TransportC();
-$listtransport = $TransportC->listTransport();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

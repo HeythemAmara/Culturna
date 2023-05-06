@@ -9,7 +9,11 @@ include "../Controller/ClubC.php";
 
 $ClubC = new ClubC();
 $listClub = $ClubC->listClub();
-
+$countFoot= $ClubC->countType("Football");
+$countbasket= $ClubC->countType("BasketBall");
+$countTennis= $ClubC->countType("Tennis");
+$counttheatre= $ClubC->countType("Théatre");
+$countdessin= $ClubC->countType("Dessin");
 
 ?>
 
@@ -287,7 +291,7 @@ $listClub = $ClubC->listClub();
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
+              <h6 class="mb-0 ">Nombre des clubs classé par type</h6>
               <p class="text-sm ">Last Campaign Performance</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
@@ -344,12 +348,18 @@ $listClub = $ClubC->listClub();
             <div class="card-body px-0 pb-2 tableviewdiv">
                                                                   <!--! ====================================================== Affichage Tableauxxxx Lennnnaaaaa -->
 				                <table class="tableview">
+                        <button id ="sort-alpha"  class="form-style">Tri alphabétique </button>
+                        
+				                <table class="tableview tableau1" id ="tableau1">
 				                <tr class="TitleTab">
 				                	<th class="styleth">Id Club</th>
 				                	<th class="styleth">Nom Club</th>
 				                	<th class="styleth">Type Club</th>
                           <th class="styleth">Mail Club</th>
                           <th class="styleth">Logo Club</th>
+                          <th class="styleth">Note Club</th>
+
+                          
 
 
 
@@ -378,8 +388,8 @@ $listClub = $ClubC->listClub();
                                           <td class="styleth"><?= $Club['type_C']; ?></td>
                                           <td class="styleth"><?= $Club['mailC']; ?></td>
                                           <td class="styleth"><img src="uploadsC/<?= basename($Club['image']) ?>" alt="<?= $Club['nom_C'] ?>" width="80"></td>
-
-
+                                          <td class="styleth"><?= $Club['noteC']; ?></td>
+                                          
                                           
 				                  		<td>
 				                  			<a href="deleteClub.php?id_Club=<?php echo $Club['id_Club']; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
@@ -392,8 +402,35 @@ $listClub = $ClubC->listClub();
 		                    </div>
           </div> 
         </div>
+           <script>
+document.getElementById("sort-alpha").addEventListener("click", function() {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("tableau1");
+    switching = true;
+
+    // Run loop until no switching is needed
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[1];
+            y = rows[i + 1].getElementsByTagName("td")[1];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+});
+</script>       
         <div class="col-lg-4 col-md-6">
           <div class="card inputdivadd InputlistAdd slide-in-right">
+
 
 
 
@@ -618,19 +655,25 @@ $listClub = $ClubC->listClub();
   <script src="./assets Dashboard/js Dashboard/plugins/chartjs.min.js"></script>
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
+    
+    var Football = <?= $countFoot ?>;
+    var Basket = <?= $countbasket ?>;
+    var Tennis = <?= $countTennis ?>;
+    var Théatre = <?= $counttheatre ?>;
+    var dessin = <?= $countdessin ?>;
 
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: ["Football", "BasketBall", "Tennis", "Théatre", "Dessin"],
         datasets: [{
-          label: "Sales",
+          label: "Nombre",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 50, 10, 50, 50, 10, 40],
+          data: [Football, Basket, Tennis, Théatre, dessin],
           maxBarThickness: 6
         }, ],
       },

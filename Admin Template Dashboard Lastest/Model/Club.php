@@ -7,7 +7,9 @@ class Club
 
     private $mail=null;
     private $image=null;
-    public function __construct($id,$name, $type,$mail,$image)
+
+    private $note=null;
+    public function __construct($id,$name, $type,$mail,$image,$note)
     {
         $this->idClub = $id;
 
@@ -15,6 +17,7 @@ class Club
         $this->type = $type;
         $this->mail = $mail;
         $this->image = $image;
+        $this->note=$note;
     }
 
    public function getIdClub()
@@ -72,7 +75,16 @@ class Club
 
         return $this;
     }
-   
+    public function getnote()
+    {
+        return $this->note;
+    }
+    public function setnote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
 
 
 }

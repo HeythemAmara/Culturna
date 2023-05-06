@@ -34,7 +34,8 @@ if (
             $_POST['nameu'],
             $_POST['typeu'],
             $_POST['mailu'],
-            $_FILES['imageu']['name']
+            $_FILES['imageu']['name'],
+            null
             );
         $ClubC = new ClubC();
         $ClubC->updateClub($Club, $_POST['id_Club']);
