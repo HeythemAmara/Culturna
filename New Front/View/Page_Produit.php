@@ -6,7 +6,14 @@ $EventC = new EventC();
 $valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $resevtest = isset($_GET['creationreserv']) ? $_GET['creationreserv'] : 0;
 $UtilisateurC = new UtilisateurC();
-$Username= $UtilisateurC->Username($valeur_id);
+if($valeur_id == 0)
+{
+    $Username = "Client";
+}
+else
+{
+    $Username= $UtilisateurC->Username($valeur_id);
+}
 $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 
 
@@ -110,9 +117,9 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 
 	<!-- Debut Panier header -->
 
-	<div class="humberger__menu__cart__Produit" style=" float: right; margin-right: 20px; margin-top:20px;" >
+	<div class="humberger__menu__cart__Produit " style=" float: right; margin-right: 20px; margin-top:20px;" >
             <ul>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#" class="btn_Panier"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
     </div>
@@ -122,7 +129,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 
 	<!-- Debut Des Produits -->
 
-	<section class="featured spad">
+	<section class="featured spad ">
         <div class="container_Produit">
             <div class="row">
                 <div class="col-lg-12">
@@ -140,10 +147,13 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
                 <!-- Debut FOREACH -->
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="ImageProduit\feature-1.jpg">
-						<img src="ImageProduit\feature-1.jpg" alt="ImageProduit">
+                        <div class="featured__item__pic set-bg" data-setbg="ImageProduit\feature-2.jpg">
+						<img src="ImageProduit\feature-2.jpg" alt="ImageProduit">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#" style="margin-top: 20px;"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
@@ -153,6 +163,9 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
                     </div>
                 </div>
 				<!-- Fin FOREACH -->
+                
+            
+
 
 
             </div>
@@ -166,14 +179,12 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 	
 	<!-- Debut Panier -->
 
-	<!--! Input Reservation ============================================== -->
-
-
 	<section class="SectionPanier flip-out-hor-top hide" >
 
- 		<div style="height:100%; width:100%; top:0; left:0;">
-		    <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Search for event name...">   
-    <div class="card " style="height:500px; width:100%;">
+ 		<div style="height:100%; width:100%; top:0; left:0; ">
+            <label for="search-input" style="float:right; transform: translateY(48px);"><a href="#" id="closebtn"><i class="uil uil-times-circle"></i></a></label>
+		    <input type="text" id="search-input" name="search-input" class="form-style" style="border: 1px solid rgba(0,0,0,.500);" onkeyup="search()" placeholder="Search for event name...">   
+    <div class="card " style="height:500px; width:100%;border: 1px solid rgba(0,0,0,.500);">
       <div class="card-header">
             <div class="card-header-right">
               <ul class="list-unstyled card-option">
@@ -300,11 +311,9 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 </body>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script  src="./assets/JS/script Event.js"></script>
-<script  src="./assets/JS/scriptInputNextPrevious.js"></script>
 <script src="./assets/JS/InputControlFront.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> 
-<script src="./assets/JS/Burger.js"></script>
+<script src="./assets/JS/Panier.js"></script>
 
 
 
