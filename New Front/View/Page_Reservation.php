@@ -21,13 +21,16 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
 
 <!DOCTYPE html>
 <html lang="en" >
-
-<head>
+  
+  <head>
     <meta charset="utf-8">
     <title>Culturna</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <link rel="stylesheet" href="./assets/CSS/Reservation.css">
     <!-- Google Web Fonts -->
@@ -64,7 +67,7 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
     <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
 
 
-    
+
 </head>
 <body>
 
@@ -117,7 +120,7 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
                   <li><i class="fa fa fa-wrench open-card-option"></i></li>
                   <li><i class="fa fa-window-maximize full-card"></i></li>
                   <li><i class="fa fa-minus minimize-card"></i></li>
-                  <li><i class="fa fa-refresh reload-card"></i></li>
+                  <li><i class="fa fa-refresh reload-card" id= "my-buttonreload"></i></li>
               </ul>
           </div>
       </div>
@@ -167,9 +170,7 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
                                     <?php $test=$Reservation['idReserv'];
 							        echo "<a class='dropdown-item' style='padding: 0px 16px;' href='FunctiondeleteRerser.php?val_id=" . $valeur_id ."&idReserv=".$test."'><i class='edit-del-icon uil uil-trash-alt' style='font-size: 20px;'></i></a>"; ?>
                     </div>
-                </div>
-              
-                                    
+                </div>                          
 						</td>
 					</tr>
           <?php
@@ -287,7 +288,6 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
 <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
 <script src="./assets/JS/pagination.js"></script>
 <script src="./assets/JS/tables.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </html>

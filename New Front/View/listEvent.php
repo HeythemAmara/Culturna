@@ -28,6 +28,32 @@ $listReservation = $ReservationC->listReservation();
   <title>
     Culturna
   </title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+      <script>
+       
+      $(document).ready(function() {
+       var calendar = $('#calendar').fullCalendar({
+        editable:true,
+        header:{
+         left:'prev,next today',
+         center:'name',
+         right:'month,agendaWeek,agendaDay'
+        },
+        events: 'assets/Calendrier/Load.php',
+        selectable:true,
+        selectHelper:true,
+       });
+      });
+       
+      </script>
+
+
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-icons.css" rel="stylesheet" />
   <link href="./assets/CSS/Calendrier.css" rel="stylesheet" />
@@ -39,11 +65,17 @@ $listReservation = $ReservationC->listReservation();
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/dashboard.css" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="./assets/CSS/Back.css" rel="stylesheet" />
   
+
+  
+  
+
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark ToBeBlured" id="sidenav-main">
     <div class="sidenav-header">
       <a class="navbar-brand m-0" href="#" target="_blank">
         <img src="./assets Dashboard/img Dashboard/logo-white.png" class="navbar-brand-imgg h-100" alt="main_logo">
@@ -104,9 +136,9 @@ $listReservation = $ReservationC->listReservation();
       </ul>
     </div>
   </aside>
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl ToBeBlured" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <h6 class="font-weight-bolder mb-0">Dashboard</h6>
@@ -136,6 +168,11 @@ $listReservation = $ReservationC->listReservation();
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0 btnCalendar">
+                <i class="uil uil-calendar-alt fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0 toggleCalendar">
                 <i class="uil uil-calendar-alt fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
@@ -215,14 +252,34 @@ $listReservation = $ReservationC->listReservation();
           </ul>
         </div>
       </div>
-    </nav>  
+    </nav> 
+    
+    
+      <div class="card DivCalendar slide-out-right hide" style="position: Fixed; z-index: 999;" >
+        <br />
+        <div class="container-calendar">
+          <div id="calendar"></div>
+        </div>
+      </div>
+
+
     <!-- End Navbar -->
-    <div class="container-fluid py-4 container-calender slide-out-right calendrierhidden calendrieraffiche" >
+    <div class="container-fluid py-4 container-calender slide-out-right calendrierhidden calendrieraffiche ToBeBlured" >
       
         <!-- Calendar -->
 
 
-    <div class="container" >
+        
+     
+      
+     
+       <div class="container" > 
+
+
+
+
+
+
       <div class="left">
         <div class="calendar ">
           <div class="month">
@@ -286,7 +343,7 @@ $listReservation = $ReservationC->listReservation();
       </div>
       <button class="add-event">
         <i class="fas fa-plus"></i>
-      </button>
+      </button> 
   </div>
 
 
@@ -332,7 +389,7 @@ $listReservation = $ReservationC->listReservation();
       </div>-->
         
       </div>
-      <div class="row mt-4">
+      <div class="row mt-4 ToBeBlured">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -460,12 +517,12 @@ foreach ($results3 as $row) {
           </div>
         </div>
       </div>
-      <section class="row mb-4 sectionphp">
-        <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
-          <div class="card tablediv">
-            <div class="card-body px-0 pb-2 tableviewdiv">
-                        <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
-                        <h3>---Event---</h3>
+<section class="row mb-4 sectionphp ToBeBlured">
+  <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
+    <div class="card tablediv">
+      <div class="card-body px-0 pb-2 tableviewdiv">
+      <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
+      <h3>---Event---</h3>
                   
                         <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Search for event name...">
                         <select name="sort-by-price" id="sort-by-price" class="form-style">
@@ -474,9 +531,22 @@ foreach ($results3 as $row) {
                            <option value="asc">Prix croissant</option>
                         </select>
                         <button class="btninput " onclick="sortTableByDate()">Trier Date </button>
-
-                        <table class="tableview tableau1" id="tableau1">
-				                <tr class="TitleTab">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-header-right">
+                          <ul class="list-unstyled card-option">
+                              <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                              <li><i class="fa fa-window-maximize full-card"></i></li>
+                              <li><i class="fa fa-minus minimize-card"></i></li>
+                              <li><i class="fa fa-refresh reload-card" id= "my-buttonreload"></i></li>
+                          </ul>
+                      </div>
+                    </div>
+                    <div class="card-block table-border-style">
+                      <div class="table-responsive">
+                        <table class="table table-hover tableau1" id="tableau1">
+                           <thead>
+				                <tr>
 								                  <th class="styleth">Event</th>
 									                <th class="styleth">Name</th>
 									                <th class="styleth">Type</th>
@@ -487,11 +557,12 @@ foreach ($results3 as $row) {
 									                <th class="styleth">NbrPlace</th>
 				                	        <th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
+                        </thead>
+                       <tbody>
                         <?php
                           foreach ($listEvent as $Event) 
                           {
                           ?>                    
-
 				                  	<tr>
 									               <td class="styleth"><?= $Event['idEvent']; ?></td>
                                  <td class="styleth"><?= $Event['name']; ?></td>
@@ -502,8 +573,11 @@ foreach ($results3 as $row) {
                                  <td class="styleth">
 									<img src="./ImageEvent/<?= $Event['image']; ?>" alt="Evenement" class="img_event" width="90"></td>
 						                     <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
-				                  		   <td>
-                              <a class="toggle-edit" onclick="
+                    <td>          
+                                 <div class="nav-item dropdown">
+                    <a style="color: #0d6efd;" href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical" ></i></a>
+                    <div class="dropdown-menu fade-down m-0" style="min-width: 10px; min-height:10px ;">
+                    <a class="toggle-edit" onclick="
                                     editEvent(
                                       '<?=$Event['idEvent']; ?>',
                                       '<?= $Event['name']; ?>',
@@ -513,21 +587,29 @@ foreach ($results3 as $row) {
                                       '<?= $Event['prix']; ?>',
                                       '<?= $Event['nbrPlaceMax']; ?>'
                                     )">
-                                  <i class="edit-del-icon uil uil-edit"></i>
+                                  <i class="edit-del-icon uil uil-edit" style="font-size: 20px;"></i>
                                     </a>
-                                    <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
-				                  		</td>
-				                  	</tr>
-                                      <?php
-                          }
-                          ?>		
+                                    <?php $test=$Event['idReserv'];
+							        echo "<a class='dropdown-item' style='padding: 0px 16px;' href='deleteEvent.php?val_id=" . $valeur_id ."&idEvent=".$test."'><i class='edit-del-icon uil uil-trash-alt' style='font-size: 20px;'></i></a>"; ?>
+                    </div>
+                </div>                          
+						      </td>
+                  </tr>
+          <?php
+        }
+        ?>	
+          </tbody>	
                </table>  
                   <button onclick="exportTableToExcel('tableau1','Liste Des Evenements')">Export Table Data To Excel File</button>  
                   <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
                   <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
-             </div>
-          </div> 
-        </div>
+       </div>
+     </div>
+    </div>
+	</div>
+  </div>
+     </div>
+    </div>
         <script>
           function search() {
              // Declare variables
@@ -774,14 +856,16 @@ function exportTableToExcel(tableID, filename = ''){
 			</form>
     </div>
  </div>
-      </section>
-      <section class="row mb-4 sectionphp2">
+</section>
+      <section class="row mb-4 sectionphp2 ToBeBlured">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
             <h3>---Reservation---</h3>
             <input type="text" id="search-input2" class="form-style " onkeyup="search2()" placeholder="Search for event name...">
-				      <table class="tableview tableau2" id="tableau2">
+				     
+            
+            <table class="tableview tableau2" id="tableau2">
 				        <tr class="TitleTab">
 							    <th class="styleth">Event</th>
 							    <th class="styleth">Name</th>
@@ -831,6 +915,7 @@ function exportTableToExcel(tableID, filename = ''){
           </div> 
         </div>
         
+
         <script>
           function search2() {
              // Declare variables
@@ -954,7 +1039,7 @@ function exportTableToExcel(tableID, filename = ''){
           </div>
         </div>
       </section>
-      <footer class="footer py-4  footerpageadmin">
+      <footer class="footer py-4  footerpageadmin ToBeBlured">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -988,7 +1073,9 @@ function exportTableToExcel(tableID, filename = ''){
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin ps">
+
+
+  <div class="fixed-plugin ps ToBeBlured">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="material-icons py-2">settings</i>
     </a>
@@ -1050,6 +1137,15 @@ function exportTableToExcel(tableID, filename = ''){
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
   <!--   Core JS Files   -->
   <script src="./assets Dashboard/js Dashboard/core/popper.min.js"></script>
   <script src="./assets Dashboard/js Dashboard/core/bootstrap.min.js"></script>
@@ -1319,6 +1415,7 @@ new Chart(ctx2, {
   <script src="./assets/JS/InputControl.js"></script>
   <script src="./assets/JS/pagination.js"></script>
   <script src="./assets/JS/Calendrier.js"></script>
+  <script src="./assets/JS/tables.js"></script>
 
 </body>
 

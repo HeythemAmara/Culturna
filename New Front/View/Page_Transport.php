@@ -106,7 +106,7 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
                   <li><i class="fa fa fa-wrench open-card-option"></i></li>
                   <li><i class="fa fa-window-maximize full-card"></i></li>
                   <li><i class="fa fa-minus minimize-card"></i></li>
-                  <li><i class="fa fa-refresh reload-card"></i></li>
+                  <li><i class="fa fa-refresh reload-card" id= "my-buttonreload"></i></li>
               </ul>
           </div>
       </div>
@@ -286,6 +286,7 @@ $list = $ReservationC->listTransportpourclient($valeur_id);
 <script src="./assets/JS/InputControlFront.js"></script>
 <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
 <script src="./assets/JS/pagination.js"></script>
+<script src="./assets/JS/tables.js"></script>
 
 
 </html>

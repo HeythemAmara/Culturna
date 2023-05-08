@@ -1,4 +1,13 @@
 // card js start
+/*$(document).ready(function() {
+    $('#my-buttonreload').click(function() {
+      location.reload();
+    });
+  });*/
+  $('#my-buttonreload').click(function() {
+    $('#tableau1').load(location.href + ' #tableau1');
+  });
+
 $(document).ready(function(){
     // card js start
     $(".card-header-right .reload-card").on('click', function() {
@@ -10,6 +19,9 @@ $(document).ready(function(){
             $this.parents('.card').removeClass("card-load");
         }, 3000);
     });
+
+
+
     $(".card-header-right .card-option .open-card-option").on('click', function() {
         var $this = $(this);
         if ($this.hasClass('fa-times')) {

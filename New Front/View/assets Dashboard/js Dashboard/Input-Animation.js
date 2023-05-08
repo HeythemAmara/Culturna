@@ -39,3 +39,18 @@ toggleadd2.addEventListener('click', () => {
     InputlistAdd2.classList.add('slide-in-right');
     InputlistEdit2.classList.add('slide-out-right');
 });
+
+
+const toggleCalendar = document.querySelector('.toggleCalendar');
+const DivCalendar = document.querySelector('.DivCalendar');
+const ToBeBlured = document.querySelectorAll('.ToBeBlured');
+
+
+toggleCalendar.addEventListener('click', () => {
+    DivCalendar.classList.toggle('hide');
+    DivCalendar.classList.toggle('slide-out-right');
+    DivCalendar.classList.toggle('slide-in-right');
+    ToBeBlured.forEach((element) => {
+      element.classList.toggle('blur');
+    });
+});

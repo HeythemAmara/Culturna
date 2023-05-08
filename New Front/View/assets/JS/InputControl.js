@@ -1,20 +1,23 @@
 
 //!========================================================= Transport et chauffeur=========================================================
-function validateFormAddChauffeur() {
-  const nomRegex = /^[A-Za-z]+$/;
-  const prenomRegex = /^[A-Za-z]+$/;
-  const telRegex = /^[0-9]{8}$/;
-  const emailRegex = /^\S+@\S+\.\S+$/;
-  const vehiculeRegex = /^[A-Za-z0-9]+$/;
+const nomRegex = /^[A-Za-z]+$/;
+const prenomRegex = /^[A-Za-z]+$/;
+const telRegex = /^[0-9]{8}$/;
+const emailRegex = /^\S+@\S+\.\S+$/;
+const vehiculeRegex = /^[A-Za-z0-9]+$/;
 
-  const nomInput = document.getElementById('noma');
-  const prenomInput = document.getElementById('prenoma');
-  const telInput = document.getElementById('tela');
-  const emailInput = document.getElementById('emaila');
-  const vehiculeInput = document.getElementById('vehiculea');
+const nomInput = document.getElementById('noma');
+const prenomInput = document.getElementById('prenoma');
+const telInput = document.getElementById('tela');
+const emailInput = document.getElementById('emaila');
+const vehiculeInput = document.getElementById('vehiculea');
+
+function validateFormAddChauffeur() {
+
 
   if (!nomRegex.test(nomInput.value)) {
     alert('Le nom ne doit contenir que des lettres.');
+    nomInput.classList.add('wrong');
     return false;
   }
 
@@ -40,6 +43,10 @@ function validateFormAddChauffeur() {
 
   return true;
 }
+
+
+
+
 
 function validateFormModifChauffeur() {
   var idChauffeur = document.getElementById("Id_Chu").value;

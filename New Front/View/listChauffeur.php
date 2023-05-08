@@ -52,7 +52,7 @@ $countDec = $TransportC->countStatMonth('12');
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-icons.css" rel="stylesheet" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-svg.css" rel="stylesheet" />
-  <link href="./assets/CSS/Chat.css" rel="stylesheet" />
+  <!-- <link href="./assets/CSS/Chat.css" rel="stylesheet" /> -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/material-dashboard.css" rel="stylesheet" />
@@ -60,6 +60,7 @@ $countDec = $TransportC->countStatMonth('12');
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/dashboard.css" rel="stylesheet" />
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link href="./assets/CSS/Back.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -415,11 +416,12 @@ $countDec = $TransportC->countStatMonth('12');
 						<h3>Add Chauffeur</h3>
 					</li>
 					<li>
-						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma"  >
+						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma" onblur="No_Number('noma')" >
+            <small></small>
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="text" name="prenoma" class="form-style" placeholder="Prenom" id="prenoma"  >
+						<input type="text" name="prenoma" class="form-style" placeholder="Prenom" id="prenoma" onblur="No_Number('prenoma')"  >
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
@@ -1060,6 +1062,7 @@ $countDec = $TransportC->countStatMonth('12');
   <script src="./assets Dashboard/js Dashboard/Input-Animation.js"></script>
   <script src="./assets Dashboard/js Dashboard/Input-Variables.js"></script>
   <script src="./assets/JS/InputControl.js"></script>
+  <script src="./assets/JS/InputControlAdvanced.js"></script>
   <script src="./assets/JS/pagination.js"></script>
   <script src="./assets/JS/Chat.js"></script>
 

@@ -38,6 +38,8 @@ foreach ($coords as $location) {
     var longitude=<?= $longitude ?>;
     map.innerHTML = '<iframe width="100%" height="100%" src="https://maps.google.com/maps?q='+latitude+','+longitude+'&amp;z=15&amp;output=embed"></iframe>';
         
+        
+
 		// Reload the page every 5 seconds
 		setInterval(function() {
 			location.reload();

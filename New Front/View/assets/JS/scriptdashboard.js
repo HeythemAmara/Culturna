@@ -45,6 +45,14 @@ toggleadd.addEventListener('click', () => {
     InputlistAdd.classList.add('slide-in-right');
     InputlistEdit.classList.add('slide-out-right');
 });
+
+
+
+
+
+
+
+
 /*
 const toggleedit = document.getElementById('toggle-edit');
 if (toggleedit) {
