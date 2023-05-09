@@ -39,12 +39,12 @@ if($once==0)
         $mail->isSMTP();
         $mail->Host= 'smtp.gmail.com';
         $mail->SMTPAuth= true;
-       $mail->Username= 'culturnaskap@gmail.com';
-        $mail->Password= 'fxprdansjjbnbyzc';
+       $mail->Username= 'culturnaskapere@gmail.com';
+        $mail->Password= 'kecpchkzrncsigpy';
         $mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port= 587;
 
-        $mail->setFrom('culturnaskap@gmail.com' , ); 
+        $mail->setFrom('culturnaskapere@gmail.com' , ); 
         $mail->addAddress($email);  
 
         $mail->Subject = "Driver's Location";

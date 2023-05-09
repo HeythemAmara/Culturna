@@ -34,8 +34,7 @@ if (
             $_POST['emaila'],
             $_POST['mdpa'],
             $_POST['doba'],
-            "Staff",
-            NULL
+            "Staff"
             );
         $UtilisateurC = new UtilisateurC();
         $UtilisateurC->addUtilisateur($Utilisateur); echo "  ----------ajout user terminer---------     ";

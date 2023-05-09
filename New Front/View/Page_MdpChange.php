@@ -21,8 +21,7 @@ if(isset($_POST['update']))
             NULL,
             $_POST['mdpu'],
             NULL,
-            NULL,
-			NULL
+            NULL
             );
             $UtilisateurC = new UtilisateurC();
             $UtilisateurC->updateMdpUser($Utilisateur, $email);
@@ -44,18 +43,44 @@ if(isset($_POST['update']))
   <title> Culturna </title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
-  <link rel="stylesheet" href="./assets/CSS/Reservation.css">
+
+	<!-- NNNNNNNNNNNEEEEEEEEWWWWWWWWWWWWWWWWWWWWW -->
+	<link rel="stylesheet" href="./assets/CSS/Reservation.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./assets Dashboard/img Dashboard/favicon.png">
+  <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+  <script src="https://kit.fontawesome.com/f75325e0a0.js" crossorigin="anonymous"></script>
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="assets Front/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="assets Front/css/style.css" rel="stylesheet">
+
+  <!-- Front Css Utilities -->
+  <link href="assets Front/css/Utilities.css" rel="stylesheet">
+
+  <!-- Front Css Main Pages -->
+  <link href="assets/CSS/style Main Page.css" rel="stylesheet">
+
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+  
+  
+
 
 </head>
 <body>
 
-	<!--! Background Animation ================================================== -->
-	<section class="bganim">
-		<div class='air air1'></div>
-		<div class='air air2'></div>
-		<div class='air air3'></div>
-		<div class='air air4'></div>
-	</section>
+	
 
 	<!--! Header ================================================== -->
 
@@ -109,7 +134,7 @@ if(isset($_POST['update']))
 					<input type="password" name="mdpu" class="form-style" placeholder="Password" id="mdpu">
 					</li>
 				</ul>
-				<input type="submit" name="update" value="Submit" class="btn ">
+				<input type="submit" name="update" value="Submit" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
 			</form>
 			</li>
 			</ul>
@@ -118,6 +143,18 @@ if(isset($_POST['update']))
 
 	<!--! Scroll back to top ================================================== -->
 	<div class="scroll-to-top"></div>
+
+
+							<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="assets Front/js/main.js"></script> 
 
     
 </body>

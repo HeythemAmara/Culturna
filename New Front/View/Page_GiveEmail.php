@@ -28,12 +28,12 @@ include "../Controller/UtilisateurC.php";
 			$mail->isSMTP();
 			$mail->Host= 'smtp.gmail.com';
 			$mail->SMTPAuth= true;
-			$mail->Username= 'culturnaskap@gmail.com';
-        	$mail->Password= 'fxprdansjjbnbyzc';
+			$mail->Username= 'culturnaskapere@gmail.com';
+        	$mail->Password= 'kecpchkzrncsigpy';
         	$mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
         	$mail->Port= 587;
 
-        	$mail->setFrom('culturnaskap@gmail.com' , ); 
+        	$mail->setFrom('culturnaskapere@gmail.com' , ); 
         	$mail->addAddress($email); 
 	
 			$mail->Subject = 'Message Received (Contact Page)';
@@ -452,18 +452,44 @@ include "../Controller/UtilisateurC.php";
   <title> Culturna </title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
-  <link rel="stylesheet" href="./assets/CSS/Reservation.css">
+
+	<!-- NNNNNNNNNNNEEEEEEEEWWWWWWWWWWWWWWWWWWWWW -->
+	<link rel="stylesheet" href="./assets/CSS/Reservation.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./assets Dashboard/img Dashboard/favicon.png">
+  <link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+  <script src="https://kit.fontawesome.com/f75325e0a0.js" crossorigin="anonymous"></script>
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="assets Front/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="assets Front/css/style.css" rel="stylesheet">
+
+  <!-- Front Css Utilities -->
+  <link href="assets Front/css/Utilities.css" rel="stylesheet">
+
+  <!-- Front Css Main Pages -->
+  <link href="assets/CSS/style Main Page.css" rel="stylesheet">
+
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
+  <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+  
+  
+
 
 </head>
 <body>
 
-	<!--! Background Animation ================================================== -->
-	<section class="bganim">
-		<div class='air air1'></div>
-		<div class='air air2'></div>
-		<div class='air air3'></div>
-		<div class='air air4'></div>
-	</section>
+	
 
 	<!--! Header ================================================== -->
 
@@ -494,10 +520,12 @@ include "../Controller/UtilisateurC.php";
 					<h1>Donnez Votre Email</h1>
 					</li>
 					<li>
-						<input type="email" name="email" class="form-style" placeholder="Email" id="email">
+						<!-- <input type="email" name="email" class="form-style" placeholder="Email" id="email"> -->
+						<input type="email" name="email" class="form-style" id="email">
 					</li>
 				</ul>
-				<input type="submit" name="submit" value="Submit" class="btn ">
+				<!-- <input type="submit" name="submit" value="Submit" class="btn "> -->
+				<input type="submit" name="submit" value="Submit" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
 			</form>
 			</li>
 			</ul>
@@ -507,6 +535,15 @@ include "../Controller/UtilisateurC.php";
 	<!--! Scroll back to top ================================================== -->
 	<div class="scroll-to-top"></div>
 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="assets Front/js/main.js"></script> 
     
 </body>
 

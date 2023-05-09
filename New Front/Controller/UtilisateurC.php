@@ -509,7 +509,40 @@ public function login($Username, $Mdp)
 }
 
 
+public function updateProfile($Utilisateur, $id, $fullname)
+{
+    try {
 
+        $pdo = config::getConnexion();
+        $sql = "UPDATE `utilisateurs` SET `FullName`=:fullname, `Email`=:email, `Dob`=:dob WHERE IdU=:id_u";
+        $query = $pdo->prepare($sql);
+        echo $query->queryString;
+        $query->execute([
+            "fullname" => $fullname,
+            "email" => $Utilisateur->getEmail(),
+            "dob" => $Utilisateur->getDob(),
+            "id_u" => $id
+        ]);
+    } catch (PDOException $e) {
+        echo "Modification Echouer: " . $e->getMessage();
+    }
+}
+
+public function Fullname($id) 
+{
+    try {
+        $pdo = Config::getConnexion();
+        $sql = "SELECT FullName FROM utilisateurs WHERE IdU = :id";
+        $query = $pdo->prepare($sql);
+        $query->execute(['id' => $id]);
+        $result = $query->fetch();
+        return $result['FullName'] ?? null; // Use the null coalescing operator to avoid errors if the result is empty
+    } catch (PDOException $e) {
+        // Log the error or throw an exception
+        error_log("Error fetching FullName for ID $id: " . $e->getMessage());
+        throw $e;
+    }
+}
 
 
 }

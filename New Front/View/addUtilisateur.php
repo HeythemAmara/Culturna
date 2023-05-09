@@ -24,8 +24,7 @@ if (
             $_POST['emaila'],
             $_POST['mdpa'],
             $_POST['doba'],
-            $_POST['perma'],
-            NULL
+            $_POST['perma']
             );
         $UtilisateurC = new UtilisateurC();
         $UtilisateurC->addUtilisateur($Utilisateur);

@@ -1,4 +1,3 @@
-<!--           NNNEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW              -->
 <?php
 include "../Controller/UtilisateurC.php";
 
@@ -8,11 +7,10 @@ require_once './assets/Mailing/PHPMailer.php';
 require_once './assets/Mailing/SMTP.php';
 
 //$valeur_id =7;
-$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
+$valeur_id = $_GET['val_id'];
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $Usernameprofile= $UtilisateurC->Username($valeur_id);
-$Fullnameprofile= $UtilisateurC->Fullname($valeur_id);
 $list=$UtilisateurC->listUserId($valeur_id);
 $test=0; 
 
@@ -431,20 +429,16 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
 ?>
 
-<!--           NNNEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW              -->
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <title>Culturna</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-
-<html lang="en"><head>
-  <meta charset="utf-8">
-  
-  
-  <title>Culturna</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-  <link rel="stylesheet" href="./assets/CSS/Reservation.css">
+    <link rel="stylesheet" href="./assets/CSS/Reservation.css">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -478,73 +472,10 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
     <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
     
+</head>
+<body>
 
-
-
-
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style type="text/css">
-    /* neeeewwww */
-    
-        body{
-      margin-top:20px;
-      color: #1a202c;
-      text-align: left;
-      background-color: #e2e8f0;    
-  }
-  .main-body {
-      padding: 15px;
-  }
-  .card {
-      box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
-  }
-  
-  .card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      word-wrap: break-word;
-      background-color: #fff;
-      background-clip: border-box;
-      border: 0 solid rgba(0,0,0,.125);
-      border-radius: .25rem;
-  }
-  
-  .card-body {
-      flex: 1 1 auto;
-      min-height: 1px;
-      padding: 1rem;
-  }
-  
-  .gutters-sm {
-      margin-right: -8px;
-      margin-left: -8px;
-  }
-  
-  .gutters-sm>.col, .gutters-sm>[class*=col-] {
-      padding-right: 8px;
-      padding-left: 8px;
-  }
-  .mb-3, .my-3 {
-      margin-bottom: 1rem!important;
-  }
-  
-  .bg-gray-300 {
-      background-color: #e2e8f0;
-  }
-  .h-100 {
-      height: 100%!important;
-  }
-  .shadow-none {
-      box-shadow: none!important;
-  }
-  
-      </style>
-  </head>
-  <body>
-    <!-- Spinner Start -->
+<!-- Spinner Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
@@ -580,98 +511,72 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         </div>
     </nav>
     <!-- Navbar End -->
-  <div class="container">
-  <div class="main-body">
-  
-  <nav aria-label="breadcrumb" class="main-breadcrumb">
-  <ol class="breadcrumb">
-  <!--   <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-  <?php echo "<a class='breadcrumb-item' href='Page_accueil.php?val_id=" . $valeur_id ."'>Home</a>"; ?>
-  <li class="breadcrumb-item active" aria-current="page">Profile</li>
-  </ol>
-  </nav>
-  
-  <div class="row gutters-sm">
-  <div class="col-md-4 mb-3">
-  <div class="card">
-  <div class="card-body">
-  <div class="d-flex flex-column align-items-center text-center">
-  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-  <div class="mt-3">
-  <h4><?= $Usernameprofile ?></h4>
-  <p class="text-secondary mb-1"><?= $Fullnameprofile ?></p>
-  <p class="text-muted font-size-sm"><?= $Userr['Email']; ?></p>
 
-  
-  <form action="" method="post">
-  <button type="submit" name="changemdp" value="Change Password" class="btn btn-outline-primary">Changer mot de passe</button>
-  </form>
-  <hr>
-  <?php echo "<a href='Page_accueil.php?val_id=" . 0 ."' class='btn btn-primary'>Se déconnecter</a>"; ?>
-  
+	  <!--! Table or list ============================================== -->
+	<section class="List">
+		<div class="Tablelist">
+			<ul>
+				<li>
+			<form class="form-group" method="POST" action="FunctionUpdateNameUser.php"  onsubmit="return validateFormModifserFront();">
+				<ul><li>
+				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
+				<input type="hidden" value="<?= $Userr["Email"] ?>" name="emailu">
+				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
+				<input type="hidden" value="<?= $Userr["Dob"] ?>" name="dobu">
+				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
+				<label for="Usernameu"> Username </label>
+				<input type="text" name="Usernameu" class="form-style" value="<?= $Userr['Username']; ?>" id="Usernameu">
+				</li></ul>
+				<input type="submit" name="Update" value="Submit" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
+			</form>
+			</li>
+			<li>
+			<form class="form-group mt-4" method="POST" action="FunctionUpdateEmailUser.php"  onsubmit="return validateFormModifserFront();">
+				<ul><li>
+				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
+				<input type="hidden" value="<?= $Userr["Username"] ?>" name="Usernameu">
+				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
+				<input type="hidden" value="<?= $Userr["Dob"] ?>" name="dobu">
+				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
+				<label for="emailu"> Email </label>
+				<input type="email" name="emailu" class="form-style" value="<?= $Userr['Email']; ?>" id="emailu">
+				</li></ul>
+				<input type="submit" name="Update" value="Submit" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
+			</form>
+			</li>
+			<li>
+			<form class="form-group mt-4" method="POST" action="FunctionUpdateDobUser.php"  onsubmit="return validateFormModifserFront();">
+				<ul><li>
+				<input type="hidden" value="<?= $valeur_id ?>" name="idu">
+				<input type="hidden" value="<?= $Userr["Username"] ?>" name="Usernameu">
+				<input type="hidden" value="<?= $Userr["Mdp"] ?>" name="mdpu">
+				<input type="hidden" value="<?= $Userr["Email"] ?>" name="emailu">
+				<input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
+				<label for="dobu"> DOB " <?= $Userr['Dob']; ?> " </label>	
+				<input type="date" name="dobu" class="form-style" id="dobu">
+				</li></ul>
+				<input type="submit" name="Update" value="Submit" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
+			</form>
+			</li>
+			<li>
+				
+				<form action="" method="post">
+  					<input type="submit" name="changemdp" value="Change Password" class="btn btn-primary py-md-3 px-md-5 me-3 mt-4" style="margin-top: 10px; float: right;">
+				</form>
 
-  
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="col-md-8">
-  <div class="card mb-3"> <!-- LEHNE MIN YEBDA EL PROFILE-->
-    <form class="form-group" method="POST" action="FunctionUpdateProfile.php">
-        <div class="card-body">
-             <div class="row">
-                <div class="col-sm-3">
-                    <h6 class="mb-0">Nom et Prénom</h6>
-                </div>
-                    <input type="text" name="fullname" class="col-sm-9 text-secondary" value="<?= $Fullnameprofile ?>" id="fullname">  
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-3">
-                    <h6 class="mb-0">Email</h6>
-                </div>
-                <input type="email" name="emailu" class="col-sm-9 text-secondary" value="<?= $Userr['Email']; ?>" id="emailu">
-            </div>
-            <hr>
+				<?php echo "<a href='Page_accueil.php?val_id=" . 0 ."' class='btn btn-primary py-md-3 px-md-5 me-3 mt-4' style='margin-top: 10px; float: right;'>Disconnect</a>"; ?>
+			</li>
+			</ul>
+		</div>
+	</section>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top ToBeBlured"><i class="bi bi-arrow-up"></i></a>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <h6 class="mb-0">Date de naissance</h6>
-                </div>
-                <input type="text" name="dobu" class="col-sm-9 text-secondary" value="<?= $Userr['Dob']; ?>" id="dobu">
-            </div>
-            <hr>
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <h6 class="mb-0">Mot de passe</h6>
-                </div>
-                <input type="Password" name="mdpu" class="col-sm-9 text-secondary" value="<?= $Userr['Mdp']; ?>" id="mdpu">
-            </div>
-            <hr>
-            <input type="hidden" value="<?= $Userr["Username"] ?>" name="Usernameu">
-            <input type="hidden" value="<?= $Userr["Perm"] ?>" name="permu">
-            <input type="hidden" value="<?= $valeur_id ?>" name="idu">
-            <div class="row">
-                <div class="col-sm-12">
-                <input type="submit" name="Update" value="Modifier" class="btn btn-info ">
-                    <!-- <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a> -->
-                </div>
-            </div>
-        </div>
-    </form>  
-  <!-- END FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORRRMMMM      -->
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript"> 
-  </script>
-  <!-- JavaScript Libraries -->
+
+
+
+<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="lib/wow/wow.min.js"></script>
@@ -681,12 +586,10 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
 <!-- Template Javascript -->
 <script src="assets Front/js/main.js"></script>  
-  
-  </body>
+</body>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script  src="./assets/JS/scriptdashboard.js"></script>
 <script src="./assets/JS/InputControlFront.js"></script>
 
-
-  </html>
+</html>

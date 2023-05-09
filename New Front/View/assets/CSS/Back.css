@@ -13,7 +13,7 @@
     display: none;
 }
 
-.DivCalendar
+.DivCalendar , .DivChat
 {
     width: 50%;
     max-height: 80%;

@@ -267,19 +267,8 @@ $listReservation = $ReservationC->listReservation();
     <div class="container-fluid py-4 container-calender slide-out-right calendrierhidden calendrieraffiche ToBeBlured" >
       
         <!-- Calendar -->
-
-
-        
-     
-      
-     
-       <div class="container" > 
-
-
-
-
-
-
+           
+    <div class="container" > 
       <div class="left">
         <div class="calendar ">
           <div class="month">
@@ -345,7 +334,6 @@ $listReservation = $ReservationC->listReservation();
         <i class="fas fa-plus"></i>
       </button> 
   </div>
-
 
 
         <!-- End of calendar -->
@@ -523,30 +511,15 @@ foreach ($results3 as $row) {
       <div class="card-body px-0 pb-2 tableviewdiv">
       <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
       <h3>---Event---</h3>
-                  
-                        <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Search for event name...">
-                        <select name="sort-by-price" id="sort-by-price" class="form-style">
-                           <option value="" selected disabled>Trier par prix</option>
-                           <option value="desc">Prix décroissant</option>
-                           <option value="asc">Prix croissant</option>
-                        </select>
+        <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Search for event name...">
+          <select name="sort-by-price" id="sort-by-price" class="form-style">
+            <option value="" selected disabled>Trier par prix</option>
+            <option value="desc">Prix décroissant</option>
+            <option value="asc">Prix croissant</option>
+          </select>
                         <button class="btninput " onclick="sortTableByDate()">Trier Date </button>
-                  <div class="card">
-                    <div class="card-header">
-                      <div class="card-header-right">
-                          <ul class="list-unstyled card-option">
-                              <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                              <li><i class="fa fa-window-maximize full-card"></i></li>
-                              <li><i class="fa fa-minus minimize-card"></i></li>
-                              <li><i class="fa fa-refresh reload-card" id= "my-buttonreload"></i></li>
-                          </ul>
-                      </div>
-                    </div>
-                    <div class="card-block table-border-style">
-                      <div class="table-responsive">
-                        <table class="table table-hover tableau1" id="tableau1">
-                           <thead>
-				                <tr>
+                <table class="tableview tableau1">
+				          <tr class="TitleTab">
 								                  <th class="styleth">Event</th>
 									                <th class="styleth">Name</th>
 									                <th class="styleth">Type</th>
@@ -557,12 +530,11 @@ foreach ($results3 as $row) {
 									                <th class="styleth">NbrPlace</th>
 				                	        <th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
-                        </thead>
-                       <tbody>
                         <?php
                           foreach ($listEvent as $Event) 
                           {
                           ?>                    
+
 				                  	<tr>
 									               <td class="styleth"><?= $Event['idEvent']; ?></td>
                                  <td class="styleth"><?= $Event['name']; ?></td>
@@ -573,11 +545,8 @@ foreach ($results3 as $row) {
                                  <td class="styleth">
 									<img src="./ImageEvent/<?= $Event['image']; ?>" alt="Evenement" class="img_event" width="90"></td>
 						                     <td class="styleth"><?= $Event['nbrPlaceMax']; ?></td>
-                    <td>          
-                                 <div class="nav-item dropdown">
-                    <a style="color: #0d6efd;" href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical" ></i></a>
-                    <div class="dropdown-menu fade-down m-0" style="min-width: 10px; min-height:10px ;">
-                    <a class="toggle-edit" onclick="
+				                  		   <td>
+                              <a class="toggle-edit" onclick="
                                     editEvent(
                                       '<?=$Event['idEvent']; ?>',
                                       '<?= $Event['name']; ?>',
@@ -587,29 +556,21 @@ foreach ($results3 as $row) {
                                       '<?= $Event['prix']; ?>',
                                       '<?= $Event['nbrPlaceMax']; ?>'
                                     )">
-                                  <i class="edit-del-icon uil uil-edit" style="font-size: 20px;"></i>
+                                  <i class="edit-del-icon uil uil-edit"></i>
                                     </a>
-                                    <?php $test=$Event['idReserv'];
-							        echo "<a class='dropdown-item' style='padding: 0px 16px;' href='deleteEvent.php?val_id=" . $valeur_id ."&idEvent=".$test."'><i class='edit-del-icon uil uil-trash-alt' style='font-size: 20px;'></i></a>"; ?>
-                    </div>
-                </div>                          
-						      </td>
-                  </tr>
-          <?php
-        }
-        ?>	
-          </tbody>	
+                                    <a href="deleteEvent.php?idEvent=<?php echo $Event['idEvent']; ?>&val_id=<?= $valeur_id; ?>"><i class="edit-del-icon uil uil-trash-alt"></i></a>
+				                  		</td>
+				                  	</tr>
+                                      <?php
+                          }
+                          ?>		
                </table>  
                   <button onclick="exportTableToExcel('tableau1','Liste Des Evenements')">Export Table Data To Excel File</button>  
                   <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
                   <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
-       </div>
-     </div>
-    </div>
-	</div>
-  </div>
-     </div>
-    </div>
+      </div>
+   </div>
+</div>
         <script>
           function search() {
              // Declare variables

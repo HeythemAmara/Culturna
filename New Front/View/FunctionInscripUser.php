@@ -21,8 +21,7 @@ if (
             $_POST['emaila'],
             $_POST['mdpa'],
             $_POST['doba'],
-            "Client",
-            NULL    //à vérifieeeerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+            "Client"
             );
         $UtilisateurC = new UtilisateurC();
         $UtilisateurC->inscripUtilisateur($Utilisateur);

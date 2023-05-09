@@ -21,18 +21,18 @@ if (
         {
         $ChauffeurC = new ChauffeurC();
         $ChauffeurC->sendMessage($Username,$_POST['MessageChat']);
-        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
+        header('location:listChauffeur.php?val_id=' .$valeur_id.'&chatopen='. 1);
         echo "<br> done";
         } 
     else 
         {
-        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
+        header('location:listChauffeur.php?val_id=' .$valeur_id.'&chatopen='. 0);
         echo "<br> nope1";
         }
     }
 else 
     {
-        header('location:listChauffeur.php?val_id=' . urlencode($valeur_id));
+        header('location:listChauffeur.php?val_id=' .$valeur_id.'&chatopen='. 0);
         echo "<br> nope2";
     }
 ?>

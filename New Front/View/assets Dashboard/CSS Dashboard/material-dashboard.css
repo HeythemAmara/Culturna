@@ -24,10 +24,10 @@
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    */
 :root {
-  --bs-blue: #63B3ED;
+  --bs-blue: #d63384;
   --bs-indigo: #596CFF;
   --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
+  --bs-pink: #0d6efd;
   --bs-red: #F56565;
   --bs-orange: #fd7e14;
   --bs-yellow: #FBD38D;
@@ -142,7 +142,7 @@ h6,
   margin-bottom: 0.5rem;
   font-weight: 400;
   line-height: 1.2;
-  color: #344767;
+  color:#646464;
 }
 
 h1,
@@ -686,7 +686,7 @@ progress {
 
 .figure-caption {
   font-size: 0.875em;
-  color: #6c757d;
+  color: #646464;
 }
 
 
@@ -3050,11 +3050,11 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked[type="checkbox"] {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
 }
 
 .form-check-input:checked[type="radio"] {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
 }
 
 .form-check-input[type="checkbox"]:indeterminate {
@@ -3724,7 +3724,7 @@ fieldset:disabled .btn {
   --bs-btn-bg: #e91e63;
   --bs-btn-border-color: #e91e63;
   --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #ec407a;
+  --bs-btn-hover-bg: #49a3f2;
   --bs-btn-hover-border-color: #eb3573;
   --bs-btn-focus-shadow-rgb: 198, 26, 84;
   --bs-btn-active-color: #000;
@@ -20230,7 +20230,7 @@ fieldset:disabled .btn {
 
 
 .alert-primary {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
 }
 
 .alert-secondary {
@@ -20242,7 +20242,7 @@ fieldset:disabled .btn {
 }
 
 .alert-info {
-  background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
 }
 
 .alert-warning {
@@ -21150,7 +21150,7 @@ fieldset:disabled .btn {
 }
 
 .card.card-background.card-background-mask-primary:after {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
   opacity: .85;
 }
 
@@ -21309,7 +21309,7 @@ fieldset:disabled .btn {
   top: 0;
   content: "";
   border-radius: 0.5rem;
-  background-image: linear-gradient(195deg, #EC407A, #D81B60);
+  background-image: linear-gradient(195deg, #49a3f2, #1A73E8);
   opacity: .85;
 }
 
@@ -22427,7 +22427,7 @@ body.dark-version {
   width: 0.8375rem;
   height: 0.8375rem;
   border-radius: 50%;
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%), var(--bs-gradient);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%), var(--bs-gradient);
   opacity: 0;
   left: 0;
   right: 0;
@@ -22588,7 +22588,7 @@ label,
 }
 
 .bg-gradient-primary {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
 }
 
 .bg-gradient-secondary {
@@ -22596,11 +22596,11 @@ label,
 }
 
 .bg-gradient-success {
-  background-image: linear-gradient(195deg, #66BB6A 0%, #43A047 100%);
+  background-image: linear-gradient(195deg, #0042a5 0%, #00317a 100%);
 }
 
 .bg-gradient-info {
-  background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
 }
 
 .bg-gradient-warning {
@@ -22841,11 +22841,11 @@ label,
 }
 
 svg.text-primary .color-foreground {
-  fill: #EC407A;
+  fill: #49a3f2;
 }
 
 svg.text-primary .color-background {
-  fill: #D81B60;
+  fill: #1A73E8;
 }
 
 svg.text-secondary .color-foreground {
@@ -22967,7 +22967,7 @@ html {
 }
 
 *.gradient-animation {
-  background: linear-gradient(-45deg, #49a3f1, #F44335, #fb8c00, #EC407A, #344767);
+  background: linear-gradient(-45deg, #49a3f1, #F44335, #fb8c00, #49a3f2, #344767);
   background-size: 400% 400% !important;
   animation: gradient 10s ease infinite;
 }
@@ -24677,8 +24677,8 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
 }
 
 .nav.nav-pills.nav-pills-primary .moving-tab .nav-link.active {
-  background: #EC407A;
-  color: #EC407A;
+  background: #49a3f2;
+  color: #49a3f2;
 }
 
 .nav.nav-pills.nav-pills-info {
@@ -24798,7 +24798,7 @@ body:not(.dark-version) .sidenav.bg-transparent .collapse .nav-item .nav-link.ac
 .pagination.pagination-primary .page-item.active>.page-link,
 .pagination.pagination-primary .page-item.active>.page-link:focus,
 .pagination.pagination-primary .page-item.active>.page-link:hover {
-  background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  background-image: linear-gradient(195deg, #49a3f2 0%, #1A73E8 100%);
   border: none;
 }
 
@@ -26019,7 +26019,7 @@ p {
 }
 
 .text-gradient.text-primary {
-  background-image: linear-gradient(195deg, #EC407A, #D81B60);
+  background-image: linear-gradient(195deg, #49a3f2, #1A73E8);
 }
 
 .text-gradient.text-info {

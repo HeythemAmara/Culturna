@@ -4,9 +4,10 @@ include "../Controller/UtilisateurC.php";
 include "../Controller/TransportC.php";
 
 $valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
+$chatopen = isset($_GET['chatopen']) ? $_GET['chatopen'] : 0;
 
 $UtilisateurC = new UtilisateurC();
-$Username= $UtilisateurC->nomUtilisateur($valeur_id);
+$Username= $UtilisateurC->Username($valeur_id);
 
 $ChauffeurC = new ChauffeurC();
 $listchauffeur = $ChauffeurC->listChauffeur();
@@ -52,7 +53,7 @@ $countDec = $TransportC->countStatMonth('12');
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-icons.css" rel="stylesheet" />
   <link href="./assets Dashboard/CSS Dashboard/nucleo-svg.css" rel="stylesheet" />
-  <!-- <link href="./assets/CSS/Chat.css" rel="stylesheet" /> -->
+  <link href="./assets/CSS/Chat.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link id="pagestyle" href="./assets Dashboard/CSS Dashboard/material-dashboard.css" rel="stylesheet" />
@@ -61,10 +62,12 @@ $countDec = $TransportC->countStatMonth('12');
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   <link href="./assets/CSS/Back.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+  <input type="hidden" value="<?=$chatopen?>" class="chatopen">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark ToBeBlured" id="sidenav-main">
     <div class="sidenav-header">
       <a class="navbar-brand m-0" href="#" target="_blank">
         <img src="./assets Dashboard/img Dashboard/logo-white.png" class="navbar-brand-imgg h-100" alt="main_logo">
@@ -127,7 +130,7 @@ $countDec = $TransportC->countStatMonth('12');
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl ToBeBlured" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <h6 class="font-weight-bolder mb-0">Dashboard</h6>
@@ -138,7 +141,7 @@ $countDec = $TransportC->countStatMonth('12');
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
+                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?=$Username ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -156,7 +159,7 @@ $countDec = $TransportC->countStatMonth('12');
               </a>
             </li>
             <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-body p-0 btnChat">
+              <a href="javascript:;" class="nav-link text-body p-0 toggleChat toggleCalendar">
                 <i class="uil uil-chat fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
@@ -238,57 +241,123 @@ $countDec = $TransportC->countStatMonth('12');
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4 slide-out-right chathidden Chataffiche">
 
 
-          <!-- Chat-Start -->
-          <div class="page-content page-container" id="page-content">
-    <div class="padding">
-        <div class="row container d-flex justify-content-center">
-<div class="col-md-6">
-            <div class="card card-bordered">
-              <div class="card-header">
-                <h4 class="card-title"><strong>Admin Chat</strong></h4>
-              </div>
+ <!-- start chat  -->
+    <div class="DivChat slide-out-right hide" style="position: Fixed; z-index: 999; height: 700px; border: none;" >
+        <br />
+        <div class="container-chat-calendar" style="width:100%; height: 100%;">
+          <div class="page-content page-container-chat" id="page-content">
+    <div >
+        <div class="row container-chat d-flex justify-content-center" >
+<div class="col-md-4" style="width:100%; height: 100%;">
+             
+              <div class="box box-warning direct-chat direct-chat-warning">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Chat Messages</h3>
 
-
-              <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height:400px !important;">
-                <div class="media media-chat">
-                  <div class="media-body">  
-                     <?php
-                          foreach ($AdminChat as $Chat) 
-                          {
-                          ?>
-                              <h6><?= $Chat['Name']; ?></h6>
-                              <p><?= $Chat['Message']; ?></p>
-                              <p class="meta"><time datetime="2023"><?= $Chat['Time']; ?></time></p>
-                        <?php
-                          }
-                          ?>	
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" id= "my-buttonreloadChat" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                      <i class="fa fa-refresh reload-card"></i></button>
+                    <button class="btn btn-box-tool BtnCloseChat" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
                   </div>
                 </div>
+              
+                <div class="box-body"id="DivChatReload">
+                  
+                  <div class="direct-chat-messages" style="height:350px;" > 
 
-            
+                  <?php
+                          foreach ($AdminChat as $Chat) 
+                          {
+                            $usernamechatter=$Chat['Name']
+                          ?>
+                          <?php
+                          if($usernamechatter==$Username)
+                            {
+                          ?>
+                
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left"><?=$Chat['Name']?></span>
+                        <span class="direct-chat-timestamp pull-right"><?=$Chat['Time']?></span>
+                      </div>
+                     
+                      <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                   
+                      <div class="direct-chat-text">
+                      <?=$Chat['Message']?>
+                      </div>
+        
+                    </div>
 
-              <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 0px; right: 2px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div></div></div>
+                    <?php
 
-              <div class="publisher bt-1 border-light">
-                <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
-                <form method="POST" action="addChat.php?val_id=<?= $valeur_id; ?>" class="publisherfrom">
-                  <input class="publisher-input" type="text" placeholder="Write something" id="MessageChat" name="MessageChat">
-                  <input type="submit" name="Message" value="Submit" class="publisher-btn text-info">
-                </form>
+                          }
+                          else
+                          {
+                          ?>
+                          <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left"><?=$Chat['Name']?></span>
+                        <span class="direct-chat-timestamp pull-right"><?=$Chat['Time']?></span>
+                      </div>
+                     
+                      <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                   
+                      <div class="direct-chat-text">
+                      <?=$Chat['Message']?>
+                      </div>
+        
+                    </div>
+                    <?php
+                    }}
+                    ?>
+
+                  </div>
+                 
+                </div>
+                <script>
+  $(document).ready(function() {
+    $('#my-buttonreloadChat').click(function() {
+      $('#DivChatReload').load(location.href + ' #DivChatReload', function() {
+        $('#DivChatReload').scrollTop($('#DivChatReload')[0].scrollHeight);
+      });
+    });
+
+    setInterval(function() {
+      $('#DivChatReload').load(location.href + ' #DivChatReload', function() {
+        $('#DivChatReload').scrollTop($('#DivChatReload')[0].scrollHeight);
+      });
+    }, 10000);
+  });
+</script>
+
+                <div class="box-footer">
+                  <form action="addChat.php?val_id=<?= $valeur_id; ?>" method="post">
+                    <div class="input-group">
+                      <input type="text" name="MessageChat" id="MessageChat" placeholder="Tapez un Message ..." class="form-control">
+                      <span class="input-group-btn">
+                            <input type="submit" name="Message" value="Envoyer" class="btn btn-warning btn-flat" style="background-color:#0d6efd;">
+                          </span>
+                    </div>
+                  </form>
+                </div>
+             
               </div>
-
+           
+            </div>
              </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          <!-- Chat-End -->
-
+            
+              </div>
+             
+            </div>
+        </div>
       </div>
-      <div class="row mt-4">
+
+      <!-- end chat  -->
+      <div class="row mt-4 ToBeBlured">
         <div class="col-lg-4 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -338,7 +407,7 @@ $countDec = $TransportC->countStatMonth('12');
           </div>
         </div>
       </div>
-      <section class="row mb-4 sectionphp">
+      <section class="row mb-4 sectionphp ToBeBlured">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
@@ -510,7 +579,7 @@ $countDec = $TransportC->countStatMonth('12');
           </div>
         </div>
       </section>
-      <section class="row mb-4 sectionphp" style="margin-top: 170px;">
+      <section class="row mb-4 sectionphp ToBeBlured" style="margin-top: 170px;">
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv" >
@@ -682,7 +751,7 @@ $countDec = $TransportC->countStatMonth('12');
           </div>
         </div>
       </section>
-      <footer class="footer py-4  footerpageadmin">
+      <footer class="footer py-4  footerpageadmin ToBeBlured">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -716,7 +785,7 @@ $countDec = $TransportC->countStatMonth('12');
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin ps">
+  <div class="fixed-plugin ps ToBeBlured">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="material-icons py-2">settings</i>
     </a>

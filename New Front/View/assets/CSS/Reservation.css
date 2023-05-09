@@ -22,6 +22,11 @@
   visibility: visible;
 }
 
+
+
+
+
+
 .card {
   border-radius: 5px;
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
@@ -104,6 +109,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+
+
 
 /*!  Table or list ========================================== */
 .Tablelist{

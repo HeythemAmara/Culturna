@@ -5,22 +5,22 @@
 .tableview{
   margin: 15px;
 border-radius: 5px;
-color: #000;
+color: #646464;
 font-size: 1.1rem;
 min-width: 97%;
 }
 
 
 .styleth{
-  border: solid #000;
-  padding: 0px 5px;
+  border: 1px solid  #64646471;
+  padding: 0.2px 1px;
 }
 
 .TitleTab{
-  color:#000;
-  font-size: 1.5rem;
-}
+  color: #646464;
+  font-weight: 100;
 
+}
 
 /*! Input ========================================*/
 
@@ -74,8 +74,8 @@ box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
 .form-group{ 
 position: relative;
 display: block;
-  margin: 0;
-  padding: 0;
+margin: 0;
+padding: 0;
 }
 
 .form-group input:-ms-input-placeholder  {
@@ -150,19 +150,19 @@ justify-content: center;
 -ms-flex-pack: center;
 text-align: center;
 border: none;
-background-color: #e91e63;
+background-color: #0d6efd;
 color: #fff;
 box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
 }
 .btninput:active,
 .btninput:focus{  
-background-color: #f9c1d4;
-color: #e91e63;
+background-color: #c1c6f9;
+color: #0d6efd;
 box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 .btninput:hover{  
-background-color: #f9c1d4;
-color: #e91e63;
+background-color: #c1c6f9;
+color: #0d6efd;
 box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
