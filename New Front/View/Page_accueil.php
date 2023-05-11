@@ -79,19 +79,21 @@ $Username= $UtilisateurC->Username($valeur_id);
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
-                <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?>
-				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
-				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Club.php?val_id=" . $valeur_id ."'>Club</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Événement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Reclamation.php?val_id=" . $valeur_id ."'>Réclamation</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Produit.php?val_id=" . $valeur_id ."'>Produit</a>"; ?>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reservation</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Réservation</a>"; ?>
                         <?php echo "<a class='dropdown-item' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reponse.php?val_id=" . $valeur_id ."'>Réponse</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Materiel.php?val_id=" . $valeur_id ."'>Materiel</a>"; ?>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+                <?php echo "<a class='nav-item nav-link ' href='Page_Contact.php?val_id=" . $valeur_id ."'>Contact</a>"; ?>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Rejoignez-nous<i class="fa fa-arrow-right ms-3"></i></a>
                 <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_profile.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>".$Username."</a>"; ?>
             </div>
         </div>
@@ -108,11 +110,11 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
-                                <h1 class="display-3 text-white animated slideInDown">The Best Online Learning Platform</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
-                                <a href="#Readmore" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight toggle-login deconnecter-btn hide">Join Now</a>
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Culturna</h5>
+                                <h1 class="display-3 text-white animated slideInDown">Pour votre divertissement culturelle</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Ayant pour objectif de promouvoir des actes culturels.</p>
+                                <a href="#Readmore" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">En savoir plus</a>
+                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight toggle-login deconnecter-btn hide">Rejoignez-nous</a>
                             </div>
                         </div>
                     </div>
@@ -124,11 +126,11 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class="container">
                         <div class="row justify-content-start">
                             <div class="col-sm-10 col-lg-8">
-                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Best Online Courses</h5>
-                                <h1 class="display-3 text-white animated slideInDown">Get Educated Online From Your Home</h1>
-                                <p class="fs-5 text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea sanctus eirmod elitr.</p>
-                                <a href="#Readmore" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight toggle-login deconnecter-btn hide">Join Now</a>
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Culturna</h5>
+                                <h1 class="display-3 text-white animated slideInDown">La culture,</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">C'est la mémoire du peuple, la conscience collective de la continuité historique, le mode de penser et de vivre. Milan Kundera</p>
+                                <a href="#Readmore" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">En savoir plus</a>
+                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight toggle-login deconnecter-btn hide">Rejoignez-nous</a>
                             </div>
                         </div>
                     </div>
@@ -147,7 +149,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <i class="fa fa-3x fa-solid fa-volleyball text-primary mb-4"></i>
-                            <h5 class="mb-3">Nos Club</h5>
+                            <h5 class="mb-3">Nos Clubs</h5>
                             <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                         </div>
                     </div>
@@ -156,7 +158,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class='service-item text-center pt-3'>
                         <div class='p-4'>
                             <i class='fa fa-3x fa-calendar-day text-primary mb-4'></i>
-                            <h5 class='mb-3'>Nos Evenement</h5>
+                            <h5 class='mb-3'>Nos Événements</h5>
                             <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                         </div>
                     </div>
@@ -165,7 +167,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <i class="fa fa-3x fa-box text-primary mb-4"></i>
-                            <h5 class="mb-3">Nos Produit</h5>
+                            <h5 class="mb-3">Nos Produits</h5>
                             <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                         </div>
                     </div>
@@ -174,7 +176,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                     <div class="service-item text-center pt-3">
                         <div class="p-4">
                             <i class="fa fa-3x fa-exclamation text-primary mb-4"></i>
-                            <h5 class="mb-3">Reclamation</h5>
+                            <h5 class="mb-3">Réclamations</h5>
                             <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
                         </div>
                     </div>
@@ -195,29 +197,24 @@ $Username= $UtilisateurC->Username($valeur_id);
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
-                    <h1 class="mb-4">Welcome to Culturna</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <h6 class="section-title bg-white text-start text-primary pe-3">À propos de nous</h6>
+                    <h1 class="mb-4">Bienvenue dans Culturna</h1>
+                    <p class="mb-4">Culturna est  Centre Culturel qui sert à diffuser la culture, dans une volonté de partage et d’ouverture.</p>
+                    <p class="mb-4">Les différentes activités de Culturna tendent à favoriser la rencontre entre les différentes traditions et  modernités </p>
                     <div class="row gy-2 gx-4 mb-4">
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Événements</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Clubs</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Produits</p>
                         </div>
                         <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Transport</p>
                         </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -230,8 +227,8 @@ $Username= $UtilisateurC->Username($valeur_id);
     <div class="container-xxl py-5 category ToBeBlured">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
-                <h1 class="mb-5">Nos Evenement</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Événements</h6>
+                <h1 class="mb-5">Nos Événements</h1>
             </div>
             <div class="row g-3">
                 <div class="col-lg-7 col-md-6">
@@ -313,8 +310,8 @@ $Username= $UtilisateurC->Username($valeur_id);
     <div class="container-xxl py-5 ToBeBlured">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
-                <h1 class="mb-5">Popular Courses</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Cours</h6>
+                <h1 class="mb-5">Cours populaires</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -322,8 +319,8 @@ $Username= $UtilisateurC->Username($valeur_id);
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid" src="img/course-1.jpg" alt="">
                             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">En savoir plus</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Rejoignez-nous</a>
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
@@ -336,12 +333,12 @@ $Username= $UtilisateurC->Username($valeur_id);
                                 <small class="fa fa-star text-primary"></small>
                                 <small>(123)</small>
                             </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
+                            <h5 class="mb-4">Web Design & Development Cours pour débutants</h5>
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Etudiants</small>
                         </div>
                     </div>
                 </div>
@@ -350,8 +347,8 @@ $Username= $UtilisateurC->Username($valeur_id);
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid" src="img/course-2.jpg" alt="">
                             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">En savoir plus</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Rejoignez-nous</a>
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
@@ -364,12 +361,12 @@ $Username= $UtilisateurC->Username($valeur_id);
                                 <small class="fa fa-star text-primary"></small>
                                 <small>(123)</small>
                             </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
+                            <h5 class="mb-4">Web Design & Development Cours pour débutants</h5>
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Etudiants</small>
                         </div>
                     </div>
                 </div>
@@ -378,8 +375,8 @@ $Username= $UtilisateurC->Username($valeur_id);
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid" src="img/course-3.jpg" alt="">
                             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                                <a href="#Readmore" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">En savoir plus</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Rejoignez-nous</a>
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">
@@ -392,14 +389,14 @@ $Username= $UtilisateurC->Username($valeur_id);
                                 <small class="fa fa-star text-primary"></small>
                                 <small>(123)</small>
                             </div>
-                            <h5 class="mb-4">Web Design & Development Course for Beginners</h5>
+                            <h5 class="mb-4">Web Design & Development Cours pour débutants</h5>
                         </div>
                         <div class="d-flex border-top">
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                             <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
-                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Students</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30 Etudiants</small>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -411,8 +408,8 @@ $Username= $UtilisateurC->Username($valeur_id);
     <div class="container-xxl py-5 ToBeBlured">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title bg-white text-center text-primary px-3">Instructors</h6>
-                <h1 class="mb-5">Expert Instructors</h1>
+                <h6 class="section-title bg-white text-center text-primary px-3">Instructeurs</h6>
+                <h1 class="mb-5">Instructeurs experts</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -428,7 +425,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                             </div>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
+                            <h5 class="mb-0">Nom de l'instructeur</h5>
                             <small>Designation</small>
                         </div>
                     </div>
@@ -446,7 +443,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                             </div>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
+                            <h5 class="mb-0">Nom de l'instructeur</h5>
                             <small>Designation</small>
                         </div>
                     </div>
@@ -464,7 +461,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                             </div>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
+                            <h5 class="mb-0">Nom de l'instructeur</h5>
                             <small>Designation</small>
                         </div>
                     </div>
@@ -482,7 +479,7 @@ $Username= $UtilisateurC->Username($valeur_id);
                             </div>
                         </div>
                         <div class="text-center p-4">
-                            <h5 class="mb-0">Instructor Name</h5>
+                            <h5 class="mb-0">Nom de l'instructeur</h5>
                             <small>Designation</small>
                         </div>
                     </div>
@@ -544,7 +541,7 @@ $Username= $UtilisateurC->Username($valeur_id);
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
+                    <h4 class="text-white mb-3">Lien rapide</h4>
                     <a class="btn btn-link" href="">À propos de nous</a>
                     <a class="btn btn-link" href="">Contactez-nous</a>
                     <a class="btn btn-link" href="">Politique de confidentialité</a>
@@ -592,17 +589,17 @@ $Username= $UtilisateurC->Username($valeur_id);
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Culturna</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">Culturna</a>, Tous droits réservés.
 
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Skapere</a><br><br>
+                        Conçu par <a class="border-bottom" href="https://htmlcodex.com">Skapere</a><br><br>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a href="">Home</a>
+                            <a href="">Accueil</a>
                             <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                            <a href="">Aide</a>
+                            <a href="">FQA</a>
                         </div>
                     </div>
                 </div>
@@ -641,7 +638,8 @@ $Username= $UtilisateurC->Username($valeur_id);
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
 											<div class="g-recaptcha" data-sitekey="6LcnHdElAAAAAEBXzMkeQr5mZ6t_kh6xeZ6EUTp8"></div>
-											<input type="submit" name="Login" value="Submit" class="submitbtn mt-2">
+                                            <small id="Recapcha-Error" style="color:#b84747;" class="mt-2"></small>
+											<input type="submit" name="Login" value="Submit" class="submitbtn mt-2" onclick="return validateRecaptcha();">
                             				<p class="mb-0 mt-4 text-center">
 												<a href="Page_GiveEmail.php?val_id= <?= $valeur_id ?>" class="link">Forgot your password?</a>
 											</p>

@@ -1,7 +1,7 @@
 <?php
 include "../Controller/UtilisateurC.php";
 
-$valeur_id = $_GET['val_id'];
+$valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $UtilisateurC = new UtilisateurC();
 $Username= $UtilisateurC->nomUtilisateur($valeur_id);
 $list = $UtilisateurC->listUtilisateur();
@@ -54,7 +54,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark ToBeBlured" id="sidenav-main">
     <div class="sidenav-header">
       <a class="navbar-brand m-0" href="#" target="_blank">
         <img src="./assets Dashboard/img Dashboard/logo-white.png" class="navbar-brand-imgg h-100" alt="main_logo">
@@ -65,51 +65,51 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-user"></i>
-            </div>
-            <span class="nav-link-text ms-1">User</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-volleyball"></i>
-            </div>
-            <span class="nav-link-text ms-1">Club</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <?php echo "<a href='listEvent.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+        <?php echo "<a href='listUtilisateurs.php?val_id=" . $valeur_id ."' class='nav-link text-white active bg-gradient-primary'>
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
-              <i class='material-icons opacity-10 uil uil-calendar-alt'></i>
+              <i class='material-icons opacity-10 uil uil-user'></i>
             </div>
-            <span class='nav-link-text ms-1'>Event</span>
+            <span class='nav-link-text ms-1'>Utilisateur</span>
           </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-box"></i>
+          <?php echo "<a href='listClub.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-volleyball'></i>
             </div>
-            <span class="nav-link-text ms-1">Product</span>
-          </a>
+            <span class='nav-link-text ms-1'>Club</span>
+          </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-notes"></i>
+        <?php echo "<a href='listEvent.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-calendar-alt'></i>
             </div>
-            <span class="nav-link-text ms-1">Reclamations</span>
-          </a>
+            <span class='nav-link-text ms-1'>Événement</span>
+          </a>"; ?>
         </li>
         <li class="nav-item">
-          <?php echo "<a href='listChauffeur.php?val_id=" . $valeur_id ."' class='nav-link text-white'>
+          <?php echo "<a href='listProduct.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-box'></i>
+            </div>
+            <span class='nav-link-text ms-1'>Produit</span>
+          </a>"; ?>
+        </li>
+        <li class="nav-item">
+          <?php echo "<a href='listReclamation.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-notes'></i>
+            </div>
+            <span class='nav-link-text ms-1'>Réclamation</span>
+          </a>"; ?>
+        </li>
+        <li class="nav-item">
+          <?php echo "<a href='listChauffeur.php?val_id=" . $valeur_id ."' class='nav-link text-white '>
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
               <i class='material-icons opacity-10 uil uil-truck'></i>
             </div>
-            <span class='nav-link-text ms-1'>Transportations</span>
+            <span class='nav-link-text ms-1'>Transport</span>
           </a>"; ?>
         </li>
       </ul>
@@ -128,7 +128,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
+                <a class="d-sm-inline d-none" href="Page_ProfileAdmin.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -145,6 +145,11 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0 btnChat">
+                <i class="uil uil-chat fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
@@ -158,11 +163,11 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                        <span class="font-weight-bold">Nouveau message</span> de Laure
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
+                          il y a 13 minutes
                         </p>
                       </div>
                     </div>
@@ -176,11 +181,11 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        <span class="font-weight-bold">Nouvel album</span> par Travis Scott
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          1 day
+                          1 jour
                         </p>
                       </div>
                     </div>
@@ -191,7 +196,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
+                        <title>carte de crédit</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
@@ -206,11 +211,11 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
+                        Paiement effectué avec succès
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          2 days
+                          2 jours
                         </p>
                       </div>
                     </div>
@@ -232,13 +237,13 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
+                <p class="text-sm mb-0 text-capitalize">Les revenus d'aujourd'hui</p>
                 <h4 class="mb-0">$53k</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than last week</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>que la semaine dernière</p>
             </div>
           </div>
         </div>
@@ -249,13 +254,13 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                <p class="text-sm mb-0 text-capitalize">Les utilisateurs d'aujourd'hui</p>
                 <h4 class="mb-0">2,300</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than last month</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>par rapport au mois dernier</p>
             </div>
           </div>
         </div>
@@ -266,13 +271,13 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                <p class="text-sm mb-0 text-capitalize">Nouveaux clients</p>
                 <h4 class="mb-0">3,462</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than yesterday</p>
+              <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span>par rapport à hier</p>
             </div>
           </div>
         </div>
@@ -283,13 +288,13 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
+                <p class="text-sm mb-0 text-capitalize">Ventes</p>
                 <h4 class="mb-0">$103,430</h4>
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>par rapport à hier</p>
             </div>
           </div>
         </div>
@@ -308,10 +313,10 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
               <h6 class="mb-0 ">Nombre des admins et des utilisateurs</h6>
               <p class="text-sm ">(<span class="font-weight-bolder">!</span>) Le nombre des admins et des utilisateurs</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
                 <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -328,10 +333,10 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
               <h6 class="mb-0 "> Tranches d'âge </h6>
               <p class="text-sm "> (<span class="font-weight-bolder">!</span>) Les tranches d'âge des utilisateurs de notre site Web </p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
                 <p class="mb-0 text-sm"> updated 4 min ago </p>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -348,10 +353,10 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
               <h6 class="mb-0 ">visites mensuelles</h6>
               <p class="text-sm "> (<span class="font-weight-bolder">!</span>) Les visites mensuelles de notre site Web</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
                 <p class="mb-0 text-sm">just updated</p>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -360,7 +365,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-            <h3>---User---</h3>
+            <h3>---Utilisateur---</h3>
             <table class="tableview tableau1">
 				                <tr class="TitleTab">
 				                	<th class="styleth">Username</th>
@@ -421,10 +426,10 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
 		  <form  class="form-group" method="POST" action="addUtilisateur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddUser()">
 				<ul>
 					<li>
-						<h3> Add</h3>
+						<h3> Ajouter</h3>
 					</li>
 					<li>
-						<input type="text" name="Usernamea" class="form-style" placeholder="Username" id="Usernamea">
+						<input type="text" name="Usernamea" class="form-style" placeholder="Nom d'utilisateur" id="Usernamea">
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
@@ -432,11 +437,11 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
 						<i class="input-icon uil uil-tag"></i>
 					</li>
 					<li>
-						<input type="password" name="mdpa" class="form-style" placeholder="Mdp" id="mdpa">
+						<input type="password" name="mdpa" class="form-style" placeholder="Mot de passe" id="mdpa">
 						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="date" name="doba" class="form-style" placeholder="Dob" id="doba">
+						<input type="date" name="doba" class="form-style" placeholder="Date de naissance" id="doba">
 						<i class="input-icon uil uil-user"></i>
 					</li>
           <li>
@@ -448,7 +453,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
 	                  </select>
           </li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Add" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         
@@ -462,7 +467,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
 						<h3>Edit</h3>
 					</li>
 					<li>
-						<input type="text" name="Usernameu" class="form-style" placeholder="Username de l'utilisateur" id="Usernameu">
+						<input type="text" name="Usernameu" class="form-style" placeholder="Nom d'utilisateur" id="Usernameu">
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
@@ -487,7 +492,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
           </div>
         </div>
       </section>
-      <footer class="footer py-4  footerpageadmin">
+      <footer class="footer py-4  footerpageadmin ToBeBlured">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -495,9 +500,9 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> by
+                fabriqué avec <i class="fa fa-heart"></i>par
                 <a href="#" class="font-weight-bold" target="_blank">Skapere</a>
-                for a better experience.
+                pour une meilleure expérience.
               </div>
             </div>
             <div class="col-lg-6">
@@ -506,7 +511,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
                   <a href="#" class="nav-link text-muted" target="_blank">Skapere</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">About Us</a>
+                  <a href="#" class="nav-link text-muted" target="_blank">À propos de nous</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-muted" target="_blank">Instagram</a>
@@ -521,15 +526,14 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin ps">
+  <div class="fixed-plugin ps ToBeBlured">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="material-icons py-2">settings</i>
     </a>
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <p>Voir nos options de tableau de bord.</p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -542,7 +546,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
       <div class="card-body pt-sm-3 pt-0">
         <!-- Sidebar Backgrounds -->
         <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
+          <h6 class="mb-0">Couleur de la barre latérale</h6>
         </div>
         <a href="javascript:void(0)" class="switch-trigger background-color">
           <div class="badge-colors my-2 text-start">
@@ -556,25 +560,25 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
+          <h6 class="mb-0">Type de navigation latérale</h6>
+          <p class="text-sm">Choisissez entre 2 types de sidenav différents.</p>
         </div>
         <div class="d-flex">
-          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Sombre</button>
           <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
-          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">Blanc</button>
         </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        <p class="text-sm d-xl-none d-block mt-2">Vous pouvez changer le type de sidenav uniquement sur la vue du bureau.</p>
         <!-- Navbar Fixed -->
         <div class="mt-3 d-flex">
-          <h6 class="mb-0">Navbar Fixed</h6>
+          <h6 class="mb-0">Barre de navigation fixe</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">        
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
           </div>
         </div>
         <hr class="horizontal dark my-3">
         <div class="mt-2 d-flex">
-          <h6 class="mb-0">Light / Dark</h6>
+          <h6 class="mb-0">Blanc / Sombre</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
@@ -600,7 +604,7 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
       data: {
         labels: ["Client", "Admin"],
         datasets: [{
-          label: "User",
+          label: "Nombre",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -684,9 +688,9 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
     new Chart(ctx2, {
       type: "bar",
       data: {
-        labels: ["less_than_18", "between_18_25", "between_25_40", "more_than_40"],
+        labels: ["-18", "18-25", "25-40", "+40"],
         datasets: [{
-          label: "User",
+          label: "Nombre",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -776,9 +780,9 @@ $countDec = $UtilisateurC->countStatMonthUsers('12');
     new Chart(ctx3, {
       type: "line",
       data: {
-        labels: ["Jan","Feb","Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jan","Fev","Mar","Avr", "Mai", "Jun", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
         datasets: [{
-          label: "Mobile apps",
+          label: "Utilisateurs",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,

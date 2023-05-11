@@ -10,8 +10,8 @@ require_once './assets/Mailing/SMTP.php';
 //$valeur_id =7;
 $valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $UtilisateurC = new UtilisateurC();
-$Username= $UtilisateurC->nomUtilisateur($valeur_id);
-$Usernameprofile= $UtilisateurC->Username($valeur_id);
+$Usernameprofile= $UtilisateurC->nomUtilisateur($valeur_id);
+$Username= $UtilisateurC->Username($valeur_id);
 $Fullnameprofile= $UtilisateurC->Fullname($valeur_id);
 $list=$UtilisateurC->listUserId($valeur_id);
 $test=0; 
@@ -26,7 +26,7 @@ $alert = '';
 
 
 
-foreach ($Username as $Userr) {}
+foreach ($Usernameprofile as $Userr) {}
 
 if(isset($_POST['changemdp'])) {
 
@@ -254,7 +254,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <div class="v-font-size" style="line-height: 140%; text-align: justify; word-wrap: break-word;">
     <p style="line-height: 140%; font-size: 14px;"><span style="font-family:  Open Sans , sans-serif; font-size: 16px; line-height: 22.4px;"><strong>'.$current_date.'</strong></span></p>
 <p style="line-height: 140%; font-size: 14px;"> </p>
-<p style="line-height: 140%; font-size: 14px;"><span style="font-family:  Open Sans , sans-serif; font-size: 16px; line-height: 22.4px;"><strong>Cher(e) Client(e) '.$Usernameprofile.' </strong></span></p>
+<p style="line-height: 140%; font-size: 14px;"><span style="font-family:  Open Sans , sans-serif; font-size: 16px; line-height: 22.4px;"><strong>Cher(e) Client(e) '.$Username.' </strong></span></p>
 <p style="line-height: 140%; font-size: 14px;"> </p>
 <p style="line-height: 140%; font-size: 14px;">'.$messagebody.'</p>
   </div>
@@ -488,7 +488,6 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     /* neeeewwww */
     
         body{
-      margin-top:20px;
       color: #1a202c;
       text-align: left;
       background-color: #e2e8f0;    
@@ -561,21 +560,23 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
-                <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?>
-				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
-				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
+                <?php echo "<a class='nav-item nav-link ' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Club.php?val_id=" . $valeur_id ."'>Club</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Événement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Reclamation.php?val_id=" . $valeur_id ."'>Réclamation</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Produit.php?val_id=" . $valeur_id ."'>Produit</a>"; ?>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reserveation</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Réservation</a>"; ?>
                         <?php echo "<a class='dropdown-item' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reponse.php?val_id=" . $valeur_id ."'>Réponse</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Materiel.php?val_id=" . $valeur_id ."'>Materiel</a>"; ?>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_Profile.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>".$Usernameprofile."</a>"; ?>
+                <?php echo "<a class='nav-item nav-link ' href='Page_Contact.php?val_id=" . $valeur_id ."'>Contact</a>"; ?>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Rejoignez-nous<i class="fa fa-arrow-right ms-3"></i></a>
+                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_profile.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>".$Username."</a>"; ?>
             </div>
         </div>
     </nav>
@@ -586,8 +587,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <nav aria-label="breadcrumb" class="main-breadcrumb">
   <ol class="breadcrumb">
   <!--   <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-  <?php echo "<a class='breadcrumb-item' href='Page_accueil.php?val_id=" . $valeur_id ."'>Home</a>"; ?>
-  <li class="breadcrumb-item active" aria-current="page">Profile</li>
+  <?php echo "<a class='breadcrumb-item' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
+  <li class="breadcrumb-item active" aria-current="page">Profil</li>
   </ol>
   </nav>
   
@@ -598,7 +599,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <div class="d-flex flex-column align-items-center text-center">
   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
   <div class="mt-3">
-  <h4><?= $Usernameprofile ?></h4>
+  <h4><?= $Username ?></h4>
   <p class="text-secondary mb-1"><?= $Fullnameprofile ?></p>
   <p class="text-muted font-size-sm"><?= $Userr['Email']; ?></p>
 

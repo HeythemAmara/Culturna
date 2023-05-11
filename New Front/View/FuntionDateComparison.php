@@ -60,7 +60,7 @@ if($test==0)
             $mail->Host= 'smtp.gmail.com';
             $mail->SMTPAuth= true;
             $mail->Username= 'culturnaskapere@gmail.com';
-        	$mail->Password= 'tojlwjvhjnlyqhna';
+        	$mail->Password= 'kecpchkzrncsigpy';
         	$mail->SMTPSecure= PHPMailer::ENCRYPTION_STARTTLS;
         	$mail->Port= 587;
 
@@ -435,6 +435,6 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     }
 }
 
-header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
+//header('location:Page_accueil.php?val_id=' . urlencode($valeur_id));
 
 ?>

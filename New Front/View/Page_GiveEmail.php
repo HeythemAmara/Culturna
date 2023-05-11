@@ -483,31 +483,27 @@ include "../Controller/UtilisateurC.php";
   <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
   <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
   
-  
+  <!-- remove dots -->
+  <style>   
+            ul {
+  list-style: none;
+}
+    </style>
 
 
 </head>
 <body>
-
-	
-
-	<!--! Header ================================================== -->
-
-    <header id="header">
-        <div class="header-back">
-            <a href="#" class="Skapere">Skapere</a>
-        </div>
-
-        <div class="header-back">
-            <ul>
-				<li><?php echo "<a href='Page_accueil.php?val_id=" . 0 ."'>Accueil</a>"; ?></li>
-            </ul>
-        </div>
-    </header>
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
-			<ul>
+		<nav aria-label="breadcrumb" class="main-breadcrumb">
+  			<ol class="breadcrumb">
+  				<!--   <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+  				<?php echo "<a class='breadcrumb-item' href='Page_accueil.php?val_id=" . $valeur_id ."'>Home</a>"; ?>
+  				<li class="breadcrumb-item active" aria-current="page">Donner email</li>
+  				</ol>
+  		</nav>
+			<ul class="no-bullets">
 				<li>
 					<?php if($alert != ''): ?>
 					<div><?php echo $alert ?></div>
@@ -517,7 +513,7 @@ include "../Controller/UtilisateurC.php";
 			<form class="form-group mt-4" method="POST" action=""  onsubmit="return validateFormModifserFront();">
 				<ul>
 					<li>
-					<h1>Donnez Votre Email</h1>
+					<h2>Donnez Votre Email</h2>
 					</li>
 					<li>
 						<!-- <input type="email" name="email" class="form-style" placeholder="Email" id="email"> -->

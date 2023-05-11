@@ -208,3 +208,16 @@ function validateSignUpUser() {
   }  
   return true;
 }
+
+
+//RECAPCHA
+function validateRecaptcha() {
+  const Recapcha_Error = document.getElementById("Recapcha-Error");
+
+  var response = grecaptcha.getResponse();
+  if (response.length == 0) {
+    Recapcha_Error.innerHTML=('Please verify that you are not a robot.');
+    return false;
+  }
+  return true;
+}

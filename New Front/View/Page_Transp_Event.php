@@ -86,7 +86,7 @@ $Username= $UtilisateurC->Username($valeur_id);
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
                 <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Evenement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Événement</a>"; ?>
 				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
 				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
                 <div class="nav-item dropdown">

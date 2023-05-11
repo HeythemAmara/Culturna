@@ -64,33 +64,31 @@ $email = $_GET['Email'];
     <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
     <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
     
+    <!-- remove dots -->
+    <style>   
+            ul {
+  list-style: none;
+}
+    </style>
 
 </head>
 <body>
-
-
-	<!--! Header ================================================== -->
-
-    <header id="header">
-        <div class="header-back">
-            <a href="#" class="Skapere">Skapere</a>
-        </div>
-
-        <div class="header-back">
-            <ul>
-				<li><?php echo "<a href='Page_accueil.php?val_id=" . 0 ."'>Accueil</a>"; ?></li>
-            </ul>
-        </div>
-    </header>
 	  <!--! Table or list ============================================== -->
 	<section class="List">
 		<div class="Tablelist">
-			<ul>
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+  <ol class="breadcrumb">
+  <!--   <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+  <?php echo "<a class='breadcrumb-item' href='Page_accueil.php?val_id=" . $valeur_id ."'>Home</a>"; ?>
+  <li class="breadcrumb-item active" aria-current="page">Key</li>
+  </ol>
+  </nav>
+			<ul class="no-bullets">
 			<li>
 			<form class="form-group mt-4" method="POST" action="" >
 				<ul>
 					<li>
-					<h1>Placez votre clé(un mail vous a été envoyé)</h1>
+					<h2>Placez votre clé(un mail vous a été envoyé)</h2>
 					</li>
 					<li>
 						<!-- <input type="text" name="key" class="form-style" placeholder="Key" id="key"> -->

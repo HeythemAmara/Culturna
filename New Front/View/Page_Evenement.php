@@ -79,28 +79,28 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
         <?php echo "<a class='navbar-brand d-flex align-items-center px-4 px-lg-5' href='Page_accueil.php?val_id=" . $valeur_id ."'>
             <h2 class='m-0 text-primary'><img style='width:70px;' src='src/LogoBleu.png' alt=''>  Culturna</h2>
         </a>"; ?>
-
-
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
-                <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Evenement</a>"; ?>
-				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
-				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
-                <div class="nav-item dropdown" >
+                <?php echo "<a class='nav-item nav-link ' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Club.php?val_id=" . $valeur_id ."'>Club</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin active' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Événement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Reclamation.php?val_id=" . $valeur_id ."'>Réclamation</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Produit.php?val_id=" . $valeur_id ."'>Produit</a>"; ?>
+                <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reserveation</a>"; ?>
+					    <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Réservation</a>"; ?>
                         <?php echo "<a class='dropdown-item' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reponse.php?val_id=" . $valeur_id ."'>Réponse</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Materiel.php?val_id=" . $valeur_id ."'>Materiel</a>"; ?>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_Profile.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>".$Username."</a>"; ?>
+                <?php echo "<a class='nav-item nav-link ' href='Page_Contact.php?val_id=" . $valeur_id ."'>Contact</a>"; ?>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Rejoignez-nous<i class="fa fa-arrow-right ms-3"></i></a>
+                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_profile.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>".$Username."</a>"; ?>
             </div>
         </div>
     </nav>
@@ -115,8 +115,8 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 	  <nav class="navadmin">
 		<ul class="main">
 			<li class="Fixed-burger-li"></li>
-		  	<li><h3>Type des Evenements:</h3></li>
-			<li><a href="#Theatre" class="EventTypeRacour">Theatre</a></li>
+		  	<li><h3>Type des Événements:</h3></li>
+			<li><a href="#Theatre" class="EventTypeRacour">Théâtre</a></li>
 		  	<li><a href="#Musique" class="EventTypeRacour">Musique</a></li> 
 		  	<li><a href="#Culture" class="EventTypeRacour">Culture</a></li>
 		  	<li><a href="#Dance" class="EventTypeRacour">Dance</a></li>
@@ -135,8 +135,8 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
-								<h1 class="mb-5">Theatre</h1>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
+								<h1 class="mb-5">Théâtre</h1>
 									<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 										<input type="submit" name="tri1" value="Trier par Date" class="form__btn2" style="width: 200px;">
 									</form>
@@ -189,7 +189,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
 								<h1 class="mb-5">Musique</h1>
 								<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 									<input type="submit" name="tri2" value="Trier par Date" class="form__btn2" style="width: 200px;">
@@ -244,7 +244,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
 								<h1 class="mb-5">Culture</h1>
 								<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 									<input type="submit" name="tri3" value="Trier par Date" class="form__btn2" style="width: 200px;">
@@ -298,7 +298,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
 								<h1 class="mb-5">Dance</h1>
 								<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 									<input type="submit" name="tri4" value="Trier par Date" class="form__btn2" style="width: 200px;">
@@ -354,7 +354,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
 								<h1 class="mb-5">Art</h1>
 								<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 									<input type="submit" name="tri5" value="Trier par Date" class="form__btn2" style="width: 200px;">
@@ -410,7 +410,7 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 				<div class="container-xxl py-5 ToBeBlured">
 						<div class="container">
 							<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-								<h6 class="section-title bg-white text-center text-primary px-3">Evenement</h6>
+								<h6 class="section-title bg-white text-center text-primary px-3">Événement</h6>
 								<h1 class="mb-5">Sport</h1>
 								<form method="post" action="" style=" max-height : 10px; max-width: 10px; top: -100px; left: 80%">
 									<input type="submit" name="tri6" value="Trier par Date" class="form__btn2" style="width: 200px;">

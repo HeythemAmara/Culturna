@@ -82,48 +82,48 @@ $countDec = $TransportC->countStatMonth('12');
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
               <i class='material-icons opacity-10 uil uil-user'></i>
             </div>
-            <span class='nav-link-text ms-1'>User</span>
+            <span class='nav-link-text ms-1'>Utilisateur</span>
           </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-volleyball"></i>
+          <?php echo "<a href='listClub.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-volleyball'></i>
             </div>
-            <span class="nav-link-text ms-1">Club</span>
-          </a>
+            <span class='nav-link-text ms-1'>Club</span>
+          </a>"; ?>
         </li>
         <li class="nav-item">
         <?php echo "<a href='listEvent.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
               <i class='material-icons opacity-10 uil uil-calendar-alt'></i>
             </div>
-            <span class='nav-link-text ms-1'>Event</span>
+            <span class='nav-link-text ms-1'>Événement</span>
           </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-box"></i>
+          <?php echo "<a href='listProduct.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-box'></i>
             </div>
-            <span class="nav-link-text ms-1">Product</span>
-          </a>
+            <span class='nav-link-text ms-1'>Produit</span>
+          </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-notes"></i>
+          <?php echo "<a href='listReclamation.php?val_id=" . $valeur_id ."'class='nav-link text-white'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-notes'></i>
             </div>
-            <span class="nav-link-text ms-1">Reclamations</span>
-          </a>
+            <span class='nav-link-text ms-1'>Réclamation</span>
+          </a>"; ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10 uil uil-truck"></i>
+          <?php echo "<a href='listChauffeur.php?val_id=" . $valeur_id ."' class='nav-link text-white active bg-gradient-primary'>
+            <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
+              <i class='material-icons opacity-10 uil uil-truck'></i>
             </div>
-            <span class="nav-link-text ms-1">Transportations</span>
-          </a>
+            <span class='nav-link-text ms-1'>Transport</span>
+          </a>"; ?>
         </li>
       </ul>
     </div>
@@ -141,7 +141,7 @@ $countDec = $TransportC->countStatMonth('12');
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?=$Username ?></a> 
+                <a class="d-sm-inline d-none" href="Page_profileAdmin.php?val_id=<?= $valeur_id; ?>"><?=$Username ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -176,11 +176,11 @@ $countDec = $TransportC->countStatMonth('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">Nouveau message</span> de Laure
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
+                          il y a 13 minutes
                         </p>
                       </div>
                     </div>
@@ -194,11 +194,11 @@ $countDec = $TransportC->countStatMonth('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                          <span class="font-weight-bold">Nouvel album</span> par Travis Scott
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          1 day
+                          1 jour
                         </p>
                       </div>
                     </div>
@@ -209,7 +209,7 @@ $countDec = $TransportC->countStatMonth('12');
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
+                          <title>carte de crédit</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
@@ -224,11 +224,11 @@ $countDec = $TransportC->countStatMonth('12');
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
+                        Paiement effectué avec succès
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          2 days
+                          2 jours
                         </p>
                       </div>
                     </div>
@@ -254,7 +254,7 @@ $countDec = $TransportC->countStatMonth('12');
              
               <div class="box box-warning direct-chat direct-chat-warning">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Chat Messages</h3>
+                  <h3 class="box-title">Messages de chat</h3>
 
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" id= "my-buttonreloadChat" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
@@ -368,8 +368,8 @@ $countDec = $TransportC->countStatMonth('12');
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Requests</h6>
-              <p class="text-sm ">Number of Transport Requested</p>
+              <h6 class="mb-0 ">Demandes</h6>
+              <p class="text-sm ">Nombre de transports demandés</p>
               <hr class="dark horizontal">
             </div>
           </div>
@@ -384,8 +384,8 @@ $countDec = $TransportC->countStatMonth('12');
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Requestes </h6>
-              <p class="text-sm "> Monthly Transports Requested</p>
+              <h6 class="mb-0 "> Demandes </h6>
+              <p class="text-sm ">Transports mensuels demandés</p>
               <hr class="dark horizontal">
             </div>
           </div>
@@ -400,8 +400,8 @@ $countDec = $TransportC->countStatMonth('12');
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Vehicule</h6>
-              <p class="text-sm ">Driver's Vehicule</p>
+              <h6 class="mb-0 ">Véhicule</h6>
+              <p class="text-sm ">Véhicule du chauffeur</p>
               <hr class="dark horizontal">
             </div>
           </div>
@@ -411,15 +411,15 @@ $countDec = $TransportC->countStatMonth('12');
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-                      <h3>---Drivers---</h3>
+                      <h3>---Chauffeur---</h3>
                       <table class="tableview tableau1">
 				                <tr class="TitleTab">
 				                	<!--<th class="styleth">#</th>-->
-				                	<th class="styleth">First Name</th>
-				                	<th class="styleth">Last Name</th>
-				                	<th class="styleth">Phone</th>
+				                	<th class="styleth">Prénom</th>
+				                	<th class="styleth">Nom</th>
+				                	<th class="styleth">Numéro</th>
 				                	<th class="styleth">Email</th>
-				                	<th class="styleth">Vehicule</th>
+				                	<th class="styleth">Véhicule</th>
 				                	<th><a class="toggle-add"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                </tr>
                         <?php
@@ -482,7 +482,7 @@ $countDec = $TransportC->countStatMonth('12');
 			  <form  class="form-group" method="POST" action="addChauffeur.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddChauffeur()">
 				<ul>
 					<li>
-						<h3>Add Chauffeur</h3>
+						<h3>Ajout chauffeur</h3>
 					</li>
 					<li>
 						<input type="text" name="noma" class="form-style" placeholder="Nom" id="noma" onblur="No_Number('noma')" >
@@ -504,10 +504,10 @@ $countDec = $TransportC->countStatMonth('12');
 					<li>
             <i class="input-icon uil uil-tag"></i>
 	                  <select name="vehiculea" class="form-style" id="vehiculea">
-	                  	<option value="">Vehicule</option>
-	                  	<option value="Bike">2 wheels</option>
-	                  	<option value="Car">4 wheels</option>
-		                  <option value="Bus">+4 wheels</option>
+	                  	<option value="">Véhicule</option>
+	                  	<option value="Bike">2 roues</option>
+	                  	<option value="Car">4 roues</option>
+		                  <option value="Bus">+4 roues</option>
 	                  </select>
 					</li>
           <li>
@@ -523,7 +523,7 @@ $countDec = $TransportC->countStatMonth('12');
 						<i class="input-icon uil uil-user"></i>
 					</li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Add" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         
@@ -533,14 +533,14 @@ $countDec = $TransportC->countStatMonth('12');
           <input type="hidden" name="Id_Chu" class="form-style" placeholder="Id du chauffeur a modifier" id="Id_Chu">
         <ul>
 					<li>
-						<h3>Edit Chauffeur</h3>
+						<h3>Modifier Chauffeur</h3>
 					</li>
 					<li>
 						<input type="text" name="nomu" class="form-style" placeholder="Nom" id="nomu">
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="text" name="prenomu" class="form-style" placeholder="Prenom" id="prenomu">
+						<input type="text" name="prenomu" class="form-style" placeholder="Prénom" id="prenomu">
 						<i class="input-icon uil uil-usd-circle"></i>
 					</li>
 					<li>
@@ -554,27 +554,27 @@ $countDec = $TransportC->countStatMonth('12');
 					<li>
             <i class="input-icon uil uil-tag"></i>
 	                  <select name="vehiculeu" class="form-style" id="vehiculeu">
-	                  	<option value="">Vehicule</option>
-	                  	<option value="Bike">2 wheels</option>
-	                  	<option value="Car">4 wheels</option>
-		                  <option value="Bus">+4 wheels</option>
+	                  	<option value="">Véhicule</option>
+	                  	<option value="Bike">2 roues</option>
+	                  	<option value="Car">4 roues</option>
+		                  <option value="Bus">+4 roues</option>
 	                  </select>
 					</li>
           <li>
-						<input type="text" name="Usernameu" class="form-style" placeholder="Username" id="Usernameu">
+						<input type="text" name="Usernameu" class="form-style" placeholder="Nom d'utilisateur" id="Usernameu">
 						<i class="input-icon uil uil-box"></i>
 					</li>
 					<li>
-						<input type="password" name="mdpu" class="form-style" placeholder="Mdp" id="mdpu">
+						<input type="password" name="mdpu" class="form-style" placeholder="Mot de passe" id="mdpu">
 						<i class="input-icon uil uil-home"></i>
 					</li>
 					<li>
-						<input type="date" name="dobu" class="form-style" placeholder="Dob" id="dobu">
+						<input type="date" name="dobu" class="form-style" placeholder="Date de naissance" id="dobu">
 						<i class="input-icon uil uil-user"></i>
 					</li>
 
 				</ul>
-				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Update" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         </div>
@@ -591,9 +591,9 @@ $countDec = $TransportC->countStatMonth('12');
 				                  	<th class="styleth">Type</th>
 				                  	<th class="styleth">N°</th>
 				                  	<th class="styleth">Date</th>
-				                  	<th class="styleth">Adress</th>
-				                  	<th class="styleth">Name</th>
-				                  	<th class="styleth">Phone</th>
+				                  	<th class="styleth">Adresse</th>
+				                  	<th class="styleth">Nom</th>
+				                  	<th class="styleth">Num</th>
 				                  	<th class="styleth">Message</th>
 				                  	<th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
 				                  </tr>
@@ -647,7 +647,7 @@ $countDec = $TransportC->countStatMonth('12');
         <form  class="form-group" method="POST" action="addTransport.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddTransport()">
 				<ul>
 					<li>
-						<h3> Add Transport</h3>
+						<h3> Ajout transport</h3>
 					</li>
 					<li>
 						<input type="number" name="IdClientat" class="form-style" placeholder="IdClient" id="IdClientat" >
@@ -661,9 +661,9 @@ $countDec = $TransportC->countStatMonth('12');
 	              <i class="input-icon uil uil-tag"></i>
 	                  <select name="Typeat" class="form-style" id="Typeat">
 	                  	<option value="">Type</option>
-	                  	<option value="Event">Event</option>
+	                  	<option value="Event">Événement</option>
 	                  	<option value="Club">Club</option>
-		                  <option value="Delivery">Delivery</option>
+		                  <option value="Delivery">Livraison</option>
 	                  </select>
           </li>
 					<li>
@@ -679,19 +679,19 @@ $countDec = $TransportC->countStatMonth('12');
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="text" name="nameat" class="form-style" placeholder="Name" id="nameat" >
+						<input type="text" name="nameat" class="form-style" placeholder="Nom" id="nameat" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="tel" name="numat" class="form-style" placeholder="Phone" id="numat" >
+						<input type="tel" name="numat" class="form-style" placeholder="Numéro" id="numat" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="text" name="Noteat" class="form-style" placeholder="Note for the driver" id="Noteat" >
+						<input type="text" name="Noteat" class="form-style" placeholder="Remarque pour le conducteur" id="Noteat" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Add" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         
@@ -701,7 +701,7 @@ $countDec = $TransportC->countStatMonth('12');
           <input type="hidden" name="Id_Tut" class="form-style" placeholder="Id du Transport a modifier" id="Id_Tut" >
         <ul>
 					<li>
-						<h3>Edit Transport</h3>
+						<h3>Modification transport</h3>
 					</li>
 					<li>
 					<input type="number" name="IdClientut" class="form-style" placeholder="IdClient" id="IdClientut" >
@@ -715,9 +715,9 @@ $countDec = $TransportC->countStatMonth('12');
 	              <i class="input-icon uil uil-tag"></i>
 	                  <select name="Typeut" class="form-style" id="Typeut">
 	                  	<option value="">Type</option>
-	                  	<option value="Event">Event</option>
+	                  	<option value="Event">Événement</option>
 	                  	<option value="Club">Club</option>
-		                  <option value="Delivery">Delivery</option>
+		                  <option value="Delivery">Livraison</option>
 	                  </select>
           </li>
 					<li>
@@ -733,20 +733,20 @@ $countDec = $TransportC->countStatMonth('12');
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="text" name="nameut" class="form-style" placeholder="Name" id="nameut" >
+						<input type="text" name="nameut" class="form-style" placeholder="Nom" id="nameut" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="tel" name="numut" class="form-style" placeholder="Phone" id="numut" >
+						<input type="tel" name="numut" class="form-style" placeholder="Numéro" id="numut" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 					<li>
-						<input type="text" name="Noteut" class="form-style" placeholder="Note for the driver" id="Noteut" >
+						<input type="text" name="Noteut" class="form-style" placeholder="Remarque pour le conducteur" id="Noteut" >
 						<i class="input-icon uil uil-user"></i>
 					</li>
 
 				</ul>
-				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Update" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         </div>
@@ -759,9 +759,9 @@ $countDec = $TransportC->countStatMonth('12');
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> by
+                fabriqué avec <i class="fa fa-heart"></i>par
                 <a href="#" class="font-weight-bold" target="_blank">Skapere</a>
-                for a better experience.
+                pour une meilleure expérience.
               </div>
             </div>
             <div class="col-lg-6">
@@ -770,7 +770,7 @@ $countDec = $TransportC->countStatMonth('12');
                   <a href="#" class="nav-link text-muted" target="_blank">Skapere</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">About Us</a>
+                  <a href="#" class="nav-link text-muted" target="_blank">À propos de nous</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-muted" target="_blank">Instagram</a>
@@ -792,8 +792,7 @@ $countDec = $TransportC->countStatMonth('12');
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <p>Voir nos options de tableau de bord.</p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -806,7 +805,7 @@ $countDec = $TransportC->countStatMonth('12');
       <div class="card-body pt-sm-3 pt-0">
         <!-- Sidebar Backgrounds -->
         <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
+          <h6 class="mb-0">Couleur de la barre latérale</h6>
         </div>
         <a href="javascript:void(0)" class="switch-trigger background-color">
           <div class="badge-colors my-2 text-start">
@@ -820,25 +819,25 @@ $countDec = $TransportC->countStatMonth('12');
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
+          <h6 class="mb-0">Type de navigation latérale</h6>
+          <p class="text-sm">Choisissez entre 2 types de sidenav différents.</p>
         </div>
         <div class="d-flex">
-          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Sombre</button>
           <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
-          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">Blanc</button>
         </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        <p class="text-sm d-xl-none d-block mt-2">Vous pouvez changer le type de sidenav uniquement sur la vue du bureau.</p>
         <!-- Navbar Fixed -->
         <div class="mt-3 d-flex">
-          <h6 class="mb-0">Navbar Fixed</h6>
+          <h6 class="mb-0">Barre de navigation fixe</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
           </div>
         </div>
         <hr class="horizontal dark my-3">
         <div class="mt-2 d-flex">
-          <h6 class="mb-0">Light / Dark</h6>
+          <h6 class="mb-0">Blanc / Sombre</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
@@ -1133,7 +1132,6 @@ $countDec = $TransportC->countStatMonth('12');
   <script src="./assets/JS/InputControl.js"></script>
   <script src="./assets/JS/InputControlAdvanced.js"></script>
   <script src="./assets/JS/pagination.js"></script>
-  <script src="./assets/JS/Chat.js"></script>
 
 </body>
 

@@ -90,7 +90,7 @@ $listReservation = $ReservationC->listReservation();
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
               <i class='material-icons opacity-10 uil uil-user'></i>
             </div>
-            <span class='nav-link-text ms-1'>User</span>
+            <span class='nav-link-text ms-1'>Utilisateur</span>
           </a>"; ?>
         </li>
         <li class="nav-item">
@@ -106,7 +106,7 @@ $listReservation = $ReservationC->listReservation();
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10 uil uil-calendar-alt"></i>
             </div>
-            <span class="nav-link-text ms-1">Event</span>
+            <span class="nav-link-text ms-1">Événement</span>
           </a>
         </li>
         <li class="nav-item">
@@ -114,7 +114,7 @@ $listReservation = $ReservationC->listReservation();
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10 uil uil-box"></i>
             </div>
-            <span class="nav-link-text ms-1">Product</span>
+            <span class="nav-link-text ms-1">Produit</span>
           </a>
         </li>
         <li class="nav-item">
@@ -122,7 +122,7 @@ $listReservation = $ReservationC->listReservation();
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10 uil uil-notes"></i>
             </div>
-            <span class="nav-link-text ms-1">Reclamations</span>
+            <span class="nav-link-text ms-1">Reclamation</span>
           </a>
         </li>
         <li class="nav-item">
@@ -130,7 +130,7 @@ $listReservation = $ReservationC->listReservation();
             <div class='text-white text-center me-2 d-flex align-items-center justify-content-center'>
               <i class='material-icons opacity-10 uil uil-truck'></i>
             </div>
-            <span class='nav-link-text ms-1'>Transportations</span>
+            <span class='nav-link-text ms-1'>Transportation</span>
           </a>"; ?>
         </li>
       </ul>
@@ -149,7 +149,7 @@ $listReservation = $ReservationC->listReservation();
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <a class="d-sm-inline d-none" href="Page_Profile.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
+                <a class="d-sm-inline d-none" href="Page_profileAdmin.php?val_id=<?= $valeur_id; ?>"><?php foreach ($Username as $Userr){ echo $Userr['Username']; } ?></a> 
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -189,11 +189,11 @@ $listReservation = $ReservationC->listReservation();
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">Nouveau message</span> de Laure
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
+                          il y a 13 minutes
                         </p>
                       </div>
                     </div>
@@ -207,11 +207,11 @@ $listReservation = $ReservationC->listReservation();
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                          <span class="font-weight-bold">Nouvel album</span> par Travis Scott
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          1 day
+                          1 jour
                         </p>
                       </div>
                     </div>
@@ -222,7 +222,7 @@ $listReservation = $ReservationC->listReservation();
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
+                          <title>carte de crédit</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
@@ -237,11 +237,11 @@ $listReservation = $ReservationC->listReservation();
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
+                        Paiement effectué avec succès
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
-                          2 days
+                          2 jours
                         </p>
                       </div>
                     </div>
@@ -450,13 +450,13 @@ foreach ($results3 as $row) {
 ?>
 <!------selon le type--------------->
             <div class="card-body">
-              <h6 class="mb-0 ">Types of the events</h6>
-              <p class="text-sm ">Number of events for each type</p>
+              <h6 class="mb-0 ">Types des événement</h6>
+              <p class="text-sm ">Nombre des événements pour chaque type</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-              </div>
+                <p class="mb-0 text-sm"></p>
+              </div> -->
             </div>
           </div>
         </div>
@@ -472,13 +472,13 @@ foreach ($results3 as $row) {
             <!-----------------selon date-------------------------->
 
             <div class="card-body">
-              <h6 class="mb-0 "> Dates of the events </h6>
-              <p class="text-sm ">Number of events for each month</p>
+              <h6 class="mb-0 "> Dates des événements</h6>
+              <p class="text-sm ">Nombre des événements</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm"> updated 4 min ago </p>
-              </div>
+                <p class="mb-0 text-sm"></p>
+              </div> -->
             </div>
           </div>
         </div>
@@ -494,13 +494,13 @@ foreach ($results3 as $row) {
             <!-----------------------selon prix------------------------------------->
 
             <div class="card-body">
-              <h6 class="mb-0 ">Price of the events </h6>
-              <p class="text-sm ">Monthly earnings</p>
+              <h6 class="mb-0 ">Prix des événement</h6>
+              <p class="text-sm ">Gains mensuels</p>
               <hr class="dark horizontal">
-              <div class="d-flex ">
+              <!-- <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
-                <p class="mb-0 text-sm">just updated</p>
-              </div>
+                <p class="mb-0 text-sm"></p>
+              </div> -->
             </div>
           </div>
         </div>
@@ -510,20 +510,20 @@ foreach ($results3 as $row) {
     <div class="card tablediv">
       <div class="card-body px-0 pb-2 tableviewdiv">
       <!--! ====================================================== Tableauxxxx Lennnnaaaaa -->
-      <h3>---Event---</h3>
-        <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Search for event name...">
+      <h3>---Evénement---</h3>
+        <input type="text" id="search-input" class="form-style" onkeyup="search()" placeholder="Chercher le nom d'événement...">
           <select name="sort-by-price" id="sort-by-price" class="form-style">
             <option value="" selected disabled>Trier par prix</option>
             <option value="desc">Prix décroissant</option>
             <option value="asc">Prix croissant</option>
           </select>
                         <button class="btninput " onclick="sortTableByDate()">Trier Date </button>
-                <table class="tableview tableau1">
+                <table class="tableview tableau1" id ="tableau1">
 				          <tr class="TitleTab">
-								                  <th class="styleth">Event</th>
-									                <th class="styleth">Name</th>
+                                  <th class="styleth">Id</th>     
+									                <th class="styleth">Nom</th>
 									                <th class="styleth">Type</th>
-									                <th class="styleth">Time</th>
+									                <th class="styleth">Temps</th>
 									                <th class="styleth">Date</th>
 									                <th class="styleth">Prix</th>
 									                <th class="styleth">Image</th>
@@ -536,7 +536,7 @@ foreach ($results3 as $row) {
                           ?>                    
 
 				                  	<tr>
-									               <td class="styleth"><?= $Event['idEvent']; ?></td>
+                                 <td class="styleth"><?= $Event['idEvent']; ?></td>
                                  <td class="styleth"><?= $Event['name']; ?></td>
                                  <td class="styleth"><?= $Event['type']; ?></td>
                                  <td class="styleth"><?= $Event['time']; ?></td>
@@ -565,7 +565,7 @@ foreach ($results3 as $row) {
                           }
                           ?>		
                </table>  
-                  <button onclick="exportTableToExcel('tableau1','Liste Des Evenements')">Export Table Data To Excel File</button>  
+                  <button onclick="exportTableToExcel('tableau1','Liste Des Evenements')">Export Excel</button>  
                   <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
                   <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
       </div>
@@ -723,7 +723,7 @@ function exportTableToExcel(tableID, filename = ''){
 
 				<ul>
 					<li>
-						<h3>Add Event</h3>
+						<h3>Ajout des événements</h3>
 					</li>
           <li>
 					<input type="text" name="namea" class="form-style" placeholder="Nom" id="namea">
@@ -733,7 +733,7 @@ function exportTableToExcel(tableID, filename = ''){
 	              <i class="input-icon uil uil-file-landscape"></i>
 	                  <select name="typea" class="form-style" id="typea">
 	                  	<option value="">Type</option>
-	                  	<option value="Theatre">Theatre</option>
+	                  	<option value="Theatre">Théâtre</option>
 	                  	<option value="Musique">Musique</option>
 		                  <option value="Culture">Culture</option>
 		                  <option value="Dance">Dance</option>
@@ -762,7 +762,7 @@ function exportTableToExcel(tableID, filename = ''){
 						<i class="input-icon uil uil-user-minus"></i>
 					</li>
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4 Add-event-PHP-JS" onclick="addeventtocalender()">
+				<input type="submit" name="Add" value="Soumettre" class="btninput mt-4 Add-event-PHP-JS" onclick="addeventtocalender()">
 			  </form>
           </div>
         
@@ -772,7 +772,7 @@ function exportTableToExcel(tableID, filename = ''){
       <input type="hidden" name="idEventu" class="form-style" placeholder="id Event a Modifier" id="idEventu">  
       <ul>
 					<li>
-						<h3>Edit Event</h3>
+						<h3>Modification des événements</h3>
 					</li>
 		      <li>
 		      	<input type="text" name="nameu" class="form-style" placeholder="Nom" id="nameu">
@@ -782,7 +782,7 @@ function exportTableToExcel(tableID, filename = ''){
 	              <i class="input-icon uil uil-file-landscape"></i>
 	                  <select name="typeu" class="form-style" id="typeu">
 	                  	<option value="">Type</option>
-	                  	<option value="Theatre">Theatre</option>
+	                  	<option value="Theatre">Théâtre</option>
 	                  	<option value="Musique">Musique</option>
 		                  <option value="Culture">Culture</option>
 		                  <option value="Dance">Dance</option>
@@ -811,7 +811,7 @@ function exportTableToExcel(tableID, filename = ''){
 		      	<i class="input-icon uil uil-user-minus"></i>
 		      </li>
 	      </ul>
-	      <input type="submit" name="Update" value="Submit" class="btninput mt-4">
+	      <input type="submit" name="Update" value="Soumettre" class="btninput mt-4">
        <!-- <input type= "reset" class="btninput"Cancel>   -->
 
 			</form>
@@ -822,17 +822,17 @@ function exportTableToExcel(tableID, filename = ''){
         <div class="col-lg-8 col-md-6 mb-md-0 mb-4 ">
           <div class="card tablediv">
             <div class="card-body px-0 pb-2 tableviewdiv">
-            <h3>---Reservation---</h3>
-            <input type="text" id="search-input2" class="form-style " onkeyup="search2()" placeholder="Search for event name...">
+            <h3>---Réservation---</h3>
+            <input type="text" id="search-input2" class="form-style " onkeyup="search2()" placeholder="Chercher le nom d'événement...">
 				     
             
             <table class="tableview tableau2" id="tableau2">
 				        <tr class="TitleTab">
-							    <th class="styleth">Event</th>
-							    <th class="styleth">Name</th>
+							    <th class="styleth">Événement</th>
+							    <th class="styleth">Nom</th>
 							    <th class="styleth">Email</th>
 							    <th class="styleth">nbrPlace</th>
-							    <th class="styleth">Num</th>
+							    <th class="styleth">Numéro</th>
 							    <th class="styleth">Client</th>
                   <th class="styleth">Prix</th>				              
                   <th><a class="toggle-add2"><i class="edit-del-icon uil uil-book-medical"></i></a></th>
@@ -869,7 +869,7 @@ function exportTableToExcel(tableID, filename = ''){
                   }
                   ?>
               </table> 
-                  <button onclick="exportTableToExcel('tableau2','Liste Des Reservations')">Export Table Data To Excel File</button>  
+                  <button onclick="exportTableToExcel('tableau2','Liste Des Reservations')">Export Excel</button>  
                   <button class="uil uil-step-backward" id= "bouton-precedent2"disabled></button>
                   <button class="uil uil-skip-forward" id="bouton-suivant2"></button>
 		        </div>
@@ -920,7 +920,7 @@ function exportTableToExcel(tableID, filename = ''){
         <form  class="form-group" method="POST" action="addReserv.php?val_id=<?= $valeur_id; ?>" onsubmit="return validateFormAddReserv()">
 				<ul>
 					<li>
-						<h3> Add Reservation</h3>
+						<h3> Ajout des Réservations</h3>
 					</li>
 					<li>
 						<input type="text" name="idEventa" class="form-style" placeholder="IdEvent" id="idEventa">
@@ -948,7 +948,7 @@ function exportTableToExcel(tableID, filename = ''){
 					</li>
 			
 				</ul>
-				<input type="submit" name="Add" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Add" value="Soumettre" class="btninput mt-4">
 			  </form>
 
           <script>
@@ -967,7 +967,7 @@ function exportTableToExcel(tableID, filename = ''){
         <input type="hidden" name="idReservu" class="form-style" placeholder="id Reservation a Modifier" id="idReservu"  >
         <ul>
 					<li>
-						<h3>Edit Reservation</h3>
+						<h3>Modification des réservations</h3>
 					</li>
 					<li>
 						<input type="number" name="idEventu" class="form-style" placeholder="idEvent" id="idEventuEdit"  >
@@ -995,7 +995,7 @@ function exportTableToExcel(tableID, filename = ''){
 					</li>
 
 				</ul>
-				<input type="submit" name="Update" value="Submit" class="btninput mt-4">
+				<input type="submit" name="Update" value="Soumettre" class="btninput mt-4">
 			  </form>
           </div>
         </div>
@@ -1008,9 +1008,9 @@ function exportTableToExcel(tableID, filename = ''){
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> by
+                fabriqué avec <i class="fa fa-heart"></i>par
                 <a href="#" class="font-weight-bold" target="_blank">Skapere</a>
-                for a better experience.
+                pour une meilleure expérience.
               </div>
             </div>
             <div class="col-lg-6">
@@ -1019,7 +1019,7 @@ function exportTableToExcel(tableID, filename = ''){
                   <a href="#" class="nav-link text-muted" target="_blank">Skapere</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-muted" target="_blank">About Us</a>
+                  <a href="#" class="nav-link text-muted" target="_blank">À propos de nous</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link text-muted" target="_blank">Instagram</a>
@@ -1043,8 +1043,7 @@ function exportTableToExcel(tableID, filename = ''){
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
+          <p>Voir nos options de tableau de bord.</p>
         </div>
         <div class="float-end mt-4">
           <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
@@ -1057,7 +1056,7 @@ function exportTableToExcel(tableID, filename = ''){
       <div class="card-body pt-sm-3 pt-0">
         <!-- Sidebar Backgrounds -->
         <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
+          <h6 class="mb-0">Couleur de la barre latérale</h6>
         </div>
         <a href="javascript:void(0)" class="switch-trigger background-color">
           <div class="badge-colors my-2 text-start">
@@ -1071,25 +1070,25 @@ function exportTableToExcel(tableID, filename = ''){
         </a>
         <!-- Sidenav Type -->
         <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
+          <h6 class="mb-0">Type de navigation latérale</h6>
+          <p class="text-sm">Choisissez entre 2 types de sidenav différents.</p>
         </div>
         <div class="d-flex">
-          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Dark</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark" onclick="sidebarType(this)">Sombre</button>
           <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent" onclick="sidebarType(this)">Transparent</button>
-          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
+          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">Blanc</button>
         </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+        <p class="text-sm d-xl-none d-block mt-2">Vous pouvez changer le type de sidenav uniquement sur la vue du bureau.</p>
         <!-- Navbar Fixed -->
         <div class="mt-3 d-flex">
-          <h6 class="mb-0">Navbar Fixed</h6>
+          <h6 class="mb-0">Barre de navigation fixe</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
           </div>
         </div>
         <hr class="horizontal dark my-3">
         <div class="mt-2 d-flex">
-          <h6 class="mb-0">Light / Dark</h6>
+          <h6 class="mb-0">Blanc / Sombre</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
             <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
           </div>
@@ -1098,14 +1097,6 @@ function exportTableToExcel(tableID, filename = ''){
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
 
   <!--   Core JS Files   -->
   <script src="./assets Dashboard/js Dashboard/core/popper.min.js"></script>

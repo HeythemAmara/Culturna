@@ -25,7 +25,21 @@ if(isset($_POST['update']))
             );
             $UtilisateurC = new UtilisateurC();
             $UtilisateurC->updateMdpUser($Utilisateur, $email);
-        header('location:Page_accueil.php?val_id=' . $valeur_id);
+
+
+            $isAdmin=$UtilisateurC->LogAdmin($valeur_id);
+        if($isAdmin=="Admin")
+        {
+             header('location:Page_profileAdmin.php?val_id=' . urlencode($valeur_id));
+        }
+        else if($isAdmin=="Client")
+        {
+             header('location:Page_profile.php?val_id=' . urlencode($valeur_id));
+        }
+
+
+
+        //header('location:Page_accueil.php?val_id=' . $valeur_id);
         } 
     else 
         {

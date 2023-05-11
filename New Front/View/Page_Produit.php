@@ -1,8 +1,22 @@
 <?php
 include "../Controller/EventC.php";
 include "../Controller/UtilisateurC.php";
-$EventC = new EventC();
+include '../Controller/productC.php';
+require_once '../Controller/cartC.php';
+require_once "../Model/cart.php";
+require_once "../Model/products.php";
+require_once "../View/panier.php";
 
+
+
+
+$EventC = new EventC();
+$productC= new ProductC();
+$productC= new ProductC();
+$products = $productC->getProducts();
+
+$cartCount = (new CarteC())->countCarts(); 
+$products = $productC->getProducts();
 $valeur_id = isset($_GET['val_id']) ? $_GET['val_id'] : 0;
 $resevtest = isset($_GET['creationreserv']) ? $_GET['creationreserv'] : 0;
 $UtilisateurC = new UtilisateurC();
@@ -14,7 +28,7 @@ else
 {
     $Username= $UtilisateurC->Username($valeur_id);
 }
-$EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
+//$EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 
 
 ?>
@@ -88,40 +102,40 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
         <?php echo "<a class='navbar-brand d-flex align-items-center px-4 px-lg-5' href='Page_accueil.php?val_id=" . $valeur_id ."'>
             <h2 class='m-0 text-primary'><img style='width:70px;' src='src/LogoBleu.png' alt=''>  Culturna</h2>
         </a>"; ?>
-
-
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
-                <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Evenement</a>"; ?>
-				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
-				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
-                <div class="nav-item dropdown" >
+                <?php echo "<a class='nav-item nav-link ' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Club.php?val_id=" . $valeur_id ."'>Club</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Événement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Reclamation.php?val_id=" . $valeur_id ."'>Réclamation</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin active' href='Page_Produit.php?val_id=" . $valeur_id ."'>Produit</a>"; ?>
+                <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reserveation</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Réservation</a>"; ?>
                         <?php echo "<a class='dropdown-item' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reponse.php?val_id=" . $valeur_id ."'>Réponse</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Materiel.php?val_id=" . $valeur_id ."'>Materiel</a>"; ?>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_Profile.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>".$Username."</a>"; ?>
+                <?php echo "<a class='nav-item nav-link ' href='Page_Contact.php?val_id=" . $valeur_id ."'>Contact</a>"; ?>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Rejoignez-nous<i class="fa fa-arrow-right ms-3"></i></a>
+                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_profile.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>".$Username."</a>"; ?>
             </div>
         </div>
     </nav>
     <!-- Navbar End -->
-
+       
 	<!-- Debut Panier header -->
-
+    
 	<div class="humberger__menu__cart__Produit " style=" float: right; margin-right: 20px; margin-top:20px;" >
             <ul>
-                <li><a href="#" class="btn_Panier"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#" class="btn_Panier"><i class="fa fa-shopping-bag"></i> <span><?php echo $cartCount ?></span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span>$<?php echo $total_price  ?></span></div>
     </div>
 
 	<!-- Fin Panier header -->
@@ -129,126 +143,144 @@ $EmailUser=$UtilisateurC->EmailUtilisateur($valeur_id);
 
 	<!-- Debut Des Produits -->
 
-	<section class="featured spad ">
-        <div class="container_Produit">
-            <div class="row">
+    <section class="featured spad">
+    <div class="row featured__filter">
+        <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-Product">
-                        <h2>Featured Product</h2>
+                        <h2>Nos Produit</h2>
                     </div>
                 </div>
             </div>
+        <?php foreach ($products as $product): ?>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" style="height:60vh;">
+            <div class="featured__item "style="height:60vh;">
+                <form method="POST"  enctype="multipart/form-data"  action="add_Carte.php" style="height:60vh;">
+                    <div class="featured__item__pic set-bg" data-setbg="ImageProduit/<?= basename($product->getImage()) ?>">
+                        <img src="ImageProduit/<?= basename($product->getImage()) ?>" alt="<?= $product->getName() ?>">
+                        <ul class="featured__item__pic__hover">
+                            <li>
+                                
+                            </li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
 
-			
-            <div class="row featured__filter">
-
-
-
-                <!-- Debut FOREACH -->
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="ImageProduit\feature-2.jpg">
-						<img src="ImageProduit\feature-2.jpg" alt="ImageProduit">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#" style="margin-top: 20px;"><i class="fa fa-shopping-cart"></i></a></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
+                        </ul>
                     </div>
-                </div>
-				<!-- Fin FOREACH -->
-                
-            
-
-
-
+                    <div class="featured__item__text">
+                        <h6><a href="#"><?= $product->getName() ?></a></h6>
+                        <h5><?= $product->getPrice() ?>$ /-</h5>
+                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                        <input  class="quantity" type="number"   name="quantity" min="1" value="1">                    
+                        <input type="submit"  class ="add_to_cart"name="add_to_cart" id="add_to_cart" value="Add to Cart">
+                        <h6><?= $product->checkStockStatus($product) ?></h6>
+                    </div>
+                </form>
             </div>
-
-
         </div>
-    </section>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+
+
+<style>
+    .add_to_cart {
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 5px 10px;
+  }
+  .quantity {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  outline: none;
+  width: 60px;
+  text-align: center;
+}
+.add_to_cart:hover {
+  background-color: #0062cc;
+  transition: all 0.3s ease;
+}
+</style>
 
 
 	<!-- Fin Des Produits -->
 	
 	<!-- Debut Panier -->
 
-	<section class="SectionPanier flip-out-hor-top hide" >
-
- 		<div style="height:100%; width:100%; top:0; left:0; ">
-            <label for="search-input" style="float:right; transform: translateY(48px);"><a href="#" id="closebtn"><i class="uil uil-times-circle"></i></a></label>
-		    <input type="text" id="search-input" name="search-input" class="form-style" style="border: 1px solid rgba(0,0,0,.500);" onkeyup="search()" placeholder="Search for event name...">   
-    <div class="card " style="height:500px; width:100%;border: 1px solid rgba(0,0,0,.500);">
-      <div class="card-header">
-            <div class="card-header-right">
-              <ul class="list-unstyled card-option">
-                  <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                  <li><i class="fa fa-window-maximize full-card"></i></li>
-                  <li><i class="fa fa-minus minimize-card"></i></li>
-                  <li><i class="fa fa-refresh reload-card"></i></li>
-              </ul>
-          </div>
-      </div>
-      <div class="card-block table-border-style">
-        <div class="table-responsive">
-          <table class="table table-hover tableau1" id="tableau1">
-            <thead>
-              <tr>
-                 <th class="styleth">Event Name</th>
-					       <th class="styleth">Name</th>
-					       <th class="styleth">Email</th>
-					       <th class="styleth">nbrPlaces</th>
-					       <th class="styleth">Num</th>
-                 <th class="styleth">Prix</th>
-                 <th class="styleth">Actions</th>
-             </tr>
-             </thead>
-             <tbody>
-             <?php
-        /*foreach ($list as $Reservation) 
-        {
-			$nameEvent = $EventC->DateEvent($Reservation['idEvent']);
-			 foreach ($nameEvent as $Event) {$idevent= $Event['name'];} */ 
-        ?>
-					<tr>
-					    <td class="styleth"></td>	 
-              			<td class="styleth"></td>
-              			<td class="styleth"></td>
-              			<td class="styleth"></td>
-              			<td class="styleth"></td>
-              			<td class="styleth"></td>
-              <td>
-              <div class="nav-item dropdown">
-                    <a style="color: #0d6efd;" href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical" ></i></a>
-                    <div class="dropdown-menu fade-down m-0" style="min-width: 10px; min-height:10px ;">
-                    <a class="toggle-edit dropdown-item" style="padding: 0px 16px;"  >
-                                  <i class="edit-del-icon uil uil-edit" style="font-size: 20px;"></i>
-                                    </a>
-                                    <?php
-							        echo "<a class='dropdown-item' style='padding: 0px 16px;' href='FunctiondeleteRerser.php?val_id=" . $valeur_id ."&idReserv=". 0 ."'><i class='edit-del-icon uil uil-trash-alt' style='font-size: 20px;'></i></a>"; ?>
-                    </div>
+	<section class="SectionPanier flip-out-hor-top hide">>
+    <div style="height:100%; width:100%; top:0; left:0; ">
+        <label for="search-input" style="float:right; transform: translateY(48px);">
+            <a href="#" id="closebtn"><i class="uil uil-times-circle"></i></a>
+        </label>
+        <input type="text" id="search-input" name="search-input" class="form-style" style="border: 1px solid rgba(0,0,0,.500);" onkeyup="search()" placeholder="Search for product name...">
+        <div class="card " style="height:500px; width:100%;border: 1px solid rgba(0,0,0,.500);">
+            <div class="card-header"><h3>Panier</h3> 
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                        <li><i class="fa fa-minus minimize-card"></i></li>
+                        <li><i class="fa fa-refresh reload-card"></i></li>
+                    </ul>
                 </div>
-              
-                                    
-						</td>
-					</tr>
-          <?php
-        //}
-        ?>	
-          </tbody>
-        </table>
-        <button class="uil uil-step-backward" id= "bouton-precedent1"disabled></button>
-        <button class="uil uil-skip-forward" id="bouton-suivant1"></button>
-      </div>
-     </div>
-    </div>
-	</div>
+            </div>
+            
+            <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <table class="table table-hover tableau1" id="tableau1">
+                    
+                        <thead>
+                            <tr>
+                                <th class="styleth">Product Name</th>
+                                <th class="styleth">Description</th>
+                                <th class="styleth">Price</th>
+                                <th class="styleth">Quantity</th>
+                                <th class="styleth">Subtotal</th>
+                                <th class="styleth">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($products_in_cart as $product_in_cart): ?>
+    <tr>
+        <td><?= $product_in_cart['name'] ?></td>
+        <td><?= $product_in_cart['description'] ?></td>
+        <td><?= $product_in_cart['price'] ?></td>
+        <td><?= $product_in_cart['quantity'] ?></td>
+        <td><?= $product_in_cart['subtotal'] ?></td>
+        <td>
+            <a href="./assets/PDF/PDF_Chauffeur.php?a=<?php echo $product_in_cart['id']; ?>&b=<?php echo $product_in_cart['name']; ?>&c=<?php echo $product_in_cart['description']; ?>&d=<?php echo $product_in_cart['price']; ?>&e=<?php echo $product_in_cart['quantity']; ?>&f=<?php echo $product_in_cart['subtotal']; ?>&g=<?= $valeur_id; ?>">
+                <i class="edit-del-icon uil uil-file-download-alt"></i>
+            </a>
+            <div class="nav-item dropdown">
+                <a style="color: #0d6efd;" href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                <div class="dropdown-menu fade-down m-0" style="min-width: 10px; min-height:10px ;">
+                    <a class="toggle-edit dropdown-item" style="padding: 0px 16px;">
+                        <i class="edit-del-icon uil uil-edit" style="font-size: 20px;"></i>
+                    </a>
+                    <a class="dropdown-item" style="padding: 0px 16px;" href="deleteCarte.php?idc=<?= $product_in_cart['idc'] ?>">
+                        <i class="edit-del-icon uil uil-trash-alt" style="font-size: 20px;"></i>
+                    </a>
+                </div>                                                                                       
+            </div>
+        </td>
+    </tr>
+<?php endforeach;?>
+
+</tbody>
+</table>
+<a href="./assets/PDF/PDF_Produit.php" target="_blank">Facture</a>
+
+
+                  <script src="html2pdf.bundle.js"></script> 
+    
   <!--////////////////////////////////////////////////-->
 	
 		<script>

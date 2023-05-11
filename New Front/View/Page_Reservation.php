@@ -1,5 +1,6 @@
 <?php
 include "../Controller/ReservationC.php";
+include '../Controller/ChauffeurC.php';
 include "../Controller/EventC.php";
 include "../Controller/UtilisateurC.php";
 
@@ -15,6 +16,11 @@ $list = $ReservationC->listReservationpourclient($valeur_id);
 $EventC = new EventC();
 
 $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
+
+$ChauffeurC = new ChauffeurC();
+$AdminChat = $ChauffeurC->Chat();
+
+$currentTime=date("H:i:s");
 
 
 ?>
@@ -37,6 +43,7 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="assets/css/Chat.css" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -65,14 +72,10 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script> 
     <!-- RECATCHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-
-
-
 </head>
 <body>
-
 	    <!-- Spinner Start -->
-      <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -89,21 +92,23 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <?php echo "<a class='nav-item nav-link active' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
-                <a href="#" class="nav-item nav-link displaylogin">Club</a>
-                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>Evenement</a>"; ?>
-				<a href="#" class="nav-item nav-link displaylogin">Produit</a>
-				<a href="#" class="nav-item nav-link displaylogin">Reclamation</a>
+                <?php echo "<a class='nav-item nav-link ' href='Page_accueil.php?val_id=" . $valeur_id ."'>Accueil</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Club.php?val_id=" . $valeur_id ."'>Club</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin ' href='Page_Evenement.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>Événement</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Reclamation.php?val_id=" . $valeur_id ."'>Réclamation</a>"; ?>
+                <?php echo "<a class='nav-item nav-link displaylogin' href='Page_Produit.php?val_id=" . $valeur_id ."'>Produit</a>"; ?>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle displaylogin active" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
-                        <?php echo "<a class='dropdown-item' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Reserveation</a>"; ?>
-                        <?php echo "<a class='dropdown-item' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+					    <?php echo "<a class='dropdown-item active' href='Page_Reservation.php?val_id=" . $valeur_id ."'>Réservation</a>"; ?>
+                        <?php echo "<a class='dropdown-item ' href='Page_Transport.php?val_id=" . $valeur_id ."'>Transport</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Reponse.php?val_id=" . $valeur_id ."'>Réponse</a>"; ?>
+                        <?php echo "<a class='dropdown-item' href='Page_Materiel.php?val_id=" . $valeur_id ."'>Materiel</a>"; ?>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_Profile.php?val_id=" . $valeur_id ."&creationreserv=".$test."'>".$Username."</a>"; ?>
+                <?php echo "<a class='nav-item nav-link ' href='Page_Contact.php?val_id=" . $valeur_id ."'>Contact</a>"; ?>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none toggle-login deconnecter hide">Rejoignez-nous<i class="fa fa-arrow-right ms-3"></i></a>
+                <?php echo "<a class='btn btn-primary py-4 px-lg-5 d-none d-lg-block connecter' href='Page_profile.php?val_id=" . $valeur_id ."&creationreserv=". 0 ."'>".$Username."</a>"; ?>
             </div>
         </div>
     </nav>
@@ -255,9 +260,6 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
 
 
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top ToBeBlured"><i class="bi bi-arrow-up"></i></a>
-
 
 <script>
             var ajoutfail=<?= $ajoutfail ?>;
@@ -266,6 +268,104 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
               alert("Nombre de place indisponible");
             }
 </script>
+
+
+<!-- Chat -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square toggleChat toggleChatbtn ToBeBlured"><i class="fa-solid fa-comments"></i></a>
+
+
+
+ <!-- start chat  -->
+ <div class="DivChat slide-out-right hide" style="position: Fixed; z-index: 999; height: 700px; width: 100%; border: none;" >
+        <br />
+        <div class="container-chat-calendar" style="width:100%; height: 100%;">
+          <div class="page-content page-container-chat" id="page-content">
+    <div >
+        <div class="row container-chat d-flex justify-content-center" >
+<div class="col-md-4" style="width:100%; height: 100%;">
+             
+              <div class="box box-warning direct-chat direct-chat-warning">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Chat Messages</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" id= "my-buttonreloadChat" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                      <i class="fa fa-refresh reload-card"></i></button>
+                    <button class="btn btn-box-tool BtnCloseChat" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              
+                <div class="box-body"id="DivChatReload">
+                  
+                  <div class="direct-chat-messages" style="height:350px;" > 
+
+                  
+                    <!-- El User -->
+                    <div class="direct-chat-msg right">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left"><?=$Username?></span>
+                        <span class="direct-chat-timestamp pull-right"><?=$currentTime?></span>
+                      </div>
+                     
+                      <img class="direct-chat-img" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="message user image">
+                   
+                      <div class="direct-chat-text">
+                      Message
+                      </div>
+        
+                    </div>
+
+                    <!-- El BOT -->
+                          <div class="direct-chat-msg">
+                      <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Culturna</span>
+                        <span class="direct-chat-timestamp pull-right"><?=$currentTime?></span>
+                      </div>
+                      <img class="direct-chat-img" src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Robot-512.png" alt="message user image">
+                      <div class="direct-chat-text">
+                            Bonjour, en quoi puis-je vous aider ?
+                      </div>
+        
+                    </div>
+                    
+
+                  </div>
+                 
+                </div>
+
+                <div class="box-footer">
+
+                    <div class="input-group">
+                        <div class="nav-item dropdown form-control">
+                            <a href="#" class="nav-link dropdown-toggle displaylogin" data-bs-toggle="dropdown">Posez votre question</a>
+                            <div class="dropdown-menu fade-down m-0">
+                                <a class='dropdown-item' id="A-quoi-sert-event"               >À quoi sert cette page ?</a>
+                                <a class='dropdown-item' id="Quand-evenement-lieu"   >Quand est-ce que l'evenement aura lieu?</a>
+                                <a class='dropdown-item' id="Changer-mes-Reservation"    >Puis-je changer mes Reservation ?</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+             
+              </div>
+           
+            </div>
+             </div>
+            
+              </div>
+             
+            </div>
+        </div>
+      </div>
+
+      <!-- end chat  -->
+
+
+
+
+
 
 
 <!-- JavaScript Libraries -->
@@ -278,6 +378,7 @@ $ajoutfail = isset($_GET['ajoutfail']) ? $_GET['ajoutfail'] : 0;
 
 <!-- Template Javascript -->
 <script src="assets Front/js/main.js"></script>
+<script src="./assets/JS/Chat Event.js"></script>
 
     
 </body>
