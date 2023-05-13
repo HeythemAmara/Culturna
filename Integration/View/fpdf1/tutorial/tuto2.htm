@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>En-t�te, pied de page, saut de page et image</title>
+<link type="text/css" rel="stylesheet" href="../fpdf.css">
+</head>
+<body>
+<h1>En-t�te, pied de page, saut de page et image</h1>
+Voici un exemple de deux pages avec en-t�te, pied de page et logo :
+<div class="source">
+<pre><code>&lt;?php
+<span class="kw">require(</span><span class="str">'fpdf.php'</span><span class="kw">);
+
+class </span>PDF <span class="kw">extends </span>FPDF
+<span class="kw">{
+</span><span class="cmt">// En-t�te
+</span><span class="kw">function </span>Header<span class="kw">()
+{
+    </span><span class="cmt">// Logo
+    </span>$<span class="kw">this-&gt;</span>Image<span class="kw">(</span><span class="str">'logo.png'</span><span class="kw">,</span>10<span class="kw">,</span>6<span class="kw">,</span>30<span class="kw">);
+    </span><span class="cmt">// Police Arial gras 15
+    </span>$<span class="kw">this-&gt;</span>SetFont<span class="kw">(</span><span class="str">'Arial'</span><span class="kw">,</span><span class="str">'B'</span><span class="kw">,</span>15<span class="kw">);
+    </span><span class="cmt">// D�calage � droite
+    </span>$<span class="kw">this-&gt;</span>Cell<span class="kw">(</span>80<span class="kw">);
+    </span><span class="cmt">// Titre
+    </span>$<span class="kw">this-&gt;</span>Cell<span class="kw">(</span>30<span class="kw">,</span>10<span class="kw">,</span><span class="str">'Titre'</span><span class="kw">,</span>1<span class="kw">,</span>0<span class="kw">,</span><span class="str">'C'</span><span class="kw">);
+    </span><span class="cmt">// Saut de ligne
+    </span>$<span class="kw">this-&gt;</span>Ln<span class="kw">(</span>20<span class="kw">);
+}
+
+</span><span class="cmt">// Pied de page
+</span><span class="kw">function </span>Footer<span class="kw">()
+{
+    </span><span class="cmt">// Positionnement � 1,5 cm du bas
+    </span>$<span class="kw">this-&gt;</span>SetY<span class="kw">(-</span>15<span class="kw">);
+    </span><span class="cmt">// Police Arial italique 8
+    </span>$<span class="kw">this-&gt;</span>SetFont<span class="kw">(</span><span class="str">'Arial'</span><span class="kw">,</span><span class="str">'I'</span><span class="kw">,</span>8<span class="kw">);
+    </span><span class="cmt">// Num�ro de page
+    </span>$<span class="kw">this-&gt;</span>Cell<span class="kw">(</span>0<span class="kw">,</span>10<span class="kw">,</span><span class="str">'Page '</span><span class="kw">.</span>$<span class="kw">this-&gt;</span>PageNo<span class="kw">().</span><span class="str">'/{nb}'</span><span class="kw">,</span>0<span class="kw">,</span>0<span class="kw">,</span><span class="str">'C'</span><span class="kw">);
+}
+}
+
+</span><span class="cmt">// Instanciation de la classe d�riv�e
+</span>$pdf <span class="kw">= new </span>PDF<span class="kw">();
+</span>$pdf<span class="kw">-&gt;</span>AliasNbPages<span class="kw">();
+</span>$pdf<span class="kw">-&gt;</span>AddPage<span class="kw">();
+</span>$pdf<span class="kw">-&gt;</span>SetFont<span class="kw">(</span><span class="str">'Times'</span><span class="kw">,</span><span class="str">''</span><span class="kw">,</span>12<span class="kw">);
+for(</span>$i<span class="kw">=</span>1<span class="kw">;</span>$i<span class="kw">&lt;=</span>40<span class="kw">;</span>$i<span class="kw">++)
+    </span>$pdf<span class="kw">-&gt;</span>Cell<span class="kw">(</span>0<span class="kw">,</span>10<span class="kw">,</span><span class="str">'Impression de la ligne num�ro '</span><span class="kw">.</span>$i<span class="kw">,</span>0<span class="kw">,</span>1<span class="kw">);
+</span>$pdf<span class="kw">-&gt;</span>Output<span class="kw">();
+</span>?&gt;</code></pre>
+</div>
+<p class='demo'><a href='tuto2.php' target='_blank' class='demo'>[D�mo]</a></p>
+Cet exemple exploite les m�thodes <a href='../doc/header.htm'>Header()</a> et <a href='../doc/footer.htm'>Footer()</a> pour traiter les en-t�tes et
+pieds de page. Elles sont appel�es automatiquement. Leur impl�mentation dans la classe FPDF
+est vide, aussi doit-on d�river la classe et les red�finir.
+<br>
+<br>
+Le logo est imprim� gr�ce � la m�thode <a href='../doc/image.htm'>Image()</a> en pr�cisant le coin sup�rieur gauche et
+la largeur. La hauteur est calcul�e automatiquement afin de respecter la proportion de l'image.
+<br>
+<br>
+Pour imprimer le num�ro de page, une valeur nulle est pass�e comme largeur de cellule. Cela
+signifie que cette derni�re doit s'�tendre jusqu'� la marge droite de la page ; c'est pratique
+pour centrer du texte. Le num�ro de page courant est retourn� par la m�thode <a href='../doc/pageno.htm'>PageNo()</a> ; le
+nombre total de pages s'obtient quant � lui gr�ce � la valeur sp�ciale <code>{nb}</code> qui sera
+substitu�e lorsque le document sera termin� (� condition d'avoir au pr�alable appel�
+<a href='../doc/aliasnbpages.htm'>AliasNbPages()</a>).
+<br>
+A noter l'utilisation de la m�thode <a href='../doc/sety.htm'>SetY()</a> qui permet de se
+positionner de mani�re absolue dans la page, � partir du haut ou du bas.
+<br>
+<br>
+Une autre fonctionnalit� int�ressante est ici utilis�e : le saut de page automatique. Lorsqu'une cellule
+descend trop bas (� 2 centim�tres du bas de la page par d�faut), un saut de page est effectu�
+et la police est restaur�e. Bien que l'en-t�te et le pied de page sp�cifient leur propre
+police (Arial), le corps de la page continue en Times. Ce principe de restauration automatique
+s'applique aussi � l'�paisseur des traits et aux couleurs. Le seuil de d�clenchement du saut
+de page se r�gle avec <a href='../doc/setautopagebreak.htm'>SetAutoPageBreak()</a>.
+</body>
+</html>
